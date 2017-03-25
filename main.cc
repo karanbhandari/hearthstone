@@ -22,33 +22,33 @@ int main (int argc, char *argv[]) {
 			cin >> i;
 			cout << "discard " + i << endl;
 		} else if (s ==  "attack") { // attack the opponent
-			ss >> i; // active players minion
-			if (ss >> j) { // attack the minion j of opposition
+			iss >> i; // active players minion
+			if (iss >> j) { // attack the minion j of opposition
 				cout << "attack on " << j << " by " << i << endl;
 			} else { // attack on the opposite player
-				ss.clear();
+				iss.clear();
 				cout << "attack on player by " << i << endl;
 			}
 		} else if (s == "play") { // to play a card i
-			ss >> i;
-			if (ss >> j) {
-				ss >> k;
+			iss >> i;
+			if (iss >> j) {
+				iss >> k;
 				cout << "play " << i << "th card on player " << j << "s " << j << endl;
 			} else {
 				cout << "play " << i << "the card" << endl;
-				ss.clear();
+				iss.clear();
 			}
 		} else if (s == "use") { // use activated ability 
-			ss >> i;
-			if (ss >> j) {
-				ss >> k;
+			iss >> i;
+			if (iss >> j) {
+				iss >> k;
 				cout << "use " << i << "th card on player " << j << "s " << j << endl;
 			} else {
 				cout << "minion " << i << "the minion" << endl;
-				ss.clear();
+				iss.clear();
 			}
 		} else if (s == "inspect") { // inspect the ith minion owned by the player
-			ss >> i;
+			iss >> i;
 			cout << "inspect the " << i << "th minion" << endl;
 		} else if (s == "hand") { //display the activePlayers Hand
 			cout << "hand of active" << endl;
