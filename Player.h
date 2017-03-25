@@ -1,30 +1,30 @@
-/*
- * Player.h
- *
- *  Created on: Mar 23, 2017
- *      Author: Acer User
- */
-
-#include <string>
-#include <sstream>
-#include <iostream>
-
-using namespace std;
 #ifndef PLAYER_H_
 #define PLAYER_H_
+
+#include <string>
+#include <iostream>
+
 
 class Player {
 	string name;
 	int magic;
 	int life;
-
+	Hand *hand;
+	Slot *slot;
+	Deck *deck;
+	Graveyard *graveyard;
 public:
-	Player (string& myName);
-	int getMagic ();
-	void changeMana (int change);
+	Player(string& myName);
+	~Player();
+	int getMagic();
+	void changeMagic(int change);
+	void draw();
+	void performStartTrigger();
+	void perfromEndTrigger();
+	void discard(int i);
+	void attack(int i, Player* opponent);
+	void attack(int i, Player* opponent, int j);
 };
 
 
-
-
-#endif /* PLAYER_H_ */
+#endif
