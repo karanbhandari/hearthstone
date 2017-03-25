@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <fstream>
 using namespace std;
 
 void mainLoop(istream *in, bool testing) {
@@ -23,7 +24,7 @@ void mainLoop(istream *in, bool testing) {
 		} else if (s == "discard") { // remove ith card from the players hand (only in Tmode)
 			iss >> i;
 			if (testing)
-				cout << "discard " + i << endl;
+				cout << "discard " << i << endl;
 			else 
 				cout << "testing should enabled for this command" << endl;
 		} else if (s ==  "attack") { // attack the opponent
@@ -69,18 +70,19 @@ void mainLoop(istream *in, bool testing) {
 int main (int argc, char *argv[]) {
 	string deck1 = "default.deck", deck2 = "default.deck", init = "";
 	bool testing;
-	for (int i = 1; i < argv.length(); i++) { 
-		if (argv[i] == "-deck1") { //to get deck1 name 
+	for (int i = 1; i < argc; i++) { 
+		string theArg = argv[i];
+		if (theArg == "-deck1") { //to get deck1 name 
 			deck1 = argv[i+1];
-		} else if (argv[i] == "-deck2") { //to get deck2 name
+		} else if (theArg == "-deck2") { //to get deck2 name
 			deck2 = argv[i+1];		
-		} else if (argv[i] == "-init") { // to get init fileName
+		} else if (theArg == "-init") { // to get init fileName
 			init = argv[i+1];
-		} else if (argv[i] == "-testing") { // to see if testing is enabled
+		} else if (theArg == "-testing") { // to see if testing is enabled
 			testing = true;
 		}
 	}
-	if(!init) {
+	if(init != "") {
 		istream *in = new ifstream(init.c_str());
 		mainLoop(in, testing);
 		delete in;
