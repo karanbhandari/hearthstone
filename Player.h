@@ -1,12 +1,12 @@
+
 #ifndef PLAYER_H_
 #define PLAYER_H_
 
 #include <string>
 #include <iostream>
 
-
 class Player {
-	string name;
+	std::string name;
 	int magic;
 	int life;
 	Hand *hand;
