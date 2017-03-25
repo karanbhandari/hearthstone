@@ -6,6 +6,7 @@ using namespace std;
 
 int main (int argc, char *argv[]) {
 	string s;
+	int i, j, k;
 	while (true) {
 		getline(cin, s);
 		istringstream iss{s};
@@ -14,6 +15,7 @@ int main (int argc, char *argv[]) {
 			cout << s << endl;
 		} else if (s == "quit") { // end the game with no winner
 			cout << "quit" << endl;
+			break;
 		} else if (s == "draw") { // draws a card (only in testing mode) 
 			cout << "draw" << endl;
 		} else if (s == "discard") { // remove ith card from the players hand (only in Tmode)
@@ -31,7 +33,7 @@ int main (int argc, char *argv[]) {
 			ss >> i;
 			if (ss >> j) {
 				ss >> k;
-				cout << "play " << i << "th card on player " << j << "s " << j << end;
+				cout << "play " << i << "th card on player " << j << "s " << j << endl;
 			} else {
 				cout << "play " << i << "the card" << endl;
 				ss.clear();
@@ -40,11 +42,21 @@ int main (int argc, char *argv[]) {
 			ss >> i;
 			if (ss >> j) {
 				ss >> k;
-				cout << "use " << i << "th card on player " << j << "s " << j << end;
+				cout << "use " << i << "th card on player " << j << "s " << j << endl;
 			} else {
 				cout << "minion " << i << "the minion" << endl;
 				ss.clear();
 			}
-		} else if (s = "describe") { 
+		} else if (s == "inspect") { // inspect the ith minion owned by the player
+			ss >> i;
+			cout << "inspect the " << i << "th minion" << endl;
+		} else if (s == "hand") { //display the activePlayers Hand
+			cout << "hand of active" << endl;
+		} else if (s == "board") { //display the board
+			cout << "wrong command" << endl;
+		} else {
+			cout << "INVALID COMMAND" << endl;
+		}
 	}
+	return 0;
 }	
