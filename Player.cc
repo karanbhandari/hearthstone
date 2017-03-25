@@ -53,17 +53,31 @@ void Player::performEndTrigger() {
 
 // Discards ith card from the hand
 void Player::discard(int i) {
-	hand->remove(i); // this remove function should perform card leave play trigger
+	hand->deleteCard(i); // this remove function should perform card leave play trigger
 }
 
 // Attack the opponent player using the ith card
-void attack(int i, Player *opponent){
+void Player::attack(int i, Player *opponent){
 	slot->getIth(int i)->attack(opponent);
 }
 
 
 // Attack the opposing minion
-void attack(int i, Player *opponent, int j) {
+void Player::attack(int i, Player *opponent, int j) {
 	slot->getIth(int i)->attack(opponent->slot->getIth(int j));
+	opponent->slot->getIth(int j)->attack(slot->getIth(int j));
+}
+
+// add the ith card on the hand on the slots
+void Player::play(int i) {
+	slot->add(hand->getIth(int i));
+	hand->remove(int i)
+}
+
+// play the ith card on the hand on the minion/ritual
+void Player::play(int i, int p, int j) {
+	if (j >= 1 && j <= 5) { // play on the minion
+		
+	}
 }
 
