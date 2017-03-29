@@ -5,8 +5,8 @@
 #include "Ability.h"
 
 // this is an abstract cards class that if a parent to Minions, spells and encahntments
-class Cards {
+class Card {
   public:
-	  Cards();
-	  virtual ~Cards() = 0;
+	  Card();
+	  virtual ~Card() = 0;
 };

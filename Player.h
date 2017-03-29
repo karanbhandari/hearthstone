@@ -4,6 +4,10 @@
 #include <string>
 #include <iostream>
 
+#include "Deck.h"
+#include "Card.h"
+
+
 class Player {
 	std::string name;
 	int magic;
@@ -13,7 +17,7 @@ class Player {
 	Deck *deck;
 	Graveyard *graveyard;
 public:
-	Player(string& myName);
+	Player(std::string& myName);
 	~Player();
 	int getMagic();
 	void changeMagic(int change);

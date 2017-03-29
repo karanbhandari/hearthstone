@@ -1,5 +1,5 @@
 #include "Card.h"
 
-Cards::Cards() {};
+Card::Card() {};
 
-Cards::~Cards() {};
+Card::~Card() {};

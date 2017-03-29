@@ -5,19 +5,19 @@
 #include <iostream>
 #include <vector>
 
-#include "Card.h"
+class Card;
 
 class AbstractDeck {
 	int size;
 	std::vector<Card *> cardList;
 	public:
 	AbstractDeck(std::vector<Card *> cardList);
-	~AbstractDeck() = 0;
-	void shuffle();
-	Card* getTopCard();
-	Card* getIthCard(int i);
-	void removeCard(int i);
-	void deleteCard(int i);
+	virtual ~AbstractDeck() = 0;
+	virtual void shuffle();
+	virtual Card* getTopCard();
+	virtual Card* getIthCard(int i);
+	virtual void removeCard(int i);
+	virtual void deleteCard(int i);
 };
 
 class Deck: public AbstractDeck {
