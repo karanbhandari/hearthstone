@@ -18,6 +18,7 @@ class AbstractDeck {
 	void removeCard(int i);
 	void deleteCard(int i);
 	void addCard(Card *card);
+	bool isEmpty();
 };
 
 class Deck: public AbstractDeck {

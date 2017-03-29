@@ -27,6 +27,11 @@ public:
 	void discard(int i);
 	void attack(int i, Player* opponent);
 	void attack(int i, Player* opponent, int j);
+	void play(int i);
+	void play(int i, Player*opponent, int j);
+	void use(int i);
+	void use(int i, Player*opponent, int j);
+	
 };
 
 

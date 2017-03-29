@@ -37,3 +37,7 @@ void AbstractDeck::addCard(Card* card) {
 	cardList.emplace_back(card);
 }
 
+bool AbstractDeck::isEmpty() {
+	return cardList.empty();
+}
+
