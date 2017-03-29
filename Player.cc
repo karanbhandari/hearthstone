@@ -9,7 +9,7 @@ using namespace std;
 Player::Player(string& myName) : 
 		name{myName}, magic{3}, life{20} {
 	deck = new Deck();
-	hand = new Hand(deck);
+	hand = new Hand{deck};
 	slots = new Slots();
 	graveyard = new graveyard();
 }
@@ -74,10 +74,27 @@ void Player::play(int i) {
 	hand->remove(int i)
 }
 
+//TODO add the option to play it on any player
 // play the ith card on the hand on the minion/ritual
-void Player::play(int i, int p, int j) {
+void Player::play(int i, Player *p, int j) {
 	if (j >= 1 && j <= 5) { // play on the minion
-		
+		slot->add(hand->getIth(int i), j);
 	}
 }
+
+
+// uses the activated ability
+void Player::use(int i) {
+	slot->getIth(i)->performActivatedAbility();
+}
+
+// uses the activitaed ability on player p's 
+void Player::use(int i, Player *p, int j) {
+	slot->getIth(i)->performActivatedAbility(p->slot->getIth(j));
+}
+
+
+//the describe, hand and board command would take place in main would take place in main
+
+
 
