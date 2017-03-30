@@ -15,7 +15,7 @@ class Minions: public Cards {
     int action; // What is this going to do and how its type is int is still a confusion for me
     Ability *activatedAbility;
     Ability *triggeredAbility;
-    Ability *newestActivatedAbility;
+    Enchantment **Enchantments;
   public:
     Minions (const std::string& name,int attack, int defence, int action, Ability *actAbl, Ability *trgAbl, Ability *newstActAbl);
     void updateActivatedAbility ();

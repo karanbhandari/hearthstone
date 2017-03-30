@@ -23,8 +23,6 @@ public:
 };
 
 class Deck: public AbstractDeck {
-	//std::vector <Cards *> deckList;
-	//int deckSize;
 public:
 	Cards * createCard (std::string name);
 	Deck(std::istream deckList);
@@ -40,7 +38,7 @@ public:
 
 class Hand: public AbstractDeck {
 public:
-	Hand();
+	Hand(Deck* deck);
 	~Hand();
 };
 
