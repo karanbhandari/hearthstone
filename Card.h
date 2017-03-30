@@ -10,3 +10,6 @@ class Card {
 	  Card();
 	  virtual ~Card() = 0;
 };
+
+
+FUCK THIS SHIT
