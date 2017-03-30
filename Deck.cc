@@ -11,8 +11,11 @@
 
 using namespace std;
 
+
+//****************DECK FUNCTIONS********************************
+
 // Creates a new deck object and fills it with cards from the .deck file as specified
-Deck::Deck(istream deckList) {
+Deck::Deck(istream deckList) :AbstractDeck{0} {
 
 	cardList = new std::vector<Cards*>;
 	string currentCardName;
@@ -176,6 +179,18 @@ void Deck::shuffle() {
 	}
 }
 
+//****************ABSTRACK DECK FUNCTIONS*************************
+
+AbstractDeck::AbstractDeck(int size) : size{size} {
+	cardList = nullptr;
+}
+
+AbstractDeck::~AbstractDeck() {
+	for (auto& x: cardList) {
+		delete x;
+	}
+}
+
 // returns the card on the top of the deck and removes it from the deck
 Cards* AbstractDeck::getTopCard() {
 	Cards *temp = cardList.back();
@@ -210,3 +225,30 @@ bool AbstractDeck::isEmpty() {
 	return cardList.empty();
 }
 
+//****************HAND FUNCTIONS******************************
+
+// Hand ctor
+Hand::Hand(Deck *deck) : AbstractDeck{0} {
+	size = 5;
+	for(int i = 0; i < 5; i++) {
+		add(deck->getTopCard());	
+	}
+}
+
+
+//****************SLOTS FUNCTIONS******************************
+
+// Slot ctor
+Slot::Slot() : AbstractDeck{0} {
+	size = 0;
+	cardList = nullptr;
+}
+
+
+
+//****************GRAVEYARD FUNCTIONS*************************
+
+// Graveyard ctor
+Graveyard::Graveyard() : AbstractDeck(0) {
+	cardList = nullptr;
+}
