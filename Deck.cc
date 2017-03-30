@@ -33,6 +33,7 @@ Deck::Deck(istream deckList) {
 Cards* Deck::createCard(string name) {
 
 	// For All Spell Cards
+	// All Spell Cards are initiated in the format: new Spell (string name, int magicCost, Ability ability)
 	if (name == "Banish") {
 		const string abilityName = "Destroy target minion or ritual";
 		const string spellName = "Banish";
@@ -75,6 +76,10 @@ Cards* Deck::createCard(string name) {
 	}
 
 	// For all Minion Cards
+	// All Minion Cards are initated in the format:
+	// new Minion (int attack, int defence, int magicCost, Ability ActivatedAbility,
+	// Ability triggeredAbility, Ability newestActivatedAbility)
+	// I'm not sure what the last ability is? I'm guessing its the buff right?
 	else if (name == "Air Elemental") {
 		const string minionName = "Air Elemental";
 		Ability * actAb = nullptr;
