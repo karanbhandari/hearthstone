@@ -12,19 +12,18 @@
 #include <iostream>
 #include "Player.h"
 #include "Ability.h"
-#include "Card.h"
+#include "Cards.h"
 
 class Spells: public Cards {
 	int cost;
 	std::string name;
-	std::string description; // I need to implement something to add in description
 	Ability *spellAbility; // link to an ability to activate
-	Player *spellPlayer; // What is this for ??? @Karan
+	//Player *spellPlayer; // What is this for ??? @Karan
 
 public:
-	Spells (const std::string& name, int cost, Ability * myAbility, Player * myPlayer);
+	Spells (const std::string &name, int cost, Ability * myAbility);
 	//~Spell();
-	bool canActivate ();
+	//bool canActivate ();
 	void activate ();
 	void moveToGrave ();
 };

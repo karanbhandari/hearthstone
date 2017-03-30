@@ -4,7 +4,7 @@
 #include <string>
 #include <sstream>
 #include <iostream>
-//#include "Card.h"
+#include "Cards.h"
 #include "Minion.h"
 #include "Ability.h"
 

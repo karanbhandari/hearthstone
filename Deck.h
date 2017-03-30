@@ -4,44 +4,48 @@
 #include <string>
 #include <iostream>
 #include <vector>
-
-class Card;
+#include "Player.h"
+#include "Cards.h"
 
 class AbstractDeck {
+protected:
 	int size;
-	std::vector<Card *> cardList;
-	public:
+	std::vector<Cards *> cardList;
+public:
 	AbstractDeck();
 	virtual ~AbstractDeck() = 0;
-	Card* getTopCard();
-	Card* getIthCard(int i);
+	Cards* getTopCard();
+	Cards* getIthCard(int i);
 	void removeCard(int i);
 	void deleteCard(int i);
-	void addCard(Card *card);
+	void addCard(Cards *card);
 	bool isEmpty();
 };
 
 class Deck: public AbstractDeck {
-	public:
-	Deck();
+	//std::vector <Cards *> deckList;
+	//int deckSize;
+public:
+	Cards * createCard (std::string name);
+	Deck(std::istream deckList);
 	~Deck();
 	virtual void shuffle();
 };
 
 class Slot: public AbstractDeck {
-	public:
+public:
 	Slot();
 	~Slot();
 };
 
 class Hand: public AbstractDeck {
-	public:
+public:
 	Hand();
 	~Hand();
 };
 
 class Graveyard: public AbstractDeck {
-	public:
+public:
 	Graveyard();
 	~Graveyard();
 };

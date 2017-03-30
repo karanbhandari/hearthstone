@@ -15,7 +15,7 @@ class Ability {
 	std::string name;
 
 public:
-	Ability (std::string& nameOfAbility);
+	Ability (const std::string& nameOfAbility);
 	void performAbility ();
 };
 

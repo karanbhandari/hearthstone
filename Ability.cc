@@ -11,7 +11,7 @@
 
 using namespace std;
 
-Ability::Ability(string & name) {
+Ability::Ability(const string & name) {
 	this->name = name;
 }
 void Ability::performAbility() {

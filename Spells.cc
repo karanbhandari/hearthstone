@@ -13,22 +13,21 @@
 
 using namespace std;
 
-Spells::Spells(const string& name, int cost, Ability *myAbility,
-		Player *myPlayer) :
-		name(name), cost(cost), spellAbility(myAbility), spellPlayer(myPlayer) {
+Spells::Spells(const string &name, int cost, Ability *myAbility) :
+		name(name), cost(cost), spellAbility(myAbility) {
 }
 
-bool Spells::canActivate() {
-	return spellPlayer->getMagic() >= cost;
-}
+//bool Spells::canActivate() {
+	//return spellPlayer->getMagic() >= cost;
+//}
 
 void Spells::activate() {
-	if (canActivate()) {
-		spellPlayer->changeMana(-(cost));
+	//if (canActivate()) {
+		//spellPlayer->changeMagic(-(cost));
 		spellAbility->performAbility();
 		moveToGrave();
-	} else
-		throw "not enough mana";
+	//} else
+	//	throw "not enough mana";
 }
 
 void Spells::moveToGrave() {
