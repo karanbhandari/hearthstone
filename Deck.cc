@@ -41,7 +41,7 @@ Cards* Deck::createCard(string name) {
 		Spells * banish = new Spells(spellName, 2, banishAb);
 		return banish;
 	} else if (name == "Unsummon") {
-		const string abilityName = "Return target minion to its owner’s hand";
+		const string abilityName = "Return target minion to its ownerâ€™s hand";
 		;
 		const string spellName = "Unsummon";
 		Ability * unsummonAb = new Ability(spellName);
@@ -108,7 +108,7 @@ Cards* Deck::createCard(string name) {
 	} else if (name == "Fire Elemental") {
 		const string minionName = "Fire Elemental";
 		const string abilityName =
-				"Whenever an opponent’s minion enters play, deal 1 damage to it.";
+				"Whenever an opponentâ€™s minion enters play, deal 1 damage to it.";
 		Ability * actAb = nullptr;
 		Ability * trigAb = new Ability(abilityName);
 		Ability * newActAb = nullptr;
@@ -201,7 +201,7 @@ void AbstractDeck::deleteCard(int i) {
 }
 
 // adds the card to the list
-void AbstractDeck::addCard(Cards* card) {
+void AbstractDeck::add(Cards* card) {
 	cardList.push_back(card);
 	//cardList.emplace_back(card);
 }
@@ -210,3 +210,33 @@ bool AbstractDeck::isEmpty() {
 	return cardList.empty();
 }
 
+//****************HAND FUNCTIONS******************************
+
+// Hand ctor
+Hand::Hand(Deck *deck) : AbstractDeck{0} {
+	size = 5;
+	for(int i = 0; i < 5; i++) {
+		add(deck->getTopCard());	
+	}
+}
+
+
+//****************SLOTS FUNCTIONS******************************
+
+// Slot ctor
+Slot::Slot() : AbstractDeck{0} {
+	size = 0;
+	cardList = nullptr;
+} 
+
+Slot::add(Cards *card, int i) {
+	getIthCard(i)->addEnchantment(card);
+}
+
+
+//****************GRAVEYARD FUNCTIONS*************************
+
+// Graveyard ctor
+Graveyard::Graveyard() : AbstractDeck(0) {
+	cardList = nullptr;
+}

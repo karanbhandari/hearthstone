@@ -70,15 +70,16 @@ void Player::attack(int i, Player *opponent, int j) {
 
 // add the ith card on the hand on the slots
 void Player::play(int i) {
+	// TODO: add enter play trigger call here
 	slot->add(hand->getIth(int i));
 	hand->remove(int i)
 }
 
-//TODO add the option to play it on any player
 // play the ith card on the hand on the minion/ritual
 void Player::play(int i, Player *p, int j) {
+	// TODO: add enter play trigger call here
 	if (j >= 1 && j <= 5) { // play on the minion
-		slot->add(hand->getIth(int i), j);
+		p->slot->add(hand->getIth(int i), j);
 	}
 }
 
