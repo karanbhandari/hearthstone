@@ -21,6 +21,7 @@ void TriggeredAbility::performAbility() {
 
 void TriggeredAbility::startOfTurn() {
 	// triggeres all the startof turn abilities
+	// 1: Restores the action to minion to 1, and it
 }
 
 void TriggeredAbility::endOfTurn() {
@@ -40,5 +41,5 @@ ActivatedAbility::ActivatedAbility(const string& nameOfAbility) {
 }
 
 void ActivatedAbility::performAbility() {
-	
+
 }
