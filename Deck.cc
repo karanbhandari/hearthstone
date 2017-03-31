@@ -11,10 +11,8 @@
 
 using namespace std;
 
-
-//****************DECK FUNCTIONS********************************
-
 // Creates a new deck object and fills it with cards from the .deck file as specified
+
 Deck::Deck(istream deckList) :AbstractDeck{0} {
 	string currentCardName;
 	int deckSize = 0;
@@ -174,18 +172,6 @@ void Deck::shuffle() {
 		Cards* swap = cardList[i];
 		cardList[i] = cardList[randomNum];
 		cardList[randomNum] = swap;
-	}
-}
-
-//****************ABSTRACK DECK FUNCTIONS*************************
-
-AbstractDeck::AbstractDeck(int size) : size{size} {
-	cardList = nullptr;
-}
-
-AbstractDeck::~AbstractDeck() {
-	for (auto& x: cardList) {
-		delete x;
 	}
 }
 
