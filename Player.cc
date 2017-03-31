@@ -1,7 +1,8 @@
 #include <string>
 #include <sstream>
 #include <iostream>
-#include "Player.h"
+
+#include "Board.h"
 
 using namespace std;
 
@@ -53,7 +54,8 @@ void Player::performEndTrigger() {
 
 // Discards ith card from the hand
 void Player::discard(int i) {
-	hand->deleteCard(i); // this remove function should perform card leave play trigger
+	hand->deleteCard(i); 
+	// TODO: add card leave play trigger here
 }
 
 // Attack the opponent player using the ith card
