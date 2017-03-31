@@ -18,7 +18,7 @@ public:
 	Cards* getIthCard(int i);
 	void removeCard(int i);
 	void deleteCard(int i);
-	void addCard(Cards *card);
+	void add(Cards *card);
 	bool isEmpty();
 };
 
@@ -34,6 +34,7 @@ class Slot: public AbstractDeck {
 public:
 	Slot();
 	~Slot();
+	void add(Card *card, int i);
 };
 
 class Hand: public AbstractDeck {

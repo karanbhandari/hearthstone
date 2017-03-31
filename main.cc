@@ -70,6 +70,7 @@ void mainLoop(istream *in, bool testing) {
 int main (int argc, char *argv[]) {
 	string deck1 = "default.deck", deck2 = "default.deck", init = "";
 	bool testing;
+	Board *b = new Board{new player{"p1"}, new player{"p2"}};
 	for (int i = 1; i < argc; i++) { 
 		string theArg = argv[i];
 		if (theArg == "-deck1") { //to get deck1 name 
