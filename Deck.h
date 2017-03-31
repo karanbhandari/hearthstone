@@ -5,26 +5,26 @@
 #include <iostream>
 #include <vector>
 #include "Player.h"
-#include "Cards.h"
+#include "Card.h"
 
 class AbstractDeck {
 protected:
 	int size;
-	std::vector<Cards *> cardList;
+	std::vector<Card *> cardList;
 public:
 	AbstractDeck();
 	virtual ~AbstractDeck() = 0;
-	Cards* getTopCard();
-	Cards* getIthCard(int i);
+	Card* getTopCard();
+	Card* getIthCard(int i);
 	void removeCard(int i);
 	void deleteCard(int i);
-	void add(Cards *card);
+	void add(Card *card);
 	bool isEmpty();
 };
 
 class Deck: public AbstractDeck {
 public:
-	Cards * createCard (std::string name);
+	Card * createCard (std::string name);
 	Deck(std::istream deckList);
 	~Deck();
 	virtual void shuffle();

@@ -16,8 +16,6 @@ using namespace std;
 
 // Creates a new deck object and fills it with cards from the .deck file as specified
 Deck::Deck(istream deckList) :AbstractDeck{0} {
-
-	cardList = new std::vector<Cards*>;
 	string currentCardName;
 	int deckSize = 0;
 

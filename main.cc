@@ -63,6 +63,7 @@ void mainLoop(istream *in, bool testing) {
 		} else {
 			cout << "INVALID COMMAND" << endl;
 		}
+		board->notifyViews();
 	}
 }
 
