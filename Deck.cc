@@ -325,8 +325,8 @@ Slot::~Slot() {
 
 void Slot::changeValOFCards(int attack, int defence){
 	for(auto &b : cardList){
-		b.changeAttack(attack);
-		b.changeDefence(defence)
+		b->changeAttack(attack);
+		b->changeDefence(defence)
 	}
 }
 
