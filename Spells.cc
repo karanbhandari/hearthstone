@@ -17,6 +17,11 @@ Spells::Spells(const string &name, int cost, Ability *myAbility) :
 		name(name), cost(cost), spellAbility(myAbility) {
 }
 
+Spells::~Spells(){
+	delete spellAbility;
+	spellAbility = nullptr;
+}
+
 //bool Spells::canActivate() {
 	//return spellPlayer->getMagic() >= cost;
 //}
@@ -32,4 +37,10 @@ void Spells::activate() {
 
 void Spells::moveToGrave() {
 	// move to graveyard
+}
+
+void Spells::addToBoard(Card *ritualSlot, Card *MinionCardForEnch, Slot *slot) {
+	// Performs ability and then deletes the card.. See TODO in this file 
+	// TODO: perform ability
+	delete this;
 }

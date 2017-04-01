@@ -11,8 +11,15 @@ Minion::Minion(const string &name,int attack, int defence, int action, Ability *
   newestActivatedAbility{newstActAbl} {
 }
 
-void Minion::updateActivatedAbility (){
-  // updates the activated ability
+Minion::~Minion() {
+  delete activatedAbility;
+  delete triggeredAbility;
+  // ?? Do we also need to delete the vector??
+}
+
+void Minion::updateActivatedAbility(Card *Ench){
+  // updates the activated ability by adding Enchantment to the vector of enchantments
+  enchantments.push_back(Ench);
 }
 
 void Minion::resetDefault(){
@@ -47,4 +54,9 @@ void Minion::performAbility(){
 bool Minion::isDead() {
 	// returns true if the minion is dead
 	return (this->defence <= 0);
+}
+
+void Minion::addToBoard(Card *ritualSlot, Card *MinionCardForEnch, Slot *slot){
+  // calls absractDeck's add card functionality
+  slot->add(this);
 }

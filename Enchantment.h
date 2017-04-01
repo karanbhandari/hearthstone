@@ -8,11 +8,13 @@
 #include "Minion.h"
 #include "Ability.h"
 
-class Enchantments: public Cards {
+class Enchantment: public Card {
     Ability *ability;
   public:
-    Enchantments(Ability *ability);
+    Enchantment(Ability *ability);
+    ~Enchantment();
     void setAbility(Minions *minion);
+    void addToBoard(Card *ritualSlot, Card *MinionCardForEnch, Slot *slot) override;
 };
 
 #endif

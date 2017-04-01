@@ -34,7 +34,7 @@ class Slot: public AbstractDeck {
 public:
 	Slot();
 	~Slot();
-	void add(Card *card, int i);
+	void add(Card *card, int i); // TODO: @Karan Might not be needed
 };
 
 class Hand: public AbstractDeck {
