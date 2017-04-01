@@ -59,3 +59,11 @@ void Minion::addToBoard(Card *ritualSlot, Card *MinionCardForEnch, Slot *slot){
   // calls absractDeck's add card functionality
   slot->add(this);
 }
+
+void Minion::changeAttack(int val) {
+  this->attack += val;
+};
+
+void Minion::changeDefence(int val) {
+  this->defence += val;
+};

@@ -112,8 +112,10 @@ bool Player::isAlive() {
 
 // updates the attack and defence of the whole slot
 void Player::updateSlot(int attack, int defence) {
-	this->attack += attack;
-	this->defence += defence;
+  for(auto &b : slot) {
+    b.changeAttack(attack);
+    b.changeDefence(defence);
+  }
 }
 
 
