@@ -12,6 +12,7 @@ class Player;
 class Card {
   public:
 	  Card();
+	  Card(std::string name);
 	  virtual ~Card();
 	  virtual void attack(Card *minion);
 	  virtual void attack(Player *player);

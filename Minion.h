@@ -19,14 +19,14 @@ class Minion: public Card {
     int action; // What is this going to do and how its type is int is still a confusion for me
     Ability *activatedAbility;
     Ability *triggeredAbility;
-    std::vector<Enchantment*> enchantments;
+    std::vector<Card*> enchantments;
   public:
-    Minion(const std::string& name,int attack, int defence, int action, Ability *actAbl, Ability *trgAbl, Ability *newstActAbl);
+    Minion(const std::string& name,int attack, int defence, int action, Ability *actAbl, Ability *trgAbl);
     ~Minion();
-    void updateActivatedAbility ();
+    void updateActivatedAbility (Card *Enchantment);
     void resetDefault();
     void setDescription(const std::string desc);
-    void attackOther(Card *minion);
+    void attackOther(Minion *minion);
     void attackOther(Player *player);
     // there probably needs to be a funstion to reduce the defence of minion on attack
     // name them minionAttacks and reduceDefence @Karan

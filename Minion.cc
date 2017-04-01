@@ -6,9 +6,8 @@
 
 using namespace std;
 
-Minion::Minion(const string &name,int attack, int defence, int action, Ability *actAbl, Ability *trgAbl, Ability *newstActAbl): name{name},
-  attack{attack}, defence{defence}, action{action}, activatedAbility{actAbl}, triggeredAbility{trgAbl},
-  newestActivatedAbility{newstActAbl} {
+Minion::Minion(const string &name,int attack, int defence, int action, Ability *actAbl, Ability *trgAbl): name{name},
+  attack{attack}, defence{defence}, action{action}, activatedAbility{actAbl}, triggeredAbility{trgAbl} {
 }
 
 Minion::~Minion() {
@@ -24,7 +23,7 @@ void Minion::updateActivatedAbility(Card *Ench){
 
 void Minion::resetDefault(){
   // Removes the enchantments if any on the Minion
-	while(enchantments){
+	while(!enchantments.empty()){
     enchantments.pop_back();
   }
 }

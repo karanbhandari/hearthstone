@@ -6,6 +6,7 @@
 #include <vector>
 
 class Card;
+class Minion;
 
 class AbstractDeck {
 protected:
@@ -34,6 +35,7 @@ class Slot: public AbstractDeck {
 public:
 	Slot();
 	~Slot();
+	void add (Minion *minion); // TODO: need to implement this shit
 	void add(Card *card, int i); // TODO: @Karan Might not be needed
 };
 

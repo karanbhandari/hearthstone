@@ -13,7 +13,7 @@ class Enchantment: public Card {
   public:
     Enchantment(Ability *ability);
     ~Enchantment();
-    void setAbility(Minions *minion);
+    void setAbility(Minion *minion);
     void addToBoard(Card *ritualSlot, Card *MinionCardForEnch, Slot *slot) override;
 };
 
