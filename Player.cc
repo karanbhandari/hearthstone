@@ -28,9 +28,14 @@ int Player::getMagic() {
 	return magic;
 }
 
-// changed the value of the Magic of the player
+// changes the value of the Magic of the player
 void Player::changeMagic(int change) {
 	magic += change;
+}
+
+// changes the value of the Magic of the player
+void Player::changeLife(int change) {
+	life += change;
 }
 
 //draw a card from the deck
@@ -73,16 +78,15 @@ void Player::attack(int i, Player *opponent, int j) {
 // add the ith card on the hand on the slots
 void Player::play(int i) {
 	// TODO: add enter play trigger call here
-	slot->add(hand->getIth(int i));
-	hand->remove(int i)
+	hand->getIth(i)->addToBoard(ritual, nullptr, slot);
+	hand->remove(i);
 }
 
 // play the ith card on the hand on the minion/ritual
 void Player::play(int i, Player *p, int j) {
-	// TODO: add enter play trigger call here
-	if (j >= 1 && j <= 5) { // play on the minion
-		p->slot->add(hand->getIth(int i), j);
-	}
+	// TODO: add enter play trigger call in addToBoard
+	hand->getIth(i)->addToBoard(ritual, , p->hand->getIth(j), slot);
+	hand->remove(i);
 }
 
 
@@ -94,6 +98,16 @@ void Player::use(int i) {
 // uses the activitaed ability on player p's 
 void Player::use(int i, Player *p, int j) {
 	slot->getIth(i)->performActivatedAbility(p->slot->getIth(j));
+}
+
+// returns the name of the Player
+string Player::getName() {
+	return name;
+}
+
+// returns true if the Player has life > 0
+bool Player::isAlive() {
+	return life > 0;
 }
 
 

@@ -97,6 +97,9 @@ void mainLoop(istream *in, bool testing, Board* board, Player *activePlayer) {
 			cout << "INVALID COMMAND" << endl;
 		}
 		//board->notifyViews();
+		if(!inactivePlayer->isAlive()) {
+			cout << inactivePlayer->getName() << " loses" <<endl;
+		}
 	}
 }
 
