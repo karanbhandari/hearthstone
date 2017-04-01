@@ -8,5 +8,6 @@
 class Card {
   public:
 	  Card();
-	  virtual ~Card() = 0;
+	  virtual ~Card();
+	  virtual void addToBoard(Card *ritualSlot, Card *MinionCardForEnch, Slot *slot) = 0;
 };

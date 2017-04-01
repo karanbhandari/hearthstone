@@ -22,10 +22,11 @@ class Spells: public Cards {
 
 public:
 	Spells (const std::string &name, int cost, Ability * myAbility);
-	//~Spell();
+	~Spell();
 	//bool canActivate ();
 	void activate ();
 	void moveToGrave ();
+	void addToBoard(Card *ritualSlot, Card *MinionCardForEnch, Slot *slot) override;
 };
 
 #endif

@@ -19,6 +19,7 @@ class Minion: public Card {
     std::vector<Enchantment*> enchantments;
   public:
     Minion(const std::string& name,int attack, int defence, int action, Ability *actAbl, Ability *trgAbl, Ability *newstActAbl);
+    ~Minion();
     void updateActivatedAbility ();
     void resetDefault();
     void setDescription(const std::string desc);
@@ -28,6 +29,7 @@ class Minion: public Card {
     // name them minionAttacks and reduceDefence @Karan
     void performAbility();
     bool isDead();
+    void addToBoard(Card *ritualSlot, Card *MinionCardForEnch, Slot *slot) override;
 };
 
 #endif
