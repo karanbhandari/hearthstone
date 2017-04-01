@@ -11,7 +11,7 @@ Enchantment::Enchantment(const string &name, int cost, int changeAttack, int cha
 }
 
 Enchantment::~Enchantment() {
-	delete ability;
+	delete triggeredAbility;
 }
 
 void Enchantment::setAbility(Minion *minion){
