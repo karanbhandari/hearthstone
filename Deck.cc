@@ -228,7 +228,7 @@ Slot::Slot() : AbstractDeck{0} {
 	cardList = nullptr;
 } 
 
-Slot::add(Cards *card, int i) {
+void Slot::add(Cards *card, int i) {
 	getIthCard(i)->addEnchantment(card);
 }
 
