@@ -9,7 +9,11 @@
 #include "Ability.h"
 
 class Enchantment: public Card {
-    Ability *ability;
+	std::string name;
+	int cost;
+	int changeAttack;
+	int changeDefence;
+    Ability *triggeredAbility;
   public:
     Enchantment(Ability *ability);
     ~Enchantment();
