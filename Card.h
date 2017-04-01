@@ -20,6 +20,7 @@ protected:
 	  virtual void attack(Player *player);
 	  virtual void changeAttack(int attack);
 	  virtual void changeDefence(int defence);
+	  std::string getName();
 	  virtual void addToBoard(Card *ritualSlot, Card *MinionCardForEnch, Slot *slot);
 };
 

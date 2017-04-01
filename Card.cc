@@ -15,6 +15,13 @@ void Card::changeAttack(int attack) {}
 
 void Card::changeDefence(int defence) {}
 
+string Card::getName() {
+	return name;
+}
+
 void Card::addToBoard(Card *ritualSlot, Card *minion, Slot *slot) {}
+
+void Card::attack(Card *minion){}
+void Card::attack(Player *player){}
 
 Card::~Card() {}

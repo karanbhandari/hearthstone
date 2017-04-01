@@ -13,7 +13,7 @@
 
 using namespace std;
 
-Spell::Spell(const string &name, int cost, Ability *myAbility) :
+Spell::Spell(const string name, int cost, Ability *myAbility) :
 		Card{name}, cost(cost), spellAbility(myAbility) {
 }
 

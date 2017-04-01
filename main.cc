@@ -94,8 +94,10 @@ void mainLoop(istream *in, bool testing, Board* board, Player *activePlayer) {
 			cout << "inspect the " << i << "th minion" << endl;
 		} else if (s == "hand") { //display the activePlayers Hand
 			cout << "hand of active" << endl;
+			activePlayer->showHand();
 		} else if (s == "board") { //display the board
-			cout << "wrong command" << endl;
+			//cout << "wrong command" << endl;
+			activePlayer->showDeck();
 		} else {
 			cout << "INVALID COMMAND" << endl;
 		}

@@ -121,6 +121,14 @@ void Player::addCard(string place, Minion *card) {
 	if (place == "Slot") {
 		slot->add(card); // TODO : add fucntion should check for maxSize
 	}
+
+//displays the Hand of the player
+void Player::showHand() {
+	hand->show();
+}
+
+void Player::showDeck() {
+	deck->show();
 }
 
 //the describe, hand and board command would take place in main would take place in main
