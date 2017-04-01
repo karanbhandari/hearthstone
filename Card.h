@@ -10,13 +10,15 @@ class Player;
 
 // this is an abstract cards class that if a parent to Minions, spells and encahntments
 class Card {
+protected:
+	std::string name;
   public:
-	  Card();
+	  //Card();
 	  Card(std::string name);
-	  virtual ~Card();
+	  virtual ~Card() = 0;
 	  virtual void attack(Card *minion);
 	  virtual void attack(Player *player);
-	  virtual void addToBoard(Card *ritualSlot, Card *MinionCardForEnch, Slot *slot) = 0;
+	  virtual void addToBoard(Card *ritualSlot, Card *MinionCardForEnch, Slot *slot);
 };
 
 

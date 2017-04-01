@@ -9,7 +9,6 @@
 #include "Ability.h"
 
 class Enchantment: public Card {
-	std::string name;
 	int cost;
 	int changeAttack;
 	int changeDefence;
