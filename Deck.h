@@ -37,6 +37,7 @@ public:
 	~Slot();
 	void add (Minion *minion); // TODO: need to implement this shit
 	void add(Card *card, int i); // TODO: @Karan Might not be needed
+	void changeValOFCards(int attack);
 };
 
 class Hand: public AbstractDeck {

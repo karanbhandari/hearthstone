@@ -323,6 +323,14 @@ void Slot::add(Card *card, int i) {
 Slot::~Slot() {
 }
 
+void Slot::changeValOFCards(int attack, int defence){
+	for(auto &b : cardList){
+		b.changeAttack(attack);
+		b.changeDefence(defence)
+	}
+}
+
+
 //****************GRAVEYARD FUNCTIONS*************************
 
 // Graveyard ctor
