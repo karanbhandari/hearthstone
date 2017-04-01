@@ -14,7 +14,7 @@ class Ritual: public Card {
 	int activationCost;
     Ability *triggeredAbility;
   public:
-    Ritual(Ability *ability);
+    Ritual(const string &name, int charge, int activationCost, Ability *ability);
     ~Ritual();
     void performAbility(Minion *minion);
     void addToBoard(Card *ritualSlot, Card *MinionCardForEnch, Slot *slot) override;
