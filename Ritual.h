@@ -9,6 +9,9 @@
 #include "Ability.h"
 
 class Ritual: public Card {
+	std::string name;
+	int charge;
+	int activationCost;
     Ability *triggeredAbility;
   public:
     Ritual(Ability *ability);
