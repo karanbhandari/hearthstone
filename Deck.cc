@@ -8,7 +8,9 @@
 #include "Card.h"
 #include "Spells.h"
 #include "Minion.h"
+#include "Enchantment.h"
 #include "Ability.h"
+#include "Ritual.h"
 
 using namespace std;
 
@@ -323,10 +325,10 @@ void Slot::add(Card *card, int i) {
 Slot::~Slot() {
 }
 
-void Slot::changeValOFCards(int attack, int defence){
+void Slot::changeValOfCards(int attack, int defence){
 	for(auto &b : cardList){
 		b->changeAttack(attack);
-		b->changeDefence(defence)
+		b->changeDefence(defence);
 	}
 }
 

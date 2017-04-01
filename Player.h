@@ -8,6 +8,7 @@
 #include "Deck.h"
 #include "Card.h"
 
+class Minion;
 
 class Player {
 	std::string name;
@@ -37,6 +38,7 @@ public:
 	std::string getName();
 	bool isAlive();
 	void updateSlot(int attack, int defence);
+	void addCard(std::string place, Minion *card);
 };
 
 

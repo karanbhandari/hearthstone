@@ -32,8 +32,8 @@ class Minion: public Card {
     void performAbility();
     bool isDead();
     void addToBoard(Card *ritualSlot, Card *MinionCardForEnch, Slot *slot) override;
-    void changeAttack(int changeByValue);
-    void changeDefence(int changeByValue);
+    void changeAttack(int changeByValue) override;
+    void changeDefence(int changeByValue) override;
 };
 
 #endif

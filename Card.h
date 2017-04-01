@@ -18,6 +18,8 @@ protected:
 	  virtual ~Card() = 0;
 	  virtual void attack(Card *minion);
 	  virtual void attack(Player *player);
+	  virtual void changeAttack(int attack);
+	  virtual void changeDefence(int defence);
 	  virtual void addToBoard(Card *ritualSlot, Card *MinionCardForEnch, Slot *slot);
 };
 

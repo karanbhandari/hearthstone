@@ -117,7 +117,7 @@ void Player::updateSlot(int attack, int defence) {
 
 
 // adds the card to the place
-void Player::addCard(string place, Card *card) {
+void Player::addCard(string place, Minion *card) {
 	if (place == "Slot") {
 		slot->add(card); // TODO : add fucntion should check for maxSize
 	}

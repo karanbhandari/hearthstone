@@ -11,6 +11,10 @@ using namespace std;
 Card::Card(string name) : name{name} {
 }
 
+void Card::changeAttack(int attack) {}
+
+void Card::changeDefence(int defence) {}
+
 void Card::addToBoard(Card *ritualSlot, Card *minion, Slot *slot) {}
 
 Card::~Card() {}
