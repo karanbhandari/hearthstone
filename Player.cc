@@ -85,7 +85,7 @@ void Player::play(int i) {
 // play the ith card on the hand on the minion/ritual
 void Player::play(int i, Player *p, int j) {
 	// TODO: add enter play trigger call in addToBoard
-	hand->getIth(i)->addToBoard(ritual, , p->hand->getIth(j), slot);
+	hand->getIth(i)->addToBoard(ritual, p->hand->getIth(j), slot);
 	hand->remove(i);
 }
 
