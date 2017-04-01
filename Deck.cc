@@ -175,6 +175,18 @@ void Deck::shuffle() {
 	}
 }
 
+//****************ABSTRACK DECK FUNCTIONS*************************
+
+AbstractDeck::AbstractDeck(int size) : size{size} {
+	cardList = nullptr;
+}
+
+AbstractDeck::~AbstractDeck() {
+	for (auto& x: cardList) {
+		delete x;
+	}
+}
+
 // returns the card on the top of the deck and removes it from the deck
 Card* AbstractDeck::getTopCard() {
 	Card *temp = cardList.back();
