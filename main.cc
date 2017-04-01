@@ -96,7 +96,6 @@ void mainLoop(istream *in, bool testing, Board* board, Player *activePlayer) {
 		} else {
 			cout << "INVALID COMMAND" << endl;
 		}
-		//board->notifyViews();
 		if(!inactivePlayer->isAlive()) {
 			cout << inactivePlayer->getName() << " loses" <<endl;
 		}
@@ -108,6 +107,7 @@ int main (int argc, char *argv[]) {
 	string deck1 = "default.deck", deck2 = "default.deck", init = "";
 	bool testing;
 	Board *b = new Board{new player{"p1"}, new player{"p2"}};
+	Player *activePlayer = b->p1;
 	for (int i = 1; i < argc; i++) { 
 		string theArg = argv[i];
 		if (theArg == "-deck1") { //to get deck1 name 
@@ -122,9 +122,9 @@ int main (int argc, char *argv[]) {
 	}
 	if(init != "") {
 		istream *in = new ifstream(init.c_str());
-		mainLoop(in, testing);
+		mainLoop(in, testing, b, activePlayer);
 		delete in;
 	} 
-	mainLoop(&cin, testing);	
+	mainLoop(&cin, testing, b, activePlayer);	
 	return 0;
 }	

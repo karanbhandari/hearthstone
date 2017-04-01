@@ -11,7 +11,7 @@ class Ability {
   public:
     Ability(const std::string& nameOfAbility);
     virtual void performAbility ();
-    virtual ~Ability() = 0;
+    virtual ~Ability();
 };
 
 class TriggeredAbility: public Ability {
@@ -23,13 +23,13 @@ class TriggeredAbility: public Ability {
     void endOfTurn();
     void minionEnter();
     void minionLeave();
-}
+};
 
 class ActivatedAbility: public Ability {
   // name is inherited from the parent class
   public:   
     ActivatedAbility(const std::string& nameOfAbility);
     void performAbility() override;
-}
+};
 
 #endif

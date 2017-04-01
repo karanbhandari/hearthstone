@@ -10,7 +10,7 @@
 class Board{
 //	std::vector<View *> views;
 public:
-	Player* p1;
+	Player *p1;
 	Player *p2;
 	Board(Player *p1, Player *p2);
 //	void notifyViews();
