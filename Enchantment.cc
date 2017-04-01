@@ -7,7 +7,7 @@
 using namespace std;
 
 Enchantment::Enchantment(const string &name, int cost, int changeAttack, int changeDefence, Ability *ability): 
-		name(name), cost(cost), changeAttack(changeAttack), changeDefence(changeDefence), triggeredAbility{ability} {
+		Card{name}, cost(cost), changeAttack(changeAttack), changeDefence(changeDefence), triggeredAbility{ability} {
 }
 
 Enchantment::~Enchantment() {

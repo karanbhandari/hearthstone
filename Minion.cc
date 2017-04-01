@@ -6,7 +6,7 @@
 
 using namespace std;
 
-Minion::Minion(const string &name,int attack, int defence, int action, Ability *actAbl, Ability *trgAbl): name{name},
+Minion::Minion(const string &name,int attack, int defence, int action, Ability *actAbl, Ability *trgAbl): Card{name},
   attack{attack}, defence{defence}, action{action}, activatedAbility{actAbl}, triggeredAbility{trgAbl} {
 }
 

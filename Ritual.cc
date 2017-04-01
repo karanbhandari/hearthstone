@@ -7,7 +7,7 @@
 using namespace std;
 
 Ritual::Ritual(const string &name, int charge, int activationCost, Ability *ability): 
-		name(name), charge(charge), activationCost(activationCost), triggeredAbility{ability} {
+		Card{name}, charge(charge), activationCost(activationCost), triggeredAbility{ability} {
 }
 
 Ritual::~Ritual() {

@@ -13,7 +13,6 @@ class Minion;
 class Enchantment;
 
 class Minion: public Card {
-	std::string name;
     int attack;
     int defence;
     int action; // What is this going to do and how its type is int is still a confusion for me
