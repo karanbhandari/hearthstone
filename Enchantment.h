@@ -13,8 +13,9 @@ class Enchantment: public Card {
 	int changeAttack;
 	int changeDefence;
     Ability *triggeredAbility;
+    std::string function;
   public:
-    Enchantment(const std::string &name, int cost, int changeAttack, int changeDefence, Ability *ability);
+    Enchantment(const std::string &name, int cost, int changeAttack, int changeDefence, const std::string &function, Ability *ability);
     ~Enchantment();
     void setAbility(Minion *minion);
     void addToBoard(Card *ritualSlot, Card *MinionCardForEnch, Slot *slot) override;

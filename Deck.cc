@@ -14,7 +14,8 @@ using namespace std;
 
 // Creates a new deck object and fills it with cards from the .deck file as specified
 
-Deck::Deck(istream& deckList) :AbstractDeck{0} {
+Deck::Deck(istream& deckList) :
+		AbstractDeck { 0 } {
 	string currentCardName;
 	int deckSize = 0;
 
@@ -41,7 +42,7 @@ Card* Deck::createCard(string name) {
 		Spell * banish = new Spell(spellName, 2, banishAb);
 		return banish;
 	} else if (name == "Unsummon") {
-		const string abilityName = "Return target minion to its owner’s hand";
+		const string abilityName = "Return target minion to its ownerâ€™s hand";
 		;
 		const string spellName = "Unsummon";
 		Ability * unsummonAb = new Ability(spellName);
@@ -102,7 +103,7 @@ Card* Deck::createCard(string name) {
 	} else if (name == "Fire Elemental") {
 		const string minionName = "Fire Elemental";
 		const string abilityName =
-				"Whenever an opponent’s minion enters play, deal 1 damage to it.";
+				"Whenever an opponentâ€™s minion enters play, deal 1 damage to it.";
 		Ability * actAb = nullptr;
 		Ability * trigAb = new Ability(abilityName);
 		Minion * myMinion = new Minion(minionName, 2, 2, 2, actAb, trigAb);
@@ -141,9 +142,93 @@ Card* Deck::createCard(string name) {
 	}
 
 	// Enchantment Cards goes here:
+	//Enchantment::Enchantment(const string &name, int cost, int changeAttack, int changeDefence, string functon, Ability *ability):
+	//		Card{name}, cost(cost), changeAttack(changeAttack), changeDefence(changeDefence), function(function) triggeredAbility{ability} {}
+	else if (name == "Giant Strength") {
+		const string enchantName = "Giant Strength";
+		const string abilityName = "";
+		Ability * trigAb = nullptr;
+		const string function = "+";
+		int changeAtk = 2;
+		int changeDef = 2;
+		Enchantment * myEnchant = new Enchantment(enchantName, 1, changeAtk,
+				changeDef, function, trigAb);
+		return myEnchant;
+	} else if (name == "Enrage") {
+		const string enchantName = "Enrage";
+		const string abilityName = "";
+		Ability * trigAb = nullptr;
+		const string function = "*";
+		int changeAtk = 2;
+		int changeDef = 2;
+		Enchantment * myEnchant = new Enchantment(enchantName, 2, changeAtk,
+				changeDef, function, trigAb);
+		return myEnchant;
+	} else if (name == "Haste") {
+		const string enchantName = "Haste";
+		const string abilityName = "Enchanted minion gains +1 action each turn";
+		Ability * trigAb = new Ability(abilityName);
+		const string function = "";
+		int changeAtk = 0;
+		int changeDef = 0;
+		Enchantment * myEnchant = new Enchantment(enchantName, 1, changeAtk,
+				changeDef, function, trigAb);
+		return myEnchant;
+	} else if (name == "Magic Fatigue") {
+		const string enchantName = "Magic Fatigue";
+		const string abilityName =
+				"Enchanted minion’s activated ability costs 2 more";
+		Ability * trigAb = new Ability(abilityName);
+		const string function = "";
+		int changeAtk = 0;
+		int changeDef = 0;
+		Enchantment * myEnchant = new Enchantment(enchantName, 0, changeAtk,
+				changeDef, function, trigAb);
+		return myEnchant;
+	} else if (name == "Silence") {
+		const string enchantName = "Silence";
+		const string abilityName = "Enchanted minion cannot use abilities";
+		Ability * trigAb = new Ability(abilityName);
+		const string function = "";
+		int changeAtk = 0;
+		int changeDef = 0;
+		Enchantment * myEnchant = new Enchantment(enchantName, 1, changeAtk,
+				changeDef, function, trigAb);
+		return myEnchant;
+	}
 
 	// Ritual Cards goes here:
-
+	//Ritual::Ritual(const string &name, int cost, int charge, int activationCost, Ability *ability):
+	//		Card{name}, cost(cost) charge(charge), activationCost(activationCost), triggeredAbility{ability} {}
+	else if (name == "Dark Ritual") {
+		const string ritualName = "Dark Ritual";
+		const string abilityName = "At the start of your turn, gain 1 magic";
+		Ability * trigAb = new Ability(abilityName);
+		int charge = 5;
+		int activateCost = 1;
+		Ritual * myRitual = new Ritual(ritualName, 0, charge, activateCost,
+				trigAb);
+		return myRitual;
+	} else if (name == "Aura of Power") {
+		const string ritualName = "Aura of Power";
+		const string abilityName =
+				"Whenever a minion enters play under your control, it gains +1/+1";
+		Ability * trigAb = new Ability(abilityName);
+		int charge = 4;
+		int activateCost = 1;
+		Ritual * myRitual = new Ritual(ritualName, 1, charge, activateCost,
+				trigAb);
+		return myRitual;
+	} else if (name == "Standstill") {
+		const string ritualName = "Standstill";
+		const string abilityName = " Whenever a minion enters play, destroy it";
+		Ability * trigAb = new Ability(abilityName);
+		int charge = 4;
+		int activateCost = 2;
+		Ritual * myRitual = new Ritual(ritualName, 3, charge, activateCost,
+				trigAb);
+		return myRitual;
+	}
 	//Card * newCard = new Card("Test");
 	//return newCard;
 }
@@ -158,15 +243,17 @@ void Deck::shuffle() {
 	}
 }
 
-Deck::~Deck() {}
+Deck::~Deck() {
+}
 
 //****************ABSTRACK DECK FUNCTIONS*************************
 
-AbstractDeck::AbstractDeck(int size) : size{size} {
+AbstractDeck::AbstractDeck(int size) :
+		size { size } {
 }
 
 AbstractDeck::~AbstractDeck() {
-	for (auto& x: cardList) {
+	for (auto& x : cardList) {
 		delete x;
 	}
 }
@@ -208,36 +295,41 @@ bool AbstractDeck::isEmpty() {
 //****************HAND FUNCTIONS******************************
 
 // Hand ctor
-Hand::Hand(Deck *deck) : AbstractDeck{0} {
+Hand::Hand(Deck *deck) :
+		AbstractDeck { 0 } {
 	size = 5;
-	for(int i = 0; i < 5; i++) {
-		add(deck->getTopCard());	
+	for (int i = 0; i < 5; i++) {
+		add(deck->getTopCard());
 	}
 }
 
 //dtor for Hand
-Hand::~Hand() {}
-
+Hand::~Hand() {
+}
 
 //****************SLOTS FUNCTIONS******************************
 
 // Slot ctor
-Slot::Slot() : AbstractDeck{0} {
+Slot::Slot() :
+		AbstractDeck { 0 } {
 	size = 0;
-} 
+}
 
 void Slot::add(Card *card, int i) {
 //	getIth(i)->addEnchantment(card);
 }
 
 //dtor for Slot
-Slot::~Slot() {}
+Slot::~Slot() {
+}
 
 //****************GRAVEYARD FUNCTIONS*************************
 
 // Graveyard ctor
-Graveyard::Graveyard() : AbstractDeck(0) {
+Graveyard::Graveyard() :
+		AbstractDeck(0) {
 }
 
 //dtor for Graveyard
-Graveyard::~Graveyard() {}
+Graveyard::~Graveyard() {
+}

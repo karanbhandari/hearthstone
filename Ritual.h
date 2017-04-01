@@ -10,10 +10,11 @@
 
 class Ritual: public Card {
 	int charge;
+	int cost;
 	int activationCost;
     Ability *triggeredAbility;
   public:
-    Ritual(const std::string &name, int charge, int activationCost, Ability *ability);
+    Ritual(const std::string &name, int cost, int charge, int activationCost, Ability *ability);
     ~Ritual();
     void performAbility(Minion *minion);
     void addToBoard(Card *ritualSlot, Card *MinionCardForEnch, Slot *slot) override;
