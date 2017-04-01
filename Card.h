@@ -18,6 +18,7 @@ protected:
 	  virtual ~Card() = 0;
 	  virtual void attack(Card *minion);
 	  virtual void attack(Player *player);
+	  std::string getName();
 	  virtual void addToBoard(Card *ritualSlot, Card *MinionCardForEnch, Slot *slot);
 };
 

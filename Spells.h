@@ -21,7 +21,7 @@ class Spell: public Card {
 	//Player *spellPlayer; // What is this for ??? @Karan
 
 public:
-	Spell (const std::string &name, int cost, Ability * myAbility);
+	Spell (const std::string name, int cost, Ability * myAbility);
 	~Spell();
 	//bool canActivate ();
 	void activate ();

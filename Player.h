@@ -36,6 +36,8 @@ public:
 	void use(int i, Player *p, int j);
 	std::string getName();
 	bool isAlive();
+	void showHand();
+	void showDeck();
 };
 
 

@@ -110,6 +110,14 @@ bool Player::isAlive() {
 	return life > 0;
 }
 
+//displays the Hand of the player
+void Player::showHand() {
+	hand->show();
+}
+
+void Player::showDeck() {
+	deck->show();
+}
 
 //the describe, hand and board command would take place in main would take place in main
 

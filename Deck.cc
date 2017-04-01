@@ -21,7 +21,7 @@ Deck::Deck(istream& deckList) :AbstractDeck{0} {
 	// Adds all the cards in the .deck file to the deck list
 	while (deckList) {
 		getline(deckList, currentCardName);
-		cardList.push_back(createCard(currentCardName));
+		cardList.emplace_back(createCard(currentCardName));
 		deckSize++;
 	}
 
@@ -34,6 +34,7 @@ Card* Deck::createCard(string name) {
 
 	// For All Spell Cards
 	// All Spell Cards are initiated in the format: new Spell (string name, int magicCost, Ability ability)
+	cout<<"name of Card being added: "<<name<<endl;
 	if (name == "Banish") {
 		const string abilityName = "Destroy target minion or ritual";
 		const string spellName = "Banish";
@@ -138,14 +139,20 @@ Card* Deck::createCard(string name) {
 		Ability * trigAb = nullptr;
 		Minion * myMinion = new Minion(minionName, 2, 3, 3, actAb, trigAb);
 		return myMinion;
+	} else {
+		const string minionName = "Master Summoner";
+		const string abilityName = "Summon up to three 1/1 air elementals";
+		Ability * actAb = new Ability(abilityName);
+		Ability * trigAb = nullptr;
+		Minion * myMinion = new Minion(minionName, 2, 3, 3, actAb, trigAb);
+		return myMinion;
+	
 	}
+		
 
 	// Enchantment Cards goes here:
 
 	// Ritual Cards goes here:
-
-	//Card * newCard = new Card("Test");
-	//return newCard;
 }
 
 // Shuffles the deck using the fisher Yates shuffle
@@ -157,6 +164,7 @@ void Deck::shuffle() {
 		cardList[randomNum] = swap;
 	}
 }
+
 
 Deck::~Deck() {}
 
@@ -197,12 +205,22 @@ void AbstractDeck::deleteCard(int i) {
 
 // adds the card to the list
 void AbstractDeck::add(Card* card) {
-	cardList.push_back(card);
+	cout<<card->getName()<<endl;
+	cardList.emplace_back(card);
 	//cardList.emplace_back(card);
 }
 
+// returns true if the list is empty
 bool AbstractDeck::isEmpty() {
 	return cardList.empty();
+}
+
+// shows the list on stdout
+void AbstractDeck::show() {
+	cout<<"Enter show function"<<endl;
+	for(auto &x: cardList) {
+		cout<<x->getName()<<endl;
+	}
 }
 
 //****************HAND FUNCTIONS******************************
@@ -210,7 +228,9 @@ bool AbstractDeck::isEmpty() {
 // Hand ctor
 Hand::Hand(Deck *deck) : AbstractDeck{0} {
 	size = 5;
+	cout<<"constructing Hand"<<endl;
 	for(int i = 0; i < 5; i++) {
+		cout<<"adding card "<<endl;
 		add(deck->getTopCard());	
 	}
 }

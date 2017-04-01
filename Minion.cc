@@ -57,5 +57,5 @@ bool Minion::isDead() {
 
 void Minion::addToBoard(Card *ritualSlot, Card *MinionCardForEnch, Slot *slot){
   // calls absractDeck's add card functionality
-  slot->add(this);
+  //slot->add(this);
 }

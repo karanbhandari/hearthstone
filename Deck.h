@@ -21,6 +21,7 @@ public:
 	void deleteCard(int i);
 	void add(Card *card);
 	bool isEmpty();
+	void show();
 };
 
 class Deck: public AbstractDeck {

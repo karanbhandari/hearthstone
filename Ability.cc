@@ -12,6 +12,11 @@ Ability::Ability(const string name) {
 // 	cout << "Ability Activated! \n";
 // }
 
+Ability::~Ability() {}
+
+void Ability::performAbility() {}
+
+
 TriggeredAbility::TriggeredAbility(const string &nameOfAbility): Ability{nameOfAbility} {
 }
 
