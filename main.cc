@@ -2,12 +2,15 @@
 #include <string>
 #include <sstream>
 #include <fstream>
+
+#include "Board.h"
+
 using namespace std;
 
 void mainLoop(istream *in, bool testing, Board* board, Player *activePlayer) {
 	string s;
 	int i, j, k;
-	player *inactivePlayer = nullptr;
+	Player *inactivePlayer = nullptr;
 	if (activePlayer == board->p1) {
 		inactivePlayer = board->p2;
 	} else {
@@ -19,14 +22,14 @@ void mainLoop(istream *in, bool testing, Board* board, Player *activePlayer) {
 		iss >> s;
 		if (s == "end") { // end players turn
 			cout << s << endl;
-			activePlayer->end();
+			//activePlayer->end();
 			inactivePlayer = activePlayer;
 			if (activePlayer == board->p1) {
 				activePlayer = board->p2;
 			} else {
 				activePlayer = board->p1;
 			}
-			activePlayer->start();
+			//activePlayer->start();
 		} else if (s == "quit") { // end the game with no winner
 			cout << "quit" << endl;
 			delete board;
@@ -43,7 +46,7 @@ void mainLoop(istream *in, bool testing, Board* board, Player *activePlayer) {
 			if (testing) {
 				cout << "discard " << i << endl;
 				activePlayer->discard(i);
-			} else 
+			} else { 
 				cout << "testing should enabled for this command" << endl;
 			} 
 		} else if (s ==  "attack") { // attack the opponent
@@ -106,7 +109,6 @@ void mainLoop(istream *in, bool testing, Board* board, Player *activePlayer) {
 int main (int argc, char *argv[]) {
 	string deck1 = "default.deck", deck2 = "default.deck", init = "";
 	bool testing;
-	Board *b = new Board{new player{"p1"}, new player{"p2"}};
 	Player *activePlayer = b->p1;
 	for (int i = 1; i < argc; i++) { 
 		string theArg = argv[i];
@@ -120,6 +122,9 @@ int main (int argc, char *argv[]) {
 			testing = true;
 		}
 	}
+	deck1P = new ifstream(deck1.c_str());
+	deck2P = new ifstream(deck2.c_str());
+	Board *b = new Board{new Player{"p1", deck1P}, new Player{"p2", deck2P}};
 	if(init != "") {
 		istream *in = new ifstream(init.c_str());
 		mainLoop(in, testing, b, activePlayer);

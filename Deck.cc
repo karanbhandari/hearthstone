@@ -8,12 +8,13 @@
 #include "Card.h"
 #include "Spells.h"
 #include "Minion.h"
+#include "Ability.h"
 
 using namespace std;
 
 // Creates a new deck object and fills it with cards from the .deck file as specified
 
-Deck::Deck(istream deckList) :AbstractDeck{0} {
+Deck::Deck(istream& deckList) :AbstractDeck{0} {
 	string currentCardName;
 	int deckSize = 0;
 

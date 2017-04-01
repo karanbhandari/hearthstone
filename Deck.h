@@ -4,19 +4,19 @@
 #include <string>
 #include <iostream>
 #include <vector>
-#include "Player.h"
-#include "Card.h"
+
+class Card;
 
 class AbstractDeck {
 protected:
 	int size;
 	std::vector<Card *> cardList;
 public:
-	AbstractDeck();
+	AbstractDeck(int size);
 	virtual ~AbstractDeck() = 0;
 	Card* getTopCard();
-	Card* getIthCard(int i);
-	void removeCard(int i);
+	Card* getIth(int i);
+	void remove(int i);
 	void deleteCard(int i);
 	void add(Card *card);
 	bool isEmpty();
@@ -25,7 +25,7 @@ public:
 class Deck: public AbstractDeck {
 public:
 	Card * createCard (std::string name);
-	Deck(std::istream deckList);
+	Deck(std::istream &deckList);
 	~Deck();
 	virtual void shuffle();
 };

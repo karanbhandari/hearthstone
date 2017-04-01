@@ -29,7 +29,7 @@ void Minion::resetDefault(){
   }
 }
 
-void Minion::attack(Minion *minion){
+void Minion::attackOther(Minion *minion){
 	// reduces the this->defence by the minion->attack, and minion->defence by this->attack
 	if(this->action){
     minion->defence -= this->attack;
@@ -38,7 +38,7 @@ void Minion::attack(Minion *minion){
   this->action = 0;
 }
 
-void Minion::attack(Player *player){
+void Minion::attackOther(Player *player){
   // reduces the this->defence by the minion->attack, and minion->defence by this->attack
   if(this->action){
     // reduce the player's life by one

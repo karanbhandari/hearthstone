@@ -5,7 +5,7 @@
 
 using namespace std;
 
-Ability::Ability(const string & name) {
+Ability::Ability(const string name) {
 	this->name = name;
 }
 // void Ability::performAbility() {

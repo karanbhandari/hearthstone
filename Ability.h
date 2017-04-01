@@ -9,7 +9,7 @@ class Ability {
 	 std::string name;
 
   public:
-    Ability(const std::string& nameOfAbility);
+    Ability(const std::string nameOfAbility);
     virtual void performAbility ();
     virtual ~Ability();
 };

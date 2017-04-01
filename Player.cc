@@ -7,19 +7,19 @@
 using namespace std;
 
 // ctor for Player
-Player::Player(string& myName) : 
+Player::Player(string myName, istream *in) : 
 		name{myName}, magic{3}, life{20} {
-	deck = new Deck();
+	deck = new Deck(*in);
 	hand = new Hand{deck};
-	slots = new Slots();
-	graveyard = new graveyard();
+	slot = new Slot();
+	graveyard = new Graveyard();
 }
 
 // dtor for players
 Player::~Player() {
 	delete deck;
 	delete hand;
-	delete slots;
+	delete slot;
 	delete graveyard;
 }
 
@@ -41,20 +41,20 @@ void Player::changeLife(int change) {
 //draw a card from the deck
 void Player::draw() {
 	if (!deck->isEmpty()) 
-		hand->add(deck->getTopCard);
+		hand->add(deck->getTopCard());
 	else 
 		cout << "deck isEmpty" << endl;
 }
 
 // Perform the start of turn trigger
-void Player::performStartTrigger() {
-	slots->performStartTrigger();
-}
+//void Player::performStartTrigger() {
+//	slot->performStartTrigger();
+//}
 
 // Performs the end of turn Triggers
-void Player::performEndTrigger() {
-	slots->performEndTrigger();
-}
+//void Player::performEndTrigger() {
+//	slot->performEndTrigger();
+//}
 
 
 // Discards ith card from the hand
@@ -65,14 +65,14 @@ void Player::discard(int i) {
 
 // Attack the opponent player using the ith card
 void Player::attack(int i, Player *opponent){
-	slot->getIth(int i)->attack(opponent);
+	slot->getIth(i)->attack(opponent);
 }
 
 
 // Attack the opposing minion
 void Player::attack(int i, Player *opponent, int j) {
-	slot->getIth(int i)->attack(opponent->slot->getIth(int j));
-	opponent->slot->getIth(int j)->attack(slot->getIth(int j));
+	slot->getIth(i)->attack(opponent->slot->getIth(j));
+	opponent->slot->getIth(j)->attack(slot->getIth(j));
 }
 
 // add the ith card on the hand on the slots
@@ -92,12 +92,12 @@ void Player::play(int i, Player *p, int j) {
 
 // uses the activated ability
 void Player::use(int i) {
-	slot->getIth(i)->performActivatedAbility();
+//	slot->getIth(i)->performActivatedAbility();
 }
 
 // uses the activitaed ability on player p's 
 void Player::use(int i, Player *p, int j) {
-	slot->getIth(i)->performActivatedAbility(p->slot->getIth(j));
+//	slot->getIth(i)->performActivatedAbility(p->slot->getIth(j));
 }
 
 // returns the name of the Player

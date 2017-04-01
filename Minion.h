@@ -5,9 +5,12 @@
 #include <sstream>
 #include <iostream>
 #include <vector>
-#include "Player.h"
-#include "Ability.h"
-#include "Cards.h"
+#include "Card.h"
+
+class Player;
+class Ability;
+class Minion;
+class Enchantment;
 
 class Minion: public Card {
 	std::string name;
@@ -23,8 +26,8 @@ class Minion: public Card {
     void updateActivatedAbility ();
     void resetDefault();
     void setDescription(const std::string desc);
-    void attack(Minion *minion);
-    void attack(Player *player);
+    void attackOther(Card *minion);
+    void attackOther(Player *player);
     // there probably needs to be a funstion to reduce the defence of minion on attack
     // name them minionAttacks and reduceDefence @Karan
     void performAbility();

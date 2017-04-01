@@ -3,9 +3,10 @@
 
 #include <string>
 #include <iostream>
+#include <sstream>
 
 #include "Deck.h"
-#include "Cards.h"
+#include "Card.h"
 
 
 class Player {
@@ -18,7 +19,7 @@ class Player {
 	Graveyard *graveyard;
 	Card *ritual;
 public:
-	Player(std::string& myName);
+	Player(std::string myName, std::istream *in);
 	~Player();
 	int getMagic();
 	void changeMagic(int change);
