@@ -36,7 +36,7 @@ void TriggeredAbility::minionLeave() {
 
 }
 
-ActivatedAbility::ActivatedAbility(const string& nameOfAbility) {
+ActivatedAbility::ActivatedAbility(const string& nameOfAbility) : Ability{nameOfAbility}{
 
 }
 

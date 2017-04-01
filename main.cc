@@ -109,7 +109,6 @@ void mainLoop(istream *in, bool testing, Board* board, Player *activePlayer) {
 int main (int argc, char *argv[]) {
 	string deck1 = "default.deck", deck2 = "default.deck", init = "";
 	bool testing;
-	Player *activePlayer = b->p1;
 	for (int i = 1; i < argc; i++) { 
 		string theArg = argv[i];
 		if (theArg == "-deck1") { //to get deck1 name 
@@ -122,9 +121,10 @@ int main (int argc, char *argv[]) {
 			testing = true;
 		}
 	}
-	deck1P = new ifstream(deck1.c_str());
-	deck2P = new ifstream(deck2.c_str());
+	ifstream *deck1P = new ifstream(deck1.c_str());
+	ifstream *deck2P = new ifstream(deck2.c_str());
 	Board *b = new Board{new Player{"p1", deck1P}, new Player{"p2", deck2P}};
+	Player *activePlayer = b->p1;
 	if(init != "") {
 		istream *in = new ifstream(init.c_str());
 		mainLoop(in, testing, b, activePlayer);

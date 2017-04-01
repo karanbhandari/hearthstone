@@ -9,11 +9,11 @@ using namespace std;
 Ritual::Ritual(Ability *ability): triggeredAbility{ability} {
 }
 
-~Ritual::Ritual() {
+Ritual::~Ritual() {
 	delete triggeredAbility;
 }
 
-void Ritual::performAbility(Minions *minion){
+void Ritual::performAbility(Minion *minion){
   // Not sure if this is informing other minion about hte attack or reduces current Rituals defence @Karan
 }
 

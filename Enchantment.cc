@@ -19,6 +19,6 @@ void Enchantment::setAbility(Minion *minion){
 
 void Enchantment::addToBoard(Card *ritualSlot, Card *MinionCardForEnch, Slot *slot){
 	// passes the card on to the Minion which would add the card to its list of echantments
-	Minion *temp  = MinionCardForEnch;
- 	temp->updateActivatedAbility(this);	
+	//Minion *temp  = MinionCardForEnch;
+ 	//temp->updateActivatedAbility(this);	
 }
