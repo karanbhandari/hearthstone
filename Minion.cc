@@ -17,8 +17,9 @@ Minion::~Minion() {
   // ?? Do we also need to delete the vector??
 }
 
-void Minion::updateActivatedAbility (){
+void Minion::updateActivatedAbility(Card *Ench){
   // updates the activated ability by adding Enchantment to the vector of enchantments
+  enchantments.push_back(Ench);
 }
 
 void Minion::resetDefault(){
@@ -56,5 +57,6 @@ bool Minion::isDead() {
 }
 
 void Minion::addToBoard(Card *ritualSlot, Card *MinionCardForEnch, Slot *slot){
-
+  // calls absractDeck's add card functionality
+  slot->add(this);
 }

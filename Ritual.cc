@@ -18,5 +18,7 @@ void Ritual::performAbility(Minions *minion){
 }
 
 void Ritual::addToBoard(Card *ritualSlot, Card *MinionCardForEnch, Slot *slot){
-
+	// adds the ritual to its slot on the player's board and delete the previous one if any
+	delete ritualSlot;
+	ritualSlot = this;
 }
