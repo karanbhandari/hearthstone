@@ -6,11 +6,13 @@
 #include <iostream>
 
 class Ability {
+  protected:
 	 std::string name;
 
   public:
     Ability(const std::string nameOfAbility);
     virtual void performAbility ();
+    virtual void performTriggeredAbility(std::string what);
     virtual ~Ability();
 };
 

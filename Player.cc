@@ -110,6 +110,19 @@ bool Player::isAlive() {
 	return life > 0;
 }
 
+// updates the attack and defence of the whole slot
+void Player::updateSlot(int attack, int defence) {
+	this->attack += attack;
+	this->defence += defence;
+}
+
+
+// adds the card to the place
+void Player::addCard(string place, Card *card) {
+	if (place == "Slot") {
+		slot->add(card); // TODO : add fucntion should check for maxSize
+	}
+}
 
 //the describe, hand and board command would take place in main would take place in main
 
