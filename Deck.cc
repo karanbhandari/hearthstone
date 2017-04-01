@@ -144,10 +144,8 @@ Card* Deck::createCard(string name) {
 
 	// Ritual Cards goes here:
 
-	//else{
-	//Card * newCard = new Card();
+	//Card * newCard = new Card("Test");
 	//return newCard;
-	//}
 }
 
 // Shuffles the deck using the fisher Yates shuffle
@@ -159,6 +157,8 @@ void Deck::shuffle() {
 		cardList[randomNum] = swap;
 	}
 }
+
+Deck::~Deck() {}
 
 //****************ABSTRACK DECK FUNCTIONS*************************
 
@@ -215,6 +215,9 @@ Hand::Hand(Deck *deck) : AbstractDeck{0} {
 	}
 }
 
+//dtor for Hand
+Hand::~Hand() {}
+
 
 //****************SLOTS FUNCTIONS******************************
 
@@ -227,9 +230,14 @@ void Slot::add(Card *card, int i) {
 //	getIth(i)->addEnchantment(card);
 }
 
+//dtor for Slot
+Slot::~Slot() {}
 
 //****************GRAVEYARD FUNCTIONS*************************
 
 // Graveyard ctor
 Graveyard::Graveyard() : AbstractDeck(0) {
 }
+
+//dtor for Graveyard
+Graveyard::~Graveyard() {}
