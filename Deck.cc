@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "Deck.h"
-#include "Cards.h"
+#include "Card.h"
 #include "Spells.h"
 #include "Minion.h"
 
@@ -29,7 +29,7 @@ Deck::Deck(istream deckList) :AbstractDeck{0} {
 }
 
 // Creates a new card specific to the name of the card given
-Cards* Deck::createCard(string name) {
+Card* Deck::createCard(string name) {
 
 	// For All Spell Cards
 	// All Spell Cards are initiated in the format: new Spell (string name, int magicCost, Ability ability)
@@ -160,7 +160,7 @@ Cards* Deck::createCard(string name) {
 	// Ritual Cards goes here:
 
 	else{
-	Cards * newCard = new Cards();
+	Card * newCard = new Card();
 	return newCard;
 	}
 }
@@ -169,21 +169,21 @@ Cards* Deck::createCard(string name) {
 void Deck::shuffle() {
 	for (int i = size - 1; i > 0; i--) {
 		int randomNum = rand() % (i + 1);
-		Cards* swap = cardList[i];
+		Card* swap = cardList[i];
 		cardList[i] = cardList[randomNum];
 		cardList[randomNum] = swap;
 	}
 }
 
 // returns the card on the top of the deck and removes it from the deck
-Cards* AbstractDeck::getTopCard() {
-	Cards *temp = cardList.back();
+Card* AbstractDeck::getTopCard() {
+	Card *temp = cardList.back();
 	cardList.pop_back();
 	return temp;
 }
 
 // returns ith card on the list 
-Cards* AbstractDeck::getIthCard(int i) {
+Card* AbstractDeck::getIthCard(int i) {
 	return cardList[i - 1];
 }
 
@@ -194,13 +194,13 @@ void AbstractDeck::removeCard(int i) {
 
 //deletes the card from the list
 void AbstractDeck::deleteCard(int i) {
-	Cards *temp = cardList[i];
+	Card *temp = cardList[i];
 	removeCard(i);
 	delete temp;
 }
 
 // adds the card to the list
-void AbstractDeck::add(Cards* card) {
+void AbstractDeck::add(Card* card) {
 	cardList.push_back(card);
 	//cardList.emplace_back(card);
 }
@@ -228,7 +228,7 @@ Slot::Slot() : AbstractDeck{0} {
 	cardList = nullptr;
 } 
 
-Slot::add(Cards *card, int i) {
+Slot::add(Card *card, int i) {
 	getIthCard(i)->addEnchantment(card);
 }
 
