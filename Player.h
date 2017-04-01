@@ -16,11 +16,13 @@ class Player {
 	Slot *slot;
 	Deck *deck;
 	Graveyard *graveyard;
+	Card *ritual;
 public:
 	Player(std::string& myName);
 	~Player();
 	int getMagic();
 	void changeMagic(int change);
+	void changeLife(int change);
 	void draw();
 	void performStartTrigger();
 	void perfromEndTrigger();
@@ -28,10 +30,11 @@ public:
 	void attack(int i, Player* opponent);
 	void attack(int i, Player* opponent, int j);
 	void play(int i);
-	void play(int i, Player*opponent, int j);
+	void play(int i, Player *p, int j);
 	void use(int i);
-	void use(int i, Player*opponent, int j);
-	
+	void use(int i, Player *p, int j);
+	std::string getName();
+	bool isAlive();
 };
 
 
