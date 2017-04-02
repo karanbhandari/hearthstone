@@ -38,7 +38,8 @@ public:
 	std::string getName();
 	bool isAlive();
 	void updateSlot(int attack, int defence);
-	void addCard(std::string place, Minion *card);
+	// Not needed anymore @Karan
+  // void addCard(std::string place, Minion *card);
  	void removeCard(int minionNum);
 	void showHand();
 	void showDeck();

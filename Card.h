@@ -22,6 +22,9 @@ protected:
 	  virtual void changeDefence(int defence);
 	  std::string getName();
 	  virtual void addToBoard(Card *ritualSlot, Card *MinionCardForEnch, Slot *slot);
+    virtual void popTopEnchantment();
+    virtual void reInitializeDefence(int initialisationVal);
+    virtual void updateCharge(int val);
 };
 
 

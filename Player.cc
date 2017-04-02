@@ -117,11 +117,12 @@ void Player::updateSlot(int attack, int defence) {
 
 
 // adds the card to the place
-void Player::addCard(string place, Minion *card) {
-	if (place == "Slot") {
-		slot->add(card); // TODO : add fucntion should check for maxSize
-	}
-}
+// Not needed anymore @Karan
+// void Player::addCard(string place, Minion *card) {
+	// if (place == "Slot") {
+		// slot->add(card); // TODO : add fucntion should check for maxSize
+	// }
+// }
 
 // removes a specific card form the slot
 void Player::removeCard(int minionNum) {
@@ -154,14 +155,14 @@ void Player::returnMinionToHand(int minionNum, Minion *minion) {
 }
 
 // removes top enchantment from the target minion
-void Player::detroyTopEnchantment(int minionNum) {
+void Player::destroyTopEnchantment(int minionNum) {
   Card *target = slot->getIth(minionNum);
   target->popTopEnchantment();
 }
 
 // raises minion from the graveyard to the slot
 void Player::raiseTheDead() {
-  if(slot->numOfCards >= 5) {
+  if(slot->numOfCards() >= 5) {
     cout << "Cannot use this card since the board is full" << endl;
   } else if(graveyard->isEmpty()){
     cout << "cannot use this card since there is no Minion in Grave" << endl;
@@ -169,10 +170,10 @@ void Player::raiseTheDead() {
     Card *temp = graveyard->getTopCard();
     graveyard->popTop();
     temp->reInitializeDefence(1);
-    slot->add(temp);
+    slot->addMinion(temp);
   }
 }
 
-void updateRitual(int charge) {
-  ritual->updateCharge(charge)
+void Player::updateRitual(int charge) {
+  ritual->updateCharge(charge);
 }
