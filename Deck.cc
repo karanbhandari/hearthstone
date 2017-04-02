@@ -357,13 +357,26 @@ void Slot::changeValOfCards(int attack, int defence){
 
 void performStartTrigger(Player *p1, Player *p2) {
 	for(auto &b : cardList){
-		b->performTriggeredAbility("startTurn", nullptr, p1, p2);
+		b->performTriggeredAbility("startTurn", -1, nullptr, p1, p2);
 	}
 }
 
-void performEndTrigger(Player *p1, Player *p2);
-void performMinionEnter(Minion *minion, Player *p1, Player *p2);
-void performMinionLeave(Minion *minion, Player *p1, Player *p2);
+void performEndTrigger(Player *p1, Player *p2) {
+	for(auto &b : cardList){
+		b->performTriggeredAbility("endTurn", -1, nullptr, p1, p2);
+	}
+}
+void performMinionEnter(Minion *minion, Player *p1, Player *p2) {
+	for(auto &b : cardList){
+		b->performTriggeredAbility("minionEnter", -1, minion, p1, p2);
+	}
+}
+
+void performMinionLeave(Minion *minion, Player *p1, Player *p2) {
+	for(auto &b : cardList){
+		b->performTriggeredAbility("minionLeave", -1, minion, p1, p2);
+	}
+}
 
 
 //****************GRAVEYARD FUNCTIONS*************************
