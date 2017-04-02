@@ -22,7 +22,6 @@ public:
 	void add(Card *card);
 	bool isEmpty();
 	void show();
-	int numOfCards();
 };
 
 class Deck: public AbstractDeck {

@@ -20,7 +20,7 @@ void Ability::performAbility() {}
 TriggeredAbility::TriggeredAbility(const string &nameOfAbility): Ability{nameOfAbility} {
 }
 
-void TriggeredAbility::performAbility(string what, int minionNum, Minion *minion, Player *actPlayer, Player *inactPlayer) {
+void TriggeredAbility::performAbility(string what, Minion *minion, Player *player) {
 	if (what == "minionLeave") {
 		minionLeave(minion, player);
 	} else if (what == "minionEnter") {
@@ -33,7 +33,7 @@ void TriggeredAbility::performAbility(string what, int minionNum, Minion *minion
  	// performs the ability call
 }
 
-void TriggeredAbility::performAbility(string what, int minionNum, Ritual *ritual, Player *actPlayer, Player *inactPlayer) {
+void TriggeredAbility::performAbility(string what, Ritual *ritual, PLayer *player) {
 }
 
 void TriggeredAbility::startOfTurn() {
@@ -69,7 +69,7 @@ ActivatedAbility::ActivatedAbility(const string& nameOfAbility) : Ability{nameOf
 
 }
 
-void ActivatedAbility::performAbility(string what, int minionNum, Minion *minion, Player *actPlayer, Player *inactPlayer) {
+void ActivatedAbility::performAbility(string what, Minion *minion, Player *player) {
 	if (name == "Deal 1 damage to target minion") {
 		minion->changeDefence(-1);
 	} else if (name == "Summon a 1/1 air elemental") {
@@ -89,14 +89,14 @@ void ActivatedAbility::performAbility(string what, int minionNum, Minion *minion
 		player->addCard("Slot", myMinion2);
 		player->addCard("Slot", myMinion3);
 	} else if (name == "Destroy target minion or ritual") {
-	// destroys the minion since banish has been called
-    player->removeCard(minionNum);
+    // destroys the minion since banish has been called
+    player->removeCard("Slot", minion);
   } else if (name == "Return target minion to its owners hand") {
-    // returns the minion to the hand of the player since Unsummon is called
-    player->returnMinionToHand(minionNum, minion);
+    // return the minion to the hand of the player since Unsummon is called
+    // need a minion, slot, and hand to do so
+    player->returnMinionToHand(minion);
   } else if (name == "Destroy the top enchantment on target minion") {
     // need to destroy the minion's top enchantment
-    player->destroyTopEnchantment(minionNum);
   } else if(name =="Resurrect the top minion in your graveyard and set its defence to 1") {
     // Return the top graveyard card to the slot
     // TODO: check if the max has been reached yet, ohterwise just cout and do
@@ -108,7 +108,7 @@ void ActivatedAbility::performAbility(string what, int minionNum, Minion *minion
 }
 
 
-void ActivatedAbility::performAbility(string what, int minionNum, Ritual *ritual, Player *actPlayer, Player *inactPlayer) {
+void ActivatedAbility::performAbility(string what, Ritual *ritual, Player *player) {
   if(name == "Destroy target minion or ritual"){
     // Destroys the ritual since Banish has been called
     player->removeCard("Ritual", minion);
