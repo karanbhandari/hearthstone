@@ -77,6 +77,19 @@ void Player::attack(int i, Player *opponent, int j) {
 
 // add the ith card on the hand on the slots
 void Player::play(int i) {
+	if (dynamic_pointer_cast<Minion>(card1)) {
+		if(slot->add(card1)) {
+			slot->callMinionEnter(card1);	
+		}
+				
+		
+	} else if (dynamic_pointer_cast<Spell>(card1)) {
+
+	} else if (dynamic_pointer_cast<Ritual>(card1)) {
+
+	} else if (dynamic_pointer_cast<Enchantment>(card1)) {
+
+	}
 	// TODO: add enter play trigger call here
 	hand->getIth(i)->addToBoard(ritual, nullptr, slot);
 	hand->remove(i);
@@ -84,6 +97,16 @@ void Player::play(int i) {
 
 // play the ith card on the hand on the minion/ritual
 void Player::play(int i, Player *p, int j) {
+	Card *card1 = hand->getIth(i);
+	if (dynamic_pointer_cast<Minion>(card1)) {
+
+	} else if (dynamic_pointer_cast<Spell>(card1)) {
+
+	} else if (dynamic_pointer_cast<Ritual>(card1)) {
+
+	} else if (dynamic_pointer_cast<Enchantment>(card1)) {
+
+	} 
 	// TODO: add enter play trigger call in addToBoard
 	hand->getIth(i)->addToBoard(ritual, p->hand->getIth(j), slot);
 	hand->remove(i);
@@ -121,6 +144,7 @@ void Player::addCard(string place, Minion *card) {
 	if (place == "Slot") {
 		slot->add(card); // TODO : add fucntion should check for maxSize
 	}
+}
 
 //displays the Hand of the player
 void Player::showHand() {
