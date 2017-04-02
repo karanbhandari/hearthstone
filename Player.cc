@@ -13,6 +13,7 @@ Player::Player(string myName, istream *in) :
 	hand = new Hand{deck};
 	slot = new Slot();
 	graveyard = new Graveyard();
+	ritual = nullptr;
 }
 
 // dtor for players
@@ -21,6 +22,7 @@ Player::~Player() {
 	delete hand;
 	delete slot;
 	delete graveyard;
+	delete ritual;
 }
 
 // returns the magic available to the player
@@ -40,14 +42,16 @@ void Player::changeLife(int change) {
 
 //draw a card from the deck
 void Player::draw() {
-	if (!deck->isEmpty()) 
+	if (!deck->isEmpty() && hand->getSize() < 5) 
 		hand->add(deck->getTopCard());
 	else 
-		cout << "deck isEmpty" << endl;
+		cout << "deck isEmpty or hand is fill" << endl;
 }
 
 //Perform the start of turn trigger
 void Player::performStartTrigger(Player *activePlayer, Player *opponent) {
+	magic++;
+	draw();
 	slot->performStartTrigger(activePlayer, opponent);
 	ritual->performTriggerAbility("startTurn", nullptr, activePlayer, opponent);
 }
@@ -62,12 +66,16 @@ void Player::performEndTrigger(Player *activePlayer, Player *opponent) {
 void Player::performMinionEnter(Minion *minion, Player *activePlayer, Player *opponent) {
 	slot->performMinionEnter(minion, activePlayer, opponent);
 	ritual->performTriggerAbility("minionEnter", minion, activePlayer, opponent);
+	opponent->slot->performMinionEnter(minion, activePlayer, opponent);
+	opponent->ritual->performTriggerAbility("minionEnter", minion, activePlayer, opponent);
 }
 
 // Perform the minion enter trigger
 void Player::performMinionLeave(Minion *minion, Player *activePlayer, Player *opponent) {
 	slot->performMinionLeave(minion, activePlayer, opponent);
 	ritual->performTriggerAbility("minionLeave" ,minion, activePlayer, opponent);
+	opponent->slot->performMinionLeave(minion, activePlayer, opponent);
+	opponent->ritual->performTriggerAbility("minionEnter", minion, activePlayer, opponent);
 }
 
 
@@ -111,6 +119,9 @@ void Player::play(int i, Player *activePlayer, Player *opponent) {
 		spell->performAbility(-1, nullptr, activePlayer, opponent);
 		delete spell;
 	} else if (dynamic_pointer_cast<Ritual>(card1)) {
+		if (ritual) {
+			delete ritual;
+		}
 		Ritual *ritual = hand->getIth(i);
 		hand->remove(i);
 	} else if (dynamic_pointer_cast<Enchantment>(card1)) {

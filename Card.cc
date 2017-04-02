@@ -25,5 +25,7 @@ void Card::attack(Card *minion){}
 void Card::attack(Player *player){}
 void Card::popTopEnchantment() {};
 void Card::reInitializeDefence(int val) {};  
+void Card::performActivatedAbility(int minionNum, Minion *minion, Player *p1, Player *p2) {}
+void Card::performTriggeredAbility(std::string what, int minionNum, Minion *minion, Player *p1, Player *p2) {}
 void updateCharge(int val) {};
 Card::~Card() {}

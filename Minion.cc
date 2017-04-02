@@ -50,6 +50,25 @@ void Minion::performAbility(){
   // performs ability
 }
 
+void Minion::performActivatedAbility(int minionNum, Minion *minion, Player *p1, Player *p2) {
+  if (enchantments.empty()) {
+    if (p1->getMagic() >= activatedAbility->getCost()) {
+        p1->changeMagic(-1);
+        activatedAbility->performActivatedAbility(" ", minionNum, minion, p1, p2);
+    } else {
+      cout << "You don't have enough magic to play this" << endl;
+    }
+  } else {
+    Enchantment *top = enchantments.back();
+    top->performActivatedAbility(minionNum, minion, p1, p2);
+  }
+}
+
+
+void Minion::performTriggeredAbility(std::string what, int minionNum, Minion *minion, Player *p1, Player *p2) {
+  triggeredAbility->performTriggeredAbility(what, minionNum, this, minion, p1, p2);
+}
+
 bool Minion::isDead() {
 	// returns true if the minion is dead
 	return (this->defence <= 0);
