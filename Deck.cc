@@ -97,23 +97,21 @@ Card* Deck::createCard(string name) {
 		const string minionName = "Bone Golem";
 		const string abilityName = "Gain +1/+1 whenever a minion leaves play.";
 		Ability * actAb = nullptr;
-		Ability * trigAb = new Ability(abilityName);
+		Ability * trigAb = new Ability(abilityName); // TODO: @Karan change ability to triggered ability
 		Minion * myMinion = new Minion(minionName, 1, 3, 2, actAb, trigAb);
 		return myMinion;
 	} else if (name == "Fire Elemental") {
 		const string minionName = "Fire Elemental";
-		const string abilityName =
-				"Whenever an opponentâ€™s minion enters play, deal 1 damage to it.";
+		const string abilityName = "Whenever an opponents minion enters play, deal 1 damage to it.";
 		Ability * actAb = nullptr;
-		Ability * trigAb = new Ability(abilityName);
+		Ability * trigAb = new Ability(abilityName); // TODO: @Karan change ability to triggered ability
 		Minion * myMinion = new Minion(minionName, 2, 2, 2, actAb, trigAb);
 		return myMinion;
 	} else if (name == "Potion Seller") {
 		const string minionName = "Potion Seller";
-		const string abilityName =
-				"At the end of your turn, all your minions gain +0/+1.";
+		const string abilityName = "At the end of your turn, all your minions gain +0/+1."; 		
 		Ability * actAb = nullptr;
-		Ability * trigAb = new Ability(abilityName);
+		Ability * trigAb = new Ability(abilityName); // TODO: @Karan change ability to triggered ability
 		Minion * myMinion = new Minion(minionName, 1, 3, 2, actAb, trigAb);
 		return myMinion;
 
