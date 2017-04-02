@@ -311,13 +311,10 @@ void AbstractDeck::show() {
 	}
 }
 
-<<<<<<< HEAD
-=======
 int numOfCards() {
 	return cardList.length();
 }
 
->>>>>>> f0cdf652586752790fb175d4a4bae709cfcb4463
 //****************HAND FUNCTIONS******************************
 
 // Hand ctor

@@ -77,4 +77,3 @@ void Minion::popTopEnchantment() {
 void Minion::reIntializeDefence(int initialisationVal) {
   defence = initialisationVal;
 }
-

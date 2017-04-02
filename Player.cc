@@ -123,16 +123,9 @@ void Player::addCard(string place, Minion *card) {
 	}
 }
 
-<<<<<<< HEAD
-//TODO:  removes a specific card form the slot
-// might need an assignment operator
-void Player::removeCard(string place, Card *card) {
-  // removes card //TODO
-=======
 // removes a specific card form the slot
 void Player::removeCard(int minionNum) {
   slot->remove(minionNum);
->>>>>>> f0cdf652586752790fb175d4a4bae709cfcb4463
 }
 
 //displays the Hand of the player
