@@ -172,3 +172,7 @@ void Player::raiseTheDead() {
     slot->add(temp);
   }
 }
+
+void updateRitual(int charge) {
+  ritual->updateCharge(charge)
+}

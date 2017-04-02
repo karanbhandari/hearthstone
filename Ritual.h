@@ -18,6 +18,7 @@ class Ritual: public Card {
     ~Ritual();
     void performAbility(Minion *minion);
     void addToBoard(Card *ritualSlot, Card *MinionCardForEnch, Slot *slot) override;
+    void updateCharge(int val);
 };
 
 #endif

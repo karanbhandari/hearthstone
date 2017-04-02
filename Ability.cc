@@ -102,6 +102,7 @@ void ActivatedAbility::performAbility(string what, int minionNum, Minion *minion
     player->raiseTheDead();
   } else if (name ==  "Deal 2 damage to all minions") {
     // damage all the minions on slot with 2 atttack
+    player->updateSlot(0,-2);
   }
 }
 
@@ -112,5 +113,6 @@ void ActivatedAbility::performAbility(string what, int minionNum, Ritual *ritual
     player->removeCard("Ritual", minion);
   } else if (name ==  "Your ritual gains 3 charges") {
     // ritual gains three charges since recharge is calleed
+    player->updateRitual(3);
   }
 }
