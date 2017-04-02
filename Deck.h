@@ -36,8 +36,11 @@ class Slot: public AbstractDeck {
 public:
 	Slot();
 	~Slot();
-	void add (Minion *minion); // TODO: need to implement this shit
-	void add(Card *card, int i); // TODO: @Karan Might not be needed
+	void performStartTrigger(Player *p1, Player *p2);
+	void performEndTrigger(Player *p1, Player *p2);
+	void performMinionEnter(Minion *minion, Player *p1, Player *p2);
+	void performMinionLeave(Minion *minion, Player *p1, Player *p2);
+	void add(Minion *minion); // TODO: need to implement this shit
 	void changeValOfCards(int attack, int defence);
 };
 

@@ -26,8 +26,10 @@ public:
 	void changeMagic(int change);
 	void changeLife(int change);
 	void draw();
-	void performStartTrigger();
-	void perfromEndTrigger();
+	void performStartTrigger(Player *activePlayer, Player *opponent);
+	void perfromEndTrigger(Player *activePlayer, Player *opponent);
+	void performMinionEnter(Minion *minion, Player *activePlayer, Player *opponent);
+	void performMinionLeave(Minion *minion, Player *activePlayer, Player *opponent);
 	void discard(int i);
 	void attack(int i, Player* opponent);
 	void attack(int i, Player* opponent, int j);
