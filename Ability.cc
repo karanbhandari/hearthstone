@@ -31,7 +31,10 @@ void TriggeredAbility::performAbility(string what, Minion *minion, Player *playe
 		startOfTurn(minion, player);
 	}
  	// performs the ability call
-}	
+}
+
+void TriggeredAbility::performAbility(string what, Ritual *ritual, PLayer *player) {
+}
 
 void TriggeredAbility::startOfTurn() {
 	// triggeres all the startof turn abilities
@@ -66,7 +69,7 @@ ActivatedAbility::ActivatedAbility(const string& nameOfAbility) : Ability{nameOf
 
 }
 
-void ActivatedAbility::performAbility(Minion *minion, Player *player) {
+void ActivatedAbility::performAbility(string what, Minion *minion, Player *player) {
 	if (name == "Deal 1 damage to target minion") {
 		minion->changeDefence(-1);
 	} else if (name == "Summon a 1/1 air elemental") {
@@ -85,5 +88,31 @@ void ActivatedAbility::performAbility(Minion *minion, Player *player) {
 		player->addCard("Slot", myMinion);
 		player->addCard("Slot", myMinion2);
 		player->addCard("Slot", myMinion3);
-	}
+	} else if (name == "Destroy target minion or ritual") {
+    // destroys the minion since banish has been called
+    player->removeCard("Slot", minion);
+  } else if (name == "Return target minion to its owners hand") {
+    // return the minion to the hand of the player since Unsummon is called
+    // need a minion, slot, and hand to do so
+    player->returnMinionToHand(minion);
+  } else if (name == "Destroy the top enchantment on target minion") {
+    // need to destroy the minion's top enchantment
+  } else if(name =="Resurrect the top minion in your graveyard and set its defence to 1") {
+    // Return the top graveyard card to the slot
+    // TODO: check if the max has been reached yet, ohterwise just cout and do
+    // nothing
+    // Needs graveyard, slot, and hand to do
+  } else if (name ==  "Deal 2 damage to all minions") {
+    // damage all the minions on slot with 2 atttack
+  }
+}
+
+
+void ActivatedAbility::performAbility(string what, Ritual *ritual, Player *player) {
+  if(name == "Destroy target minion or ritual"){
+    // Destroys the ritual since Banish has been called
+    player->removeCard("Ritual", minion);
+  } else if (name ==  "Your ritual gains 3 charges") {
+    // ritual gains three charges since recharge is calleed
+  }
 }

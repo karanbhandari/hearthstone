@@ -39,8 +39,10 @@ public:
 	bool isAlive();
 	void updateSlot(int attack, int defence);
 	void addCard(std::string place, Minion *card);
+  void removeCard(std::string place, Card *card);
 	void showHand();
 	void showDeck();
+  void returnMinionToHand(Minion *minion);
 };
 
 

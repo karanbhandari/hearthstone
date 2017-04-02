@@ -121,6 +121,13 @@ void Player::addCard(string place, Minion *card) {
 	if (place == "Slot") {
 		slot->add(card); // TODO : add fucntion should check for maxSize
 	}
+}
+
+//TODO:  removes a specific card form the slot
+// might need an assignment operator
+void Player::removeCard(string place, Card *card) {
+  // removes card //TODO
+}
 
 //displays the Hand of the player
 void Player::showHand() {
@@ -134,4 +141,7 @@ void Player::showDeck() {
 //the describe, hand and board command would take place in main would take place in main
 
 
-
+void Player::returnMinionToHand(Minion *minion) {
+  // TODO: check the card inside the slot and then give it back to the hand
+  // Note: Might have to check for specific cases
+}
