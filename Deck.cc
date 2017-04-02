@@ -21,6 +21,8 @@ Deck::Deck(istream& deckList) :AbstractDeck{0} {
 	// Adds all the cards in the .deck file to the deck list
 	while (deckList) {
 		getline(deckList, currentCardName);
+		Card *temp = createCard(currentCardName);
+		if (temp)
 		cardList.emplace_back(createCard(currentCardName));
 		deckSize++;
 	}
@@ -43,10 +45,9 @@ Card* Deck::createCard(string name) {
 		return banish;
 	} else if (name == "Unsummon") {
 		const string abilityName = "Return target minion to its owner’s hand";
-		;
 		const string spellName = "Unsummon";
-		Ability * unsummonAb = new Ability(spellName);
-		Spell * unsummon = new Spell(abilityName, 1, unsummonAb);
+		Ability * unsummonAb = new Ability(abilityName);
+		Spell * unsummon = new Spell(spellName, 1, unsummonAb);
 		return unsummon;
 	} else if (name == "Recharge") {
 		const string abilityName = "Your ritual gains 3 charges";
@@ -139,19 +140,10 @@ Card* Deck::createCard(string name) {
 		Ability * trigAb = nullptr;
 		Minion * myMinion = new Minion(minionName, 2, 3, 3, actAb, trigAb);
 		return myMinion;
-	} else {
-		const string minionName = "Master Summoner";
-		const string abilityName = "Summon up to three 1/1 air elementals";
-		Ability * actAb = new Ability(abilityName);
-		Ability * trigAb = nullptr;
-		Minion * myMinion = new Minion(minionName, 2, 3, 3, actAb, trigAb);
-		return myMinion;
-	
 	}
-		
-
+	cout<<"gets here";
 	// Enchantment Cards goes here:
-
+	return nullptr;
 	// Ritual Cards goes here:
 }
 
