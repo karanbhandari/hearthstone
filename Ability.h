@@ -17,7 +17,7 @@ class Ability {
     Ability(const std::string nameOfAbility);
     virtual void performAbility(std::string what, int minionNum, Minion *minion, Player *actPlayer, Player *inactPlayer); 
     virtual void performAbility(std::string what, int minionNum, Ritual *ritual, Player *actPlayer, Player *inactPlayer);
-    virtual void performTriggeredAbility(std::string what);
+    virtual void performTriggeredAbility(std::string what, int minionNum, Minion *minion, Player *actPlayer, Player *inactPlayer);
     virtual ~Ability();
 };
 
@@ -27,10 +27,11 @@ class TriggeredAbility: public Ability {
     TriggeredAbility(const std::string& nameOfAbility);
     void performAbility(std::string what, int minionNum, Minion *minion, Player *actPlayer, Player *inactPlayer)  override;
     void performAbility(std::string what, int minionNum, Ritual *ritual, Player *actPlayer, Player *inactPlayer) override;
-    void startOfTurn();
-    void endOfTurn();
-    void minionEnter();
-    void minionLeave();
+    void performTriggeredAbility(std::string what, int minionNum, Minion *minion, Player *actPlayer, Player *inactPlayer) override;
+    void startOfTurn(Minion *thisMinion, Minion *opponentMinion, Player *actPlayer, Player *inactPlayer);
+    void endOfTurn(Minion *thisMinion, Minion *opponentMinion, Player *actPlayer, Player *inactPlayer);
+    void minionEnter(Minion *thisMinion, Minion *opponentMinion, Player *actPlayer, Player *inactPlayer);
+    void minionLeave(Minion *thisMinion, Minion *opponentMinion, Player *actPlayer, Player *inactPlayer);
 };
 
 class ActivatedAbility: public Ability {
