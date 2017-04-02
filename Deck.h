@@ -7,6 +7,7 @@
 
 class Card;
 class Minion;
+class Player;
 
 class AbstractDeck {
 protected:
