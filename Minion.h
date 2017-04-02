@@ -34,8 +34,8 @@ class Minion: public Card {
     void addToBoard(Card *ritualSlot, Card *MinionCardForEnch, Slot *slot) override;
     void changeAttack(int changeByValue) override;
     void changeDefence(int changeByValue) override;
-    void popTopEnchantment();
-    void reIntializeDefence(int initialisationVal);
+    void popTopEnchantment() override;
+    void reIntializeDefence(int initialisationVal) override;
 };
 
 #endif

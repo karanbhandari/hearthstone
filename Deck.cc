@@ -295,7 +295,6 @@ void AbstractDeck::deleteCard(int i) {
 void AbstractDeck::add(Card* card) {
 	cout<<card->getName()<<endl;
 	cardList.emplace_back(card);
-	//cardList.emplace_back(card);
 }
 
 // returns true if the list is empty
@@ -311,8 +310,8 @@ void AbstractDeck::show() {
 	}
 }
 
-int numOfCards() {
-	return cardList.length();
+int AbstractDeck::numOfCards() {
+	return cardList.size();
 }
 
 //****************HAND FUNCTIONS******************************
@@ -340,9 +339,9 @@ Slot::Slot() :
 	size = 0;
 }
 
-void Slot::add(Card *card, int i) {
+// void Slot::add(Card *card, int i) {
 //	getIth(i)->addEnchantment(card);
-}
+// }
 
 //dtor for Slot
 Slot::~Slot() {
@@ -379,12 +378,15 @@ void performMinionLeave(Minion *minion, Player *p1, Player *p2) {
 	}
 }
 
+void Slot::addMinion(Card *minion) {
+    cardList.emplace_back(minion);
+}
 
 //****************GRAVEYARD FUNCTIONS*************************
 
 // Graveyard ctor
 Graveyard::Graveyard() :
-		AbstractDeck(0), size{0} {
+		AbstractDeck(0) {
 }
 
 //dtor for Graveyard

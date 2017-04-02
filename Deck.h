@@ -20,6 +20,7 @@ public:
 	void remove(int i);
 	void deleteCard(int i);
 	void add(Card *card);
+  virtual void addMinion(Card *minion);
 	bool isEmpty();
 	void show();
 	int numOfCards();
@@ -42,6 +43,9 @@ public:
 	void performMinionEnter(Minion *minion, Player *p1, Player *p2);
 	void performMinionLeave(Minion *minion, Player *p1, Player *p2);
 	void add(Minion *minion); // TODO: need to implement this shit
+  	void addMinion (Card *minion) override;
+ // Not being used anymore @Karan
+ // void add(Card *card, int i); // TODO: @Karan Might not be needed
 	void changeValOfCards(int attack, int defence);
 };
 

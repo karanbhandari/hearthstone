@@ -23,5 +23,7 @@ void Card::addToBoard(Card *ritualSlot, Card *minion, Slot *slot) {}
 
 void Card::attack(Card *minion){}
 void Card::attack(Player *player){}
-
+void Card::popTopEnchantment() {};
+void Card::reInitializeDefence(int val) {};  
+void updateCharge(int val) {};
 Card::~Card() {}
