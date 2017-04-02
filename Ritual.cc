@@ -23,3 +23,8 @@ void Ritual::addToBoard(Card *ritualSlot, Card *MinionCardForEnch, Slot *slot){
 	delete ritualSlot;
 	ritualSlot = this;
 }
+
+void Ritual::updateCharge(int val) {
+	charge += val;
+}
+

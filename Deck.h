@@ -22,6 +22,10 @@ public:
 	void add(Card *card);
 	bool isEmpty();
 	void show();
+<<<<<<< HEAD
+=======
+	int numOfCards();
+>>>>>>> f0cdf652586752790fb175d4a4bae709cfcb4463
 };
 
 class Deck: public AbstractDeck {
@@ -51,6 +55,7 @@ class Graveyard: public AbstractDeck {
 public:
 	Graveyard();
 	~Graveyard();
+	void popTop();
 };
 
 #endif

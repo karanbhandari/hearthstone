@@ -123,10 +123,16 @@ void Player::addCard(string place, Minion *card) {
 	}
 }
 
+<<<<<<< HEAD
 //TODO:  removes a specific card form the slot
 // might need an assignment operator
 void Player::removeCard(string place, Card *card) {
   // removes card //TODO
+=======
+// removes a specific card form the slot
+void Player::removeCard(int minionNum) {
+  slot->remove(minionNum);
+>>>>>>> f0cdf652586752790fb175d4a4bae709cfcb4463
 }
 
 //displays the Hand of the player
@@ -141,7 +147,39 @@ void Player::showDeck() {
 //the describe, hand and board command would take place in main would take place in main
 
 
-void Player::returnMinionToHand(Minion *minion) {
-  // TODO: check the card inside the slot and then give it back to the hand
-  // Note: Might have to check for specific cases
+void Player::returnMinionToHand(int minionNum, Minion *minion) {
+  // check the card inside the slot and then give it back to the hand
+
+  if(slot->numOfCards() >= 5){
+    cout << "Cannot play this move since Hand is full." << endl;
+    return;
+  } else {
+    Card *temp = slot->getIth(minionNum);
+    slot->remove(minionNum);
+    hand->add(temp);
+  }
+}
+
+// removes top enchantment from the target minion
+void Player::detroyTopEnchantment(int minionNum) {
+  Card *target = slot->getIth(minionNum);
+  target->popTopEnchantment();
+}
+
+// raises minion from the graveyard to the slot
+void Player::raiseTheDead() {
+  if(slot->numOfCards >= 5) {
+    cout << "Cannot use this card since the board is full" << endl;
+  } else if(graveyard->isEmpty()){
+    cout << "cannot use this card since there is no Minion in Grave" << endl;
+  } else {
+    Card *temp = graveyard->getTopCard();
+    graveyard->popTop();
+    temp->reInitializeDefence(1);
+    slot->add(temp);
+  }
+}
+
+void updateRitual(int charge) {
+  ritual->updateCharge(charge)
 }

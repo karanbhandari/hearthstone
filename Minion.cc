@@ -67,3 +67,14 @@ void Minion::changeAttack(int val) {
 void Minion::changeDefence(int val) {
   this->defence += val;
 };
+
+void Minion::popTopEnchantment() {
+  if(enchantments.size() > 0) {
+    enchantments.pop_back();
+  }
+}
+
+void Minion::reIntializeDefence(int initialisationVal) {
+  defence = initialisationVal;
+}
+
