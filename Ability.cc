@@ -116,3 +116,4 @@ void ActivatedAbility::performAbility(string what, int minionNum, Ritual *ritual
     player->updateRitual(3);
   }
 }
+
