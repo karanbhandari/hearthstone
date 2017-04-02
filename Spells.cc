@@ -10,6 +10,7 @@
 #include "Spells.h"
 #include "Player.h"
 #include "Ability.h"
+#include "Minion.h"
 
 using namespace std;
 
@@ -44,3 +45,9 @@ void Spell::addToBoard(Card *ritualSlot, Card *MinionCardForEnch, Slot *slot) {
 	// TODO: perform ability
 	delete this;
 }
+
+
+void Spell::performActivatedAbility(int minionNum, Minion *minion, Player *p1, Player *p2) {
+	spellAbility->performActivatedAbility("", minionNum, minion, p1, p2);
+}
+

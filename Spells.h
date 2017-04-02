@@ -24,9 +24,9 @@ public:
 	Spell (const std::string name, int cost, Ability * myAbility);
 	~Spell();
 	//bool canActivate ();
+	void performActivatedAbility(int minionNum, Minion *minion, Player *p1, Player *p2) override;
 	void activate ();
 	void moveToGrave ();
-	void addToBoard(Card *ritualSlot, Card *MinionCardForEnch, Slot *slot) override;
 };
 
 #endif

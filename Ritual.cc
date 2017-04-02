@@ -28,3 +28,7 @@ void Ritual::updateCharge(int val) {
 	charge += val;
 }
 
+void performTriggeredAbility(std::string what, int minionNum, Minion *minion, Player *p1, Player *p2) {
+	//triggeredAbility->performTriggeredAbility(what, int minionNum, nullptr, minion, p1, p2);
+	cout << "ritual " << what << " Ability Plays";
+}

@@ -41,7 +41,7 @@ public:
 	bool isAlive();
 	void updateSlot(int attack, int defence);
 	// Not needed anymore @Karan
-  // void addCard(std::string place, Minion *card);
+  	// void addCard(std::string place, Minion *card);
  	void removeCard(int minionNum);
 	void showHand();
 	void showDeck();

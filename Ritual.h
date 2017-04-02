@@ -17,8 +17,8 @@ class Ritual: public Card {
     Ritual(const std::string &name, int cost, int charge, int activationCost, Ability *ability);
     ~Ritual();
     void performAbility(Minion *minion);
-    void addToBoard(Card *ritualSlot, Card *MinionCardForEnch, Slot *slot) override;
     void updateCharge(int val) override;
+    void performTriggeredAbility(std::string what, int minionNum, Minion *minion, Player *p1, Player *p2);
 };
 
 #endif

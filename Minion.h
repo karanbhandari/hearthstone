@@ -36,6 +36,8 @@ class Minion: public Card {
     void changeDefence(int changeByValue) override;
     void popTopEnchantment() override;
     void reIntializeDefence(int initialisationVal) override;
+    void performActivatedAbility(int minionNum, Minion *minion, Player *p1, Player *p2) override;
+    void performTriggeredAbility(std::string what, int minionNum, Minion *minion, Player *p1, Player *p2) override;
 };
 
 #endif

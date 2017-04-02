@@ -14,56 +14,75 @@ Ability::Ability(const string name) {
 
 Ability::~Ability() {}
 
-void Ability::performAbility() {}
+void Ability::performAbility(std::string what, int minionNum, Minion *minion, Player *actPlayer, Player *inactPlayer) {}; 
+void Ability::performAbility(std::string what, int minionNum, Ritual *ritual, Player *actPlayer, Player *inactPlayer) {};
+void Ability::performTriggeredAbility(std::string what, int minionNum, Minion *minion, Player *actPlayer, Player *inactPlayer) {};
 
+///////////////////////////////////////*****Triggered ability*****///////////////////////////////////////
 
 TriggeredAbility::TriggeredAbility(const string &nameOfAbility): Ability{nameOfAbility} {
 }
 
 void TriggeredAbility::performAbility(string what, int minionNum, Minion *minion, Player *actPlayer, Player *inactPlayer) {
-	if (what == "minionLeave") {
-		minionLeave(minion, player);
-	} else if (what == "minionEnter") {
-		minionEnter(minion, player);
-	} else if (what == "endOfTurn") {
-		endOfTurn(minion, player);
-	} else if (what == "startOfTurn") {
-		startOfTurn(minion, player);
-	}
+	// if (what == "minionLeave") {
+	// 	minionLeave(minion, player);
+	// } else if (what == "minionEnter") {
+	// 	minionEnter(minion, player);
+	// } else if (what == "endOfTurn") {
+	// 	endOfTurn(minion, player);
+	// } else if (what == "startOfTurn") {
+	// 	startOfTurn(minion, player);
+	// }
  	// performs the ability call
 }
 
 void TriggeredAbility::performAbility(string what, int minionNum, Ritual *ritual, Player *actPlayer, Player *inactPlayer) {
 }
 
-void TriggeredAbility::startOfTurn() {
+void performTriggeredAbility(std::string what, int minionNum, Minion *thisMinion, Minion *opponentMinion, Player *actPlayer, Player *inactPlayer) {
+  if (what == "minionLeave") {
+    minionLeave(thisMinion, opponentMinion, actPlayer, inactPlayer);
+  } else if (what == "minionEnter") {
+    minionEnter(thisMinion, opponentMinion, actPlayer, inactPlayer);
+  } else if (what == "endOfTurn") {
+    endOfTurn(thisMinion, opponentMinion, actPlayer, inactPlayer);
+  } else if (what == "startOfTurn") {
+    startOfTurn(thisMinion, opponentMinion, actPlayer, inactPlayer);
+  }
+};
+
+
+void TriggeredAbility::startOfTurn(Minion *thisMinion, Minion *opponentMinion, Player *actPlayer, Player *inactPlayer) {
 	// triggeres all the startof turn abilities
 	// 1: Restores the action to minion to 1, and it
-	
+	// 2: adds one magic to the player
 }
 
-void TriggeredAbility::endOfTurn(Minion *minion, Player *player) {
+void TriggeredAbility::endOfTurn(Minion *thisMinion, Minion *opponentMinion, Player *actPlayer, Player *inactPlayer) {
 	if (name == "At the end of your turn, all your minions gain +0/+1.") {
-		player->updateSlot(0, 1); //TODO: add this function 
+		player->updateSlot(0, 1); //TODO: add this function (this is potion seller)
 	} 
 }
 
-void TriggeredAbility::minionEnter(Minion *minion, Player *player) {
+void TriggeredAbility::minionEnter(Minion *thisMinion, Minion *opponentMinion, Player *actPlayer, Player *inactPlayer) {
 	if (name == "Whenever an opponent’s minion enters play, deal 1 damage to it."){
 		// reduce opponent'minion's defence by one on enter. (this is fire elemental)
-		minion->changeDefence(-1);
-	}
+		opponentMinion->changeDefence(-1);
+  }
 }
 
-void TriggeredAbility::minionLeave(Minion *minion, Player *player) {
+void TriggeredAbility::minionLeave(Minion *thisMinion, Minion *opponentMinion, Player *actPlayer, Player *inactPlayer) {
 	if(name == "Gain +1/+1 whenever a minion leaves play."){
-		minion->changeAttack(1);
-		minion->changeDefence(1);
+		thisMinion->changeAttack(1); // TODO: change to the activated playe'rs change
+		thisMinion->changeDefence(1);
 		// reduce this increase attack and defence by 1(this is Bone Golem)
 	} else {
 		// TODO: remove all the enchantments
 	}
 }
+
+///////////////////////////////////////*****Activated ability*****///////////////////////////////////////
+
 
 ActivatedAbility::ActivatedAbility(const string& nameOfAbility) : Ability{nameOfAbility}{
 
