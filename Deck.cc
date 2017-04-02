@@ -360,9 +360,13 @@ void Slot::changeValOfCards(int attack, int defence){
 
 // Graveyard ctor
 Graveyard::Graveyard() :
-		AbstractDeck(0) {
+		AbstractDeck(0), size{0} {
 }
 
 //dtor for Graveyard
 Graveyard::~Graveyard() {
+}
+
+void Graveyard::popTop() {
+	cardList.pop_back();
 }

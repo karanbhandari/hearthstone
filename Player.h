@@ -44,6 +44,7 @@ public:
 	void showDeck();
   	void returnMinionToHand(int minionNum, Minion *minion);
   	void destroyTopEnchantment(int minionNum);
+  	void raiseTheDead();
 };
 
 

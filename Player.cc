@@ -154,7 +154,21 @@ void Player::returnMinionToHand(int minionNum, Minion *minion) {
 }
 
 // removes top enchantment from the target minion
-void detroyTopEnchantment(int minionNum) {
+void Player::detroyTopEnchantment(int minionNum) {
   Card *target = slot->getIth(minionNum);
-  
+  target->popTopEnchantment();
+}
+
+// raises minion from the graveyard to the slot
+void Player::raiseTheDead() {
+  if(slot->numOfCards >= 5) {
+    cout << "Cannot use this card since the board is full" << endl;
+  } else if(graveyard->isEmpty()){
+    cout << "cannot use this card since there is no Minion in Grave" << endl;
+  } else {
+    Card *temp = graveyard->getTopCard();
+    graveyard->popTop();
+    temp->reInitializeDefence(1);
+    slot->add(temp);
+  }
 }

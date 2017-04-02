@@ -61,7 +61,7 @@ void TriggeredAbility::minionLeave(Minion *minion, Player *player) {
 		minion->changeDefence(1);
 		// reduce this increase attack and defence by 1(this is Bone Golem)
 	} else {
-		// 
+		// TODO: remove all the enchantments
 	}
 }
 
@@ -99,9 +99,7 @@ void ActivatedAbility::performAbility(string what, int minionNum, Minion *minion
     player->destroyTopEnchantment(minionNum);
   } else if(name =="Resurrect the top minion in your graveyard and set its defence to 1") {
     // Return the top graveyard card to the slot
-    // TODO: check if the max has been reached yet, ohterwise just cout and do
-    // nothing
-    // Needs graveyard, slot, and hand to do
+    player->raiseTheDead();
   } else if (name ==  "Deal 2 damage to all minions") {
     // damage all the minions on slot with 2 atttack
   }

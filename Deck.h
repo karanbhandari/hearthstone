@@ -52,6 +52,7 @@ class Graveyard: public AbstractDeck {
 public:
 	Graveyard();
 	~Graveyard();
+	void popTop();
 };
 
 #endif
