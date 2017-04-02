@@ -123,10 +123,9 @@ void Player::addCard(string place, Minion *card) {
 	}
 }
 
-//TODO:  removes a specific card form the slot
-// might need an assignment operator
-void Player::removeCard(string place, Card *card) {
-  // removes card //TODO
+// removes a specific card form the slot
+void Player::removeCard(int minionNum) {
+  slot->remove(minionNum);
 }
 
 //displays the Hand of the player
@@ -141,7 +140,21 @@ void Player::showDeck() {
 //the describe, hand and board command would take place in main would take place in main
 
 
-void Player::returnMinionToHand(Minion *minion) {
-  // TODO: check the card inside the slot and then give it back to the hand
-  // Note: Might have to check for specific cases
+void Player::returnMinionToHand(int minionNum, Minion *minion) {
+  // check the card inside the slot and then give it back to the hand
+
+  if(slot->numOfCards() >= 5){
+    cout << "Cannot play this move since Hand is full." << endl;
+    return;
+  } else {
+    Card *temp = slot->getIth(minionNum);
+    slot->remove(minionNum);
+    hand->add(temp);
+  }
+}
+
+// removes top enchantment from the target minion
+void detroyTopEnchantment(int minionNum) {
+  Card *target = slot->getIth(minionNum);
+  
 }
