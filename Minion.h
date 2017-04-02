@@ -4,25 +4,36 @@
 #include <string>
 #include <sstream>
 #include <iostream>
-#include "Player.h"
-#include "Ability.h"
+#include <vector>
 #include "Card.h"
 
-class Minions: public Cards {
+class Player;
+class Ability;
+class Minion;
+class Enchantment;
+
+class Minion: public Card {
     int attack;
     int defence;
     int action; // What is this going to do and how its type is int is still a confusion for me
     Ability *activatedAbility;
     Ability *triggeredAbility;
-    Ability *newestActivatedAbility;
+    std::vector<Card*> enchantments;
   public:
-    Minions (int attack, int defence, int action, Ability *actAbl, Ability *trgAbl, Ability *newstActAbl);
-    void updateActivatedAbility ();
+    Minion(const std::string& name,int attack, int defence, int action, Ability *actAbl, Ability *trgAbl);
+    ~Minion();
+    void updateActivatedAbility (Card *Enchantment);
     void resetDefault();
-    void attackMinion(Minions *minion);
+    void setDescription(const std::string desc);
+    void attackOther(Minion *minion);
+    void attackOther(Player *player);
     // there probably needs to be a funstion to reduce the defence of minion on attack
     // name them minionAttacks and reduceDefence @Karan
     void performAbility();
+    bool isDead();
+    void addToBoard(Card *ritualSlot, Card *MinionCardForEnch, Slot *slot) override;
+    void changeAttack(int changeByValue) override;
+    void changeDefence(int changeByValue) override;
 };
 
 #endif

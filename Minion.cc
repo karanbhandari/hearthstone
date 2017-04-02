@@ -6,23 +6,64 @@
 
 using namespace std;
 
-Minions::Minions (int attack, int defence, int action, Ability *actAbl, Ability *trgAbl, Ability *newstActAbl):
-  attack{attack}, defence{defence}, action{action}, activatedAbility{actAbl}, triggeredAbility{trgAbl},
-  newestActivatedAbility{newstActAbl} {
+Minion::Minion(const string &name,int attack, int defence, int action, Ability *actAbl, Ability *trgAbl): Card{name},
+  attack{attack}, defence{defence}, action{action}, activatedAbility{actAbl}, triggeredAbility{trgAbl} {
 }
 
-void updateActivatedAbility (){
-  // updates the activated ability
+Minion::~Minion() {
+  delete activatedAbility;
+  delete triggeredAbility;
+  // ?? Do we also need to delete the vector??
 }
 
-void resetDefault(){
-  // Not sure what is being defaulted here.. probably removing the spell or sth @Karan
+void Minion::updateActivatedAbility(Card *Ench){
+  // updates the activated ability by adding Enchantment to the vector of enchantments
+  enchantments.push_back(Ench);
 }
 
-void attackMinion(Minions *minion){
-  // Not sure if this is informing other minion about hte attack or reduces current minions defence @Karan
+void Minion::resetDefault(){
+  // Removes the enchantments if any on the Minion
+	while(!enchantments.empty()){
+    enchantments.pop_back();
+  }
 }
 
-void performAbility(){
+void Minion::attackOther(Minion *minion){
+	// reduces the this->defence by the minion->attack, and minion->defence by this->attack
+	if(this->action){
+    minion->defence -= this->attack;
+    this->defence -= minion->attack;
+  }
+  this->action = 0;
+}
+
+void Minion::attackOther(Player *player){
+  // reduces the this->defence by the minion->attack, and minion->defence by this->attack
+  if(this->action){
+    // reduce the player's life by one
+    player->changeLife(-1);
+  }
+  this->action = 0;
+}
+
+void Minion::performAbility(){
   // performs ability
 }
+
+bool Minion::isDead() {
+	// returns true if the minion is dead
+	return (this->defence <= 0);
+}
+
+void Minion::addToBoard(Card *ritualSlot, Card *MinionCardForEnch, Slot *slot){
+  // calls absractDeck's add card functionality
+  //slot->add(this);
+}
+
+void Minion::changeAttack(int val) {
+  this->attack += val;
+};
+
+void Minion::changeDefence(int val) {
+  this->defence += val;
+};

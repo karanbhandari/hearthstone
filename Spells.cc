@@ -1,10 +1,10 @@
 /*
- * Spells.cc
+ * Spell.cc
  *
  *  Created on: Mar 23, 2017
  *      Author: Acer User
  */
-
+#include <iostream>
 #include <string>
 #include <sstream>
 #include "Spells.h"
@@ -13,24 +13,34 @@
 
 using namespace std;
 
-Spells::Spells(const string& name, int cost, Ability *myAbility,
-		Player *myPlayer) :
-		name(name), cost(cost), spellAbility(myAbility), spellPlayer(myPlayer) {
+Spell::Spell(const string name, int cost, Ability *myAbility) :
+		Card{name}, cost(cost), spellAbility(myAbility) {
 }
 
-bool Spells::canActivate() {
-	return spellPlayer->getMagic() >= cost;
+Spell::~Spell(){
+	delete spellAbility;
+	spellAbility = nullptr;
 }
 
-void Spells::activate() {
-	if (canActivate()) {
-		spellPlayer->changeMana(-(cost));
+//bool Spell::canActivate() {
+	//return spellPlayer->getMagic() >= cost;
+//}
+
+void Spell::activate() {
+	//if (canActivate()) {
+		//spellPlayer->changeMagic(-(cost));
 		spellAbility->performAbility();
 		moveToGrave();
-	} else
-		throw "not enough mana";
+	//} else
+	//	throw "not enough mana";
 }
 
-void Spells::moveToGrave() {
+void Spell::moveToGrave() {
 	// move to graveyard
+}
+
+void Spell::addToBoard(Card *ritualSlot, Card *MinionCardForEnch, Slot *slot) {
+	// Performs ability and then deletes the card.. See TODO in this file 
+	// TODO: perform ability
+	delete this;
 }

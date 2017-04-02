@@ -8,11 +8,17 @@
 #include "Minion.h"
 #include "Ability.h"
 
-class Enchantments: public Cards {
-    Ability *ability;
+class Enchantment: public Card {
+	int cost;
+	int changeAttack;
+	int changeDefence;
+    Ability *triggeredAbility;
+    std::string function;
   public:
-    Enchantments(Ability *ability);
-    void setAbility(Minions *minion);
+    Enchantment(const std::string name, int cost, int changeAttack, int changeDefence, const std::string function, Ability *ability);
+    ~Enchantment();
+    void setAbility(Minion *minion);
+    void addToBoard(Card *ritualSlot, Card *MinionCardForEnch, Slot *slot) override;
 };
 
 #endif
