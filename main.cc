@@ -23,7 +23,7 @@ void mainLoop(istream *in, bool testing, Board* board, Player *activePlayer) {
 		iss >> s;
 		if (s == "end") { // end players turn
 			cout << s << endl;
-			//activePlayer->end();
+			activePlayer->performEndTrigger(activePlayer, inactivePlayer);
 			inactivePlayer = activePlayer;
 			if (activePlayer == board->p1) {
 				activePlayer = board->p2;
@@ -107,6 +107,8 @@ void mainLoop(istream *in, bool testing, Board* board, Player *activePlayer) {
 		if(dbg) cout << inactivePlayer->getName() << "s life: " <<inactivePlayer->life <<endl;
 		if (!inactivePlayer->isAlive()) {
 			cout << inactivePlayer->getName() << " loses" <<endl;
+			delete board;
+			break;
 		}
 	}
 }
