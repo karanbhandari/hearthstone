@@ -148,54 +148,58 @@ Card* Deck::createCard(string name) {
 	//		Card{name}, cost(cost), changeAttack(changeAttack), changeDefence(changeDefence), function(function) triggeredAbility{ability} {}
 	else if (name == "Giant Strength") {
 		const string enchantName = "Giant Strength";
-		const string abilityName = "";
+		const string abilityName = "Enchanted minion gains +2/+2";
+		Ability * actAb = new ActivatedAbility(abilityName);
 		Ability * trigAb = nullptr;
-		const string function = "+";
-		int changeAtk = 2;
-		int changeDef = 2;
-		Enchantment * myEnchant = new Enchantment(enchantName, 1, changeAtk,
-				changeDef, function, trigAb);
+		// const string function = "+";
+		// int changeAtk = 2;
+		// int changeDef = 2;
+		Enchantment * myEnchant = new Enchantment(enchantName, 1,/* changeAtk,
+				changeDef, function,*/actAb, trigAb);
 		return myEnchant;
 	} else if (name == "Enrage") {
 		const string enchantName = "Enrage";
-		const string abilityName = "";
+		const string abilityName = "Enchanted minion gains +2/+2";
+		Ability * actAb = new ActivatedAbility(abilityName);
 		Ability * trigAb = nullptr;
-		const string function = "*";
-		int changeAtk = 2;
-		int changeDef = 2;
-		Enchantment * myEnchant = new Enchantment(enchantName, 2, changeAtk,
-				changeDef, function, trigAb);
+		// const string function = "*";
+		// int changeAtk = 2;
+		// int changeDef = 2;
+		Enchantment * myEnchant = new Enchantment(enchantName, 2,/* changeAtk,
+				changeDef, function,*/actAb, trigAb);
 		return myEnchant;
 	} else if (name == "Haste") {
 		const string enchantName = "Haste";
 		const string abilityName = "Enchanted minion gains +1 action each turn";
-		Ability * trigAb = new Ability(abilityName);
-		const string function = "";
-		int changeAtk = 0;
-		int changeDef = 0;
-		Enchantment * myEnchant = new Enchantment(enchantName, 1, changeAtk,
-				changeDef, function, trigAb);
+		Ability * actAb = nullptr;
+		Ability * trigAb = new TriggeredAbility(abilityName);
+		// const string function = "";
+		// int changeAtk = 0;
+		// int changeDef = 0;
+		Enchantment * myEnchant = new Enchantment(enchantName, 1,/* changeAtk,
+				changeDef, function,*/actAb, trigAb);
 		return myEnchant;
 	} else if (name == "Magic Fatigue") {
 		const string enchantName = "Magic Fatigue";
-		const string abilityName =
-				"Enchanted minion’s activated ability costs 2 more";
-		Ability * trigAb = new Ability(abilityName);
-		const string function = "";
-		int changeAtk = 0;
-		int changeDef = 0;
-		Enchantment * myEnchant = new Enchantment(enchantName, 0, changeAtk,
-				changeDef, function, trigAb);
+		const string abilityName = "Enchanted minion’s activated ability costs 2 more";
+		Ability * actAb = new ActivatedAbility(abilityName);
+		Ability * trigAb = nullptr;
+		// const string function = "";
+		// int changeAtk = 0;
+		// int changeDef = 0;
+		Enchantment * myEnchant = new Enchantment(enchantName, 0,/* changeAtk,
+				changeDef, function,*/actAb, trigAb);
 		return myEnchant;
 	} else if (name == "Silence") {
 		const string enchantName = "Silence";
 		const string abilityName = "Enchanted minion cannot use abilities";
 		Ability * trigAb = new Ability(abilityName);
-		const string function = "";
-		int changeAtk = 0;
-		int changeDef = 0;
-		Enchantment * myEnchant = new Enchantment(enchantName, 1, changeAtk,
-				changeDef, function, trigAb);
+		Ability * actAb = nullptr;
+		// const string function = "";
+		// int changeAtk = 0;
+		// int changeDef = 0;
+		Enchantment * myEnchant = new Enchantment(enchantName, 1,/* changeAtk,
+				changeDef, function,*/actAb, trigAb);
 		return myEnchant;
 	}
 	

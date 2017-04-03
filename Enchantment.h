@@ -10,12 +10,13 @@
 
 class Enchantment: public Card {
 	int cost;
-	int changeAttack;
-	int changeDefence;
+	// int changeAttack;
+	// int changeDefence;
     Ability *triggeredAbility;
-    std::string function;
+    Ability *activatedAbility;
+    // std::string function;
   public:
-    Enchantment(const std::string name, int cost, int changeAttack, int changeDefence, const std::string function, Ability *ability);
+    Enchantment(const std::string name, int cost/*, int changeAttack, int changeDefence, const std::string function*/, Ability *activatedAbility, Ability *triggeredAbility);
     ~Enchantment();
     void setAbility(Minion *minion);
     void performActivatedAbility(int minionNum, Minion *minion, Player *p1, Player *p2) override;
