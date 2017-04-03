@@ -26,8 +26,8 @@ protected:
 	std::string getName();
 	virtual void addToBoard(Card *ritualSlot, Card *MinionCardForEnch, Slot *slot);
 	virtual void popTopEnchantment();
-    virtual void reInitializeDefence(int initialisationVal);
-    virtual void updateCharge(int val);
+   	//virtual void reInitializeDefence(int initialisationVali) = 0;
+	virtual void updateCharge(int val);
 };
 
 

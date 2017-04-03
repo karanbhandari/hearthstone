@@ -1,8 +1,10 @@
+#include <iostream>
 #include <string>
 #include <sstream>
 #include "Minion.h"
 #include "Player.h"
 #include "Ability.h"
+#include "Enchantment.h"
 
 using namespace std;
 
@@ -52,21 +54,17 @@ void Minion::performAbility(){
 
 void Minion::performActivatedAbility(int minionNum, Minion *minion, Player *p1, Player *p2) {
   if (enchantments.empty()) {
-    if (p1->getMagic() >= activatedAbility->getCost()) {
-        p1->changeMagic(-1);
-        activatedAbility->performActivatedAbility(" ", minionNum, minion, p1, p2);
-    } else {
-      cout << "You don't have enough magic to play this" << endl;
-    }
+        activatedAbility->performAbility(" ", minionNum, minion, p1, p2);
   } else {
-    Enchantment *top = enchantments.back();
+    Enchantment *top = dynamic_cast<Enchantment*>(enchantments.back());
     top->performActivatedAbility(minionNum, minion, p1, p2);
   }
 }
 
 
-void Minion::performTriggeredAbility(std::string what, int minionNum, Minion *minion, Player *p1, Player *p2) {
-  triggeredAbility->performTriggeredAbility(what, minionNum, this, minion, p1, p2);
+void Minion::performTriggeredAbility(string what, int minionNum, Minion *minion, Player *p1, Player *p2) {
+  //auto tAbility = dynamic_cast<TriggeredAbility*>(triggeredAbility);
+  triggeredAbility->performTAbility(what, minionNum, this, minion, p1, p2);
 }
 
 bool Minion::isDead() {
@@ -93,6 +91,6 @@ void Minion::popTopEnchantment() {
   }
 }
 
-void Minion::reIntializeDefence(int initialisationVal) {
+void Minion::reInitializeDefence(int initialisationVal) {
   defence = initialisationVal;
 }

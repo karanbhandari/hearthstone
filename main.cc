@@ -67,14 +67,14 @@ void mainLoop(istream *in, bool testing, Board* board, Player *activePlayer) {
 				cout << "play " << i << "th card on player " << j << "s " << j << endl;
 				iss >> l;
 				if(j == 1) {
-					activePlayer->play(i, board->p1, l);
+					activePlayer->play(i, board->p1, l, activePlayer, inactivePlayer);
 				} else {
-					activePlayer->play(i, board->p2, l);
+					activePlayer->play(i, board->p2, l, activePlayer, inactivePlayer);
 				}
 			} else {
 				iss.clear();
 				cout << "play " << i << "the card" << endl;
-				activePlayer->play(i);
+				activePlayer->play(i, activePlayer, inactivePlayer);
 			}
 		} else if (s == "use") { // use activated ability 
 			iss >> i;
@@ -82,14 +82,14 @@ void mainLoop(istream *in, bool testing, Board* board, Player *activePlayer) {
 				iss >> k;
 				cout << "use " << i << "th minion on player " << j << "s " << j << endl;
 				if(j == 1) {
-					activePlayer->use(i, board->p1, j);
+					activePlayer->use(i, board->p1, j, activePlayer, inactivePlayer);
 				} else {
-					activePlayer->use(i, board->p2, j);
+					activePlayer->use(i, board->p2, j, activePlayer, inactivePlayer);
 				}
 			} else {
 				cout << "use " << i << "the minion" << endl;
 				iss.clear();
-				activePlayer->use(i);
+				activePlayer->use(i, activePlayer, inactivePlayer);
 			}
 		} else if (s == "inspect") { // inspect the ith minion owned by the player
 			iss >> i;

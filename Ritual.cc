@@ -18,11 +18,6 @@ void Ritual::performAbility(Minion *minion){
   // Not sure if this is informing other minion about hte attack or reduces current Rituals defence @Karan
 }
 
-void Ritual::addToBoard(Card *ritualSlot, Card *MinionCardForEnch, Slot *slot){
-	// adds the ritual to its slot on the player's board and delete the previous one if any
-	delete ritualSlot;
-	ritualSlot = this;
-}
 
 void Ritual::updateCharge(int val) {
 	charge += val;

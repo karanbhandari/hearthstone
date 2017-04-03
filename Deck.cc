@@ -17,7 +17,7 @@ using namespace std;
 // Creates a new deck object and fills it with cards from the .deck file as specified
 
 Deck::Deck(istream& deckList) :
-		AbstractDeck { 0 } {
+		AbstractDeck {0, 30} {
 	string currentCardName;
 	int deckSize = 0;
 
@@ -255,8 +255,8 @@ Deck::~Deck() {
 
 //****************ABSTRACK DECK FUNCTIONS*************************
 
-AbstractDeck::AbstractDeck(int size) :
-		size { size } {
+AbstractDeck::AbstractDeck(int size, int maxSize) :
+		size { size }, maxSize{maxSize} {
 }
 
 AbstractDeck::~AbstractDeck() {
@@ -290,9 +290,13 @@ void AbstractDeck::deleteCard(int i) {
 }
 
 // adds the card to the list
-void AbstractDeck::add(Card* card) {
-	cout<<card->getName()<<endl;
-	cardList.emplace_back(card);
+bool AbstractDeck::add(Card* card) {
+	if (size < maxSize) {
+		cout<<card->getName()<<endl;
+		cardList.emplace_back(card);
+		return true;
+	}
+	return false;
 }
 
 // returns true if the list is empty
@@ -316,7 +320,7 @@ int AbstractDeck::numOfCards() {
 
 // Hand ctor
 Hand::Hand(Deck *deck) :
-		AbstractDeck { 0 } {
+		AbstractDeck { 0, 5 } {
 	size = 5;
 	cout<<"constructing Hand"<<endl;
 	for(int i = 0; i < 5; i++) {
@@ -333,7 +337,7 @@ Hand::~Hand() {
 
 // Slot ctor
 Slot::Slot() :
-		AbstractDeck { 0 } {
+		AbstractDeck { 0, 5 } {
 	size = 0;
 }
 
@@ -345,6 +349,7 @@ Slot::Slot() :
 Slot::~Slot() {
 }
 
+
 //changes the attack and defence of cards
 void Slot::changeValOfCards(int attack, int defence){
 	for(auto &b : cardList){
@@ -353,24 +358,24 @@ void Slot::changeValOfCards(int attack, int defence){
 	}
 }
 
-void performStartTrigger(Player *p1, Player *p2) {
+void Slot::performStartTrigger(Player *p1, Player *p2) {
 	for(auto &b : cardList){
 		b->performTriggeredAbility("startTurn", -1, nullptr, p1, p2);
 	}
 }
 
-void performEndTrigger(Player *p1, Player *p2) {
+void Slot::performEndTrigger(Player *p1, Player *p2) {
 	for(auto &b : cardList){
 		b->performTriggeredAbility("endTurn", -1, nullptr, p1, p2);
 	}
 }
-void performMinionEnter(Minion *minion, Player *p1, Player *p2) {
+void Slot::performMinionEnter(Minion *minion, Player *p1, Player *p2) {
 	for(auto &b : cardList){
 		b->performTriggeredAbility("minionEnter", -1, minion, p1, p2);
 	}
 }
 
-void performMinionLeave(Minion *minion, Player *p1, Player *p2) {
+void Slot::performMinionLeave(Minion *minion, Player *p1, Player *p2) {
 	for(auto &b : cardList){
 		b->performTriggeredAbility("minionLeave", -1, minion, p1, p2);
 	}
@@ -384,7 +389,7 @@ void Slot::addMinion(Card *minion) {
 
 // Graveyard ctor
 Graveyard::Graveyard() :
-		AbstractDeck(0) {
+		AbstractDeck(0, 30) {
 }
 
 //dtor for Graveyard

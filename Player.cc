@@ -1,8 +1,14 @@
 #include <string>
 #include <sstream>
 #include <iostream>
+#include <memory>
 
 #include "Board.h"
+#include "Card.h"
+#include "Minion.h"
+#include "Spells.h"
+#include "Enchantment.h"
+#include "Ritual.h"
 
 using namespace std;
 
@@ -42,7 +48,7 @@ void Player::changeLife(int change) {
 
 //draw a card from the deck
 void Player::draw() {
-	if (!deck->isEmpty() && hand->getSize() < 5) 
+	if (!deck->isEmpty() && hand->numOfCards() < 5) 
 		hand->add(deck->getTopCard());
 	else 
 		cout << "deck isEmpty or hand is fill" << endl;
@@ -53,29 +59,35 @@ void Player::performStartTrigger(Player *activePlayer, Player *opponent) {
 	magic++;
 	draw();
 	slot->performStartTrigger(activePlayer, opponent);
-	ritual->performTriggerAbility("startTurn", nullptr, activePlayer, opponent);
+	if (ritual)
+	ritual->performTriggeredAbility("startOfTurn", -1, nullptr, activePlayer, opponent);
 }
 
 // Performs the end of turn Triggers
 void Player::performEndTrigger(Player *activePlayer, Player *opponent) {
 	slot->performEndTrigger(activePlayer, opponent);
-	ritual->performTriggerAbility("endTurn", nullptr, activePlayer, opponent);
+	if (ritual)
+	ritual->performTriggeredAbility("endOfTurn", -1,  nullptr, activePlayer, opponent);
 }
 
 // Perform the minion enter trigger
 void Player::performMinionEnter(Minion *minion, Player *activePlayer, Player *opponent) {
 	slot->performMinionEnter(minion, activePlayer, opponent);
-	ritual->performTriggerAbility("minionEnter", minion, activePlayer, opponent);
+	if (ritual)
+	ritual->performTriggeredAbility("minionEnter", -1, minion, activePlayer, opponent);
 	opponent->slot->performMinionEnter(minion, activePlayer, opponent);
-	opponent->ritual->performTriggerAbility("minionEnter", minion, activePlayer, opponent);
+	if (opponent->ritual)
+	opponent->ritual->performTriggeredAbility("minionEnter", -1, minion, activePlayer, opponent);
 }
 
 // Perform the minion enter trigger
 void Player::performMinionLeave(Minion *minion, Player *activePlayer, Player *opponent) {
 	slot->performMinionLeave(minion, activePlayer, opponent);
-	ritual->performTriggerAbility("minionLeave" ,minion, activePlayer, opponent);
+	if (ritual)
+	ritual->performTriggeredAbility("minionLeave" , -1, minion, activePlayer, opponent);
 	opponent->slot->performMinionLeave(minion, activePlayer, opponent);
-	opponent->ritual->performTriggerAbility("minionEnter", minion, activePlayer, opponent);
+	if (opponent->ritual)
+	opponent->ritual->performTriggeredAbility("minionLeave", -1, minion, activePlayer, opponent);
 }
 
 
@@ -87,16 +99,16 @@ void Player::discard(int i) {
 
 // Attack the opponent player using the ith card
 void Player::attack(int i, Player *opponent){
-	slot->getIth(i)->attack(opponent);
+	slot->getIth(i)->attackOther(opponent);
 }
 
 
 // Attack the opposing minion
 void Player::attack(int i, Player *opponent, int j) {
 	Minion *minion1 = slot->getIth(i);
-	Minion *minion2 = opponent->slot->getIth(j)
-	minion1->attack(minion2);
-	minion2->attack(minion1);
+	Minion *minion2 = opponent->slot->getIth(j);
+	minion1->attackOther(minion2);
+	minion2->attackOther(minion1);
 	if (minion2->isDead()) {
 		opponent->slot->remove(i);
 		graveyard->add(minion2);
@@ -109,44 +121,42 @@ void Player::attack(int i, Player *opponent, int j) {
 // add the ith card on the hand on the slots
 void Player::play(int i, Player *activePlayer, Player *opponent) {
 	Card *card1 = hand->getIth(i);
-	if (dynamic_pointer_cast<Minion>(card1)) {
+	if (dynamic_cast<Minion*>(card1)) {
+		auto card = dynamic_cast<Minion*>(card1);
 		if(slot->add(card1)) {
-			slot->callMinionEnter(card1);	
-		}				
-	} else if (dynamic_pointer_cast<Spell>(card1)) {
-		Spell *spell = hand->getIth(i);
+			performMinionEnter(card, activePlayer, opponent);	
+		}
+	} else if (dynamic_cast<Spell*>(card1)) {
+		auto card = dynamic_cast<Spell*>(card1);
 		hand->remove(i);
-		spell->performAbility(-1, nullptr, activePlayer, opponent);
-		delete spell;
-	} else if (dynamic_pointer_cast<Ritual>(card1)) {
+		card->performActivatedAbility(-1, nullptr, activePlayer, opponent);
+	} else if (dynamic_cast<Ritual*>(card1)) {
 		if (ritual) {
 			delete ritual;
 		}
-		Ritual *ritual = hand->getIth(i);
+		auto card = dynamic_cast<Ritual*>(card1);
+		Ritual *ritual = card;
 		hand->remove(i);
-	} else if (dynamic_pointer_cast<Enchantment>(card1)) {
+	} else if (dynamic_cast<Enchantment*>(card1)) {
 		cout << "This is a wrong use of Enchantment, it should be played on a Minion" << endl;
 	}
-	// TODO: add enter play trigger call here
-	hand->getIth(i)->addToBoard(ritual, nullptr, slot);
-	hand->remove(i);
 }
 
 // play the ith card on the hand on the minion/ritual
 void Player::play(int i, Player *p, int j, Player *activePlayer, Player *opponent) {
 	Card *card1 = hand->getIth(i);
-	if (dynamic_pointer_cast<Minion>(card1)) {
+	if (dynamic_cast<Minion*>(card1)) {
 		cout << "This is a wrong use of Minion, it can't be played on a Minion" << endl;
-	} else if (dynamic_pointer_cast<Spell>(card1)) {
-		Spell *spell = hand->getIth(i);
+	} else if (dynamic_cast<Spell*>(card1)) {
+		auto card = dynamic_cast<Spell*>(card1);
 		hand->remove(i);
-		spell->performAbility(j, hand->getIth(j), activePlayer, opponent);
-	} else if (dynamic_pointer_cast<Ritual>(card1)) {
+		card->performActivatedAbility(j, dynamic_cast<Minion*>(hand->getIth(j)), activePlayer, opponent);
+	} else if (dynamic_cast<Ritual*>(card1)) {
 		cout << "This is a wrong use of Ritual, it should be played on a Minion" << endl;
-	} else if (dynamic_pointer_cast<Enchantment>(card1)) {
-		Enchantment *enchantment = hand->getIth(i);
+	} else if (dynamic_cast<Enchantment*>(card1)) {
+		auto card = dynamic_cast<Enchantment*>(card1);
 		hand->remove(i);
-		hand->getIth(j)->updateActivatedAbility(enchantment);
+		dynamic_cast<Minion*>(slot->getIth(j))->updateActivatedAbility(card);
 	} 
 }
 
@@ -157,8 +167,8 @@ void Player::use(int i, Player *activePlayer, Player *opponent) {
 }
 
 // uses the activitaed ability on player p's 
-void Player::use(int i, int j, Player *activePlayer, Player *opponent) {
-	slot->getIth(i)->performActivatedAbility(j, p->slot->getIth(j), opponent);
+void Player::use(int i, Player *p, int j, Player *activePlayer, Player *opponent) {
+	slot->getIth(i)->performActivatedAbility(j, p->slot->getIth(j), activePlayer, opponent);
 }
 
 // returns the name of the Player
@@ -179,11 +189,11 @@ void Player::updateSlot(int attack, int defence) {
 
 // adds the card to the place
 // Not needed anymore @Karan
-// void Player::addCard(string place, Minion *card) {
-	// if (place == "Slot") {
-		// slot->add(card); // TODO : add fucntion should check for maxSize
-	// }
-// }
+void Player::addCard(string place, Card *card) {
+	if (place == "Slot") {
+		slot->add(card); // TODO : add fucntion should check for maxSize
+	}
+}
 
 // removes a specific card form the slot
 void Player::removeCard(int minionNum) {
@@ -227,11 +237,12 @@ void Player::raiseTheDead() {
     cout << "Cannot use this card since the board is full" << endl;
   } else if(graveyard->isEmpty()){
     cout << "cannot use this card since there is no Minion in Grave" << endl;
-  } else {
+  } else { //TODO: add check for null from graveyard
     Card *temp = graveyard->getTopCard();
     graveyard->popTop();
-    temp->reInitializeDefence(1);
-    slot->addMinion(temp);
+    auto card = dynamic_cast<Minion*>(temp);
+    card->reInitializeDefence(1);
+    hand->addMinion(card);
   }
 }
 

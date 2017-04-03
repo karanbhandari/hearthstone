@@ -11,17 +11,18 @@ class Player;
 
 class AbstractDeck {
 protected:
+	const int maxSize;
 	int size;
 	std::vector<Card *> cardList;
 public:
-	AbstractDeck(int size);
+	AbstractDeck(int size, int maxSize);
 	virtual ~AbstractDeck() = 0;
 	Card* getTopCard();
 	Card* getIth(int i);
 	void remove(int i);
 	void deleteCard(int i);
-	void add(Card *card);
-  virtual void addMinion(Card *minion);
+	bool add(Card *card);
+  	virtual void addMinion(Card *minion);
 	bool isEmpty();
 	void show();
 	int numOfCards();
@@ -43,11 +44,11 @@ public:
 	void performEndTrigger(Player *p1, Player *p2);
 	void performMinionEnter(Minion *minion, Player *p1, Player *p2);
 	void performMinionLeave(Minion *minion, Player *p1, Player *p2);
-	void add(Minion *minion); // TODO: need to implement this shit
   	void addMinion (Card *minion) override;
  // Not being used anymore @Karan
  // void add(Card *card, int i); // TODO: @Karan Might not be needed
 	void changeValOfCards(int attack, int defence);
+	Minion* getIth(int i);
 };
 
 class Hand: public AbstractDeck {

@@ -27,27 +27,13 @@ Spell::~Spell(){
 	//return spellPlayer->getMagic() >= cost;
 //}
 
-void Spell::activate() {
-	//if (canActivate()) {
-		//spellPlayer->changeMagic(-(cost));
-		spellAbility->performAbility();
-		moveToGrave();
-	//} else
-	//	throw "not enough mana";
-}
 
 void Spell::moveToGrave() {
 	// move to graveyard
 }
 
-void Spell::addToBoard(Card *ritualSlot, Card *MinionCardForEnch, Slot *slot) {
-	// Performs ability and then deletes the card.. See TODO in this file 
-	// TODO: perform ability
-	delete this;
-}
-
 
 void Spell::performActivatedAbility(int minionNum, Minion *minion, Player *p1, Player *p2) {
-	spellAbility->performActivatedAbility("", minionNum, minion, p1, p2);
+	spellAbility->performAbility("", minionNum, minion, p1, p2);
 }
 
