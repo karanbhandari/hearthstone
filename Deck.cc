@@ -360,6 +360,7 @@ Slot::~Slot() {
 //changes the attack and defence of cards
 void Slot::changeValOfCards(int attack, int defence){
 	for(auto &b : cardList){
+    if(DBG) cout << "changeValOfCards called with attack: " << attack << " defence: " << defence << " on: " << b->getName() << endl;
 		b->changeAttack(attack);
 		b->changeDefence(defence);
 	}
@@ -369,14 +370,14 @@ void Slot::performStartTrigger(Player *p1, Player *p2) {
 	for(auto &b : cardList){
 		if(DBG) cout << "Setting Action to 1 for :" << b->getName() << endl;
 		b->setActionTo1();
-		b->performTriggeredAbility("startTurn", -1, nullptr, p1, p2);
+		b->performTriggeredAbility("startOfTurn", -1, nullptr, p1, p2);
 	}
 }
 
 void Slot::performEndTrigger(Player *p1, Player *p2) {
 	if(DBG) cout << "Enter Inside Slot for performEndTrigger" << endl;
 	for(auto &b : cardList){
-		b->performTriggeredAbility("endTurn", -1, nullptr, p1, p2);
+		b->performTriggeredAbility("endOfTurn", -1, nullptr, p1, p2);
 	}
 }
 void Slot::performMinionEnter(Minion *minion, Player *p1, Player *p2) {
