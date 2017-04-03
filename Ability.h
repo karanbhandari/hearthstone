@@ -44,7 +44,7 @@ class ActivatedAbility: public Ability {
     ActivatedAbility(const std::string& nameOfAbility, int actCost);
     void performAbility(std::string what, int minionNum, Minion *minion, Player *actPlayer, Player *inactPlayer) override;
     void performAbility(std::string what, int minionNum, Ritual *ritual, Player *actPlayer, Player *inactPlayer) override;
-    void chageActCost(int val);
+    void changeActCost(int val);
 };
 
 #endif

@@ -154,7 +154,7 @@ void ActivatedAbility::performAbility(string what, int minionNum, Minion *minion
   } else if(name == "Enchanted minion gains +2/+2") {
   	// minion gains +2/+2
   	minion->changeAttack(2);
-  	minion->changeDefence(2)
+  	minion->changeDefence(2);
   } else if(name == "Enchanted minion gains *2/*2") {
   	// minion gains *2/*2
   	int myAttack = minion->getAttack();
