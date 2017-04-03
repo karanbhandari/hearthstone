@@ -42,7 +42,8 @@ void TriggeredAbility::performAbility(string what, int minionNum, Minion *minion
 void TriggeredAbility::performAbility(string what, int minionNum, Ritual *ritual, Player *actPlayer, Player *inactPlayer) {
 }
 
-void TriggeredAbility::performTAbility(std::string what, int minionNum, Minion *thisMinion, Minion *opponentMinion, Player *actPlayer, Player *inactPlayer) {
+void TriggeredAbility::performTAbility(string what, int minionNum, Minion *thisMinion, Minion *opponentMinion, Player *actPlayer, Player *inactPlayer) {
+  if(dbg) cout << what << endl;
   if (what == "minionLeave") {
     minionLeave(thisMinion, opponentMinion, actPlayer, inactPlayer);
   } else if (what == "minionEnter") {
