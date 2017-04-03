@@ -17,6 +17,7 @@ using namespace std;
 Player::Player(string myName, istream *in) : 
 		name{myName}, magic{3}, life{20} {
 	deck = new Deck(*in);
+	deck->shuffle();
 	hand = new Hand{deck};
 	slot = new Slot();
 	graveyard = new Graveyard();

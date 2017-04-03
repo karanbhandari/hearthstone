@@ -12,6 +12,7 @@
 #include "Ability.h"
 #include "Ritual.h"
 
+#define DBG true
 using namespace std;
 
 // Creates a new deck object and fills it with cards from the .deck file as specified
@@ -25,9 +26,11 @@ Deck::Deck(istream& deckList) :
 	while (deckList) {
 		getline(deckList, currentCardName);
 		Card *card = createCard(currentCardName);
-		if (card)
+		if (card) {
+			if (DBG) cout << "Enter" << endl;	
 			cardList.emplace_back(card);
-		deckSize++;
+			deckSize++;
+		}
 	}
 
 	// sets the deck Size to number of cards added above
@@ -229,6 +232,7 @@ Card* Deck::createCard(string name) {
 	}
 	//Card * newCard = new Card("Test");
 	//return newCard;
+	if(DBG) cout << "gets here" << endl;
 	return nullptr;
 }
 
@@ -283,7 +287,8 @@ void AbstractDeck::deleteCard(int i) {
 
 // adds the card to the list
 bool AbstractDeck::add(Card* card) {
-	if (size < maxSize) {
+	if (cardList.size() < maxSize) {
+		size++;
 		cout<<card->getName()<<endl;
 		cardList.emplace_back(card);
 		return true;
@@ -315,7 +320,7 @@ int AbstractDeck::numOfCards() {
 // Hand ctor
 Hand::Hand(Deck *deck) :
 		AbstractDeck { 0, 5 } {
-	size = 5;
+	size = 0;
 	cout<<"constructing Hand"<<endl;
 	for(int i = 0; i < 5; i++) {
 		cout<<"adding card "<<endl;
