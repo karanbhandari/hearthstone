@@ -159,7 +159,7 @@ Card* Deck::createCard(string name) {
 		return myEnchant;
 	} else if (name == "Enrage") {
 		const string enchantName = "Enrage";
-		const string abilityName = "Enchanted minion gains +2/+2";
+		const string abilityName = "Enchanted minion gains *2/*2";
 		Ability * actAb = new ActivatedAbility(abilityName);
 		Ability * trigAb = nullptr;
 		// const string function = "*";
