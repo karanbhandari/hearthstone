@@ -54,7 +54,7 @@ void mainLoop(istream *in, bool testing, Board* board, Player *activePlayer) {
 			iss >> i; // active players minion
 			if (iss >> j) { // attack the minion j of opposition
 				cout << "attack on " << j << " by " << i << endl;
-				activePlayer->attack(i, inactivePlayer, j);
+				activePlayer->attack(i, inactivePlayer, j, activePlayer);
 			} else { // attack on the opposite player
 				iss.clear();
 				cout << "attack on player by " << i << endl;

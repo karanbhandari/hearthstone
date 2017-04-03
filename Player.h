@@ -34,7 +34,7 @@ public:
 	void performMinionLeave(Minion *minion, Player *activePlayer, Player *opponent);
 	void discard(int i);
 	void attack(int i, Player* opponent);
-	void attack(int i, Player* opponent, int j);
+	void attack(int i, Player* opponent, int j, Player *activePlayer);
 	void play(int i, Player *, Player*);
 	void play(int i, Player *p, int j, Player*, Player *);
 	void use(int, Player *, Player*);

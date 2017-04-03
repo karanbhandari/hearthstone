@@ -111,7 +111,7 @@ void Player::attack(int i, Player *opponent){
 
 
 // Attack the opposing minion
-void Player::attack(int i, Player *opponent, int j) {
+void Player::attack(int i, Player *opponent, int j, Player *activePlayer) {
 	Minion *minion1 = dynamic_cast<Minion*>(slot->getIth(i));
 	Minion *minion2 = dynamic_cast<Minion*>(opponent->slot->getIth(j));
 	minion1->attackOther(minion2);
@@ -119,9 +119,11 @@ void Player::attack(int i, Player *opponent, int j) {
 	if (minion2->isDead()) {
 		opponent->slot->remove(i);
 		graveyard->add(minion2);
+		performMinionLeave(minion2, activePlayer, opponent);
 	} else if (minion1->isDead()) {
 		slot->remove(i);
 		graveyard->add(minion1);
+		performMinionLeave(minion2, activePlayer, opponent);
 	}
 }
 
