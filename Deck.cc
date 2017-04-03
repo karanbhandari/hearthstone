@@ -49,8 +49,8 @@ Card* Deck::createCard(string name) {
 	} else if (name == "Unsummon") {
 		const string abilityName = "Return target minion to its owners hand"; // TODO: @Karan Change ability to activated ability
 		const string spellName = "Unsummon";
-		Ability * unsummonAb = new Ability(spellName);
-		Spell * unsummon = new Spell(abilityName, 1, unsummonAb);
+		Ability * unsummonAb = new Ability(abilityName);
+		Spell * unsummon = new Spell(spellName, 1, unsummonAb);
 		return unsummon;
 	} else if (name == "Recharge") {
 		const string abilityName = "Your ritual gains 3 charges"; // TODO: @Karan Change ability to ActivatedAbility
@@ -139,17 +139,7 @@ Card* Deck::createCard(string name) {
 		Ability * trigAb = nullptr;
 		Minion * myMinion = new Minion(minionName, 2, 3, 3, actAb, trigAb);
 		return myMinion;
-	} //else {
-		//const string minionName = "Master Summoner";
-		//const string abilityName = "Summon up to three 1/1 air elementals";
-		//Ability * actAb = new Ability(abilityName);
-		//Ability * trigAb = nullptr;
-		//Minion * myMinion = new Minion(minionName, 2, 3, 3, actAb, trigAb);
-		//return myMinion;
-	
-	//}
-		
-
+	}
 	// Enchantment Cards goes here:
 	//Enchantment::Enchantment(const string &name, int cost, int changeAttack, int changeDefence, string functon, Ability *ability):
 	//		Card{name}, cost(cost), changeAttack(changeAttack), changeDefence(changeDefence), function(function) triggeredAbility{ability} {}
@@ -205,7 +195,7 @@ Card* Deck::createCard(string name) {
 				changeDef, function, trigAb);
 		return myEnchant;
 	}
-
+	
 	// Ritual Cards goes here:
 	//Ritual::Ritual(const string &name, int cost, int charge, int activationCost, Ability *ability):
 	//		Card{name}, cost(cost) charge(charge), activationCost(activationCost), triggeredAbility{ability} {}
