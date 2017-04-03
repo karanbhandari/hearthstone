@@ -159,7 +159,7 @@ Card* Deck::createCard(string name) {
 		return myEnchant;
 	} else if (name == "Enrage") {
 		const string enchantName = "Enrage";
-		const string abilityName = "Enchanted minion gains +2/+2";
+		const string abilityName = "Enchanted minion gains *2/*2";
 		Ability * actAb = new ActivatedAbility(abilityName, 0);
 		Ability * trigAb = nullptr;
 		// const string function = "*";
@@ -193,7 +193,7 @@ Card* Deck::createCard(string name) {
 	} else if (name == "Silence") {
 		const string enchantName = "Silence";
 		const string abilityName = "Enchanted minion cannot use abilities";
-		Ability * trigAb = new Ability(abilityName);
+		Ability * trigAb = new TriggeredAbility(abilityName);
 		Ability * actAb = nullptr;
 		// const string function = "";
 		// int changeAtk = 0;

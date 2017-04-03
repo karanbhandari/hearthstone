@@ -153,8 +153,12 @@ void ActivatedAbility::performAbility(string what, int minionNum, Minion *minion
     inactPlayer->updateSlot(0,-2);
   } else if(name == "Enchanted minion gains +2/+2") {
   	// minion gains +2/+2
+  	minion->changeAttack(2);
+  	minion->changeDefence(2)
   } else if(name == "Enchanted minion gains *2/*2") {
   	// minion gains *2/*2
+  } else if(name == "Enchanted minion’s activated ability costs 2 more") {
+  	// activated ability would cost two more
   }
 }
 
