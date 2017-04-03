@@ -24,7 +24,9 @@ Deck::Deck(istream& deckList) :
 	// Adds all the cards in the .deck file to the deck list
 	while (deckList) {
 		getline(deckList, currentCardName);
-		cardList.emplace_back(createCard(currentCardName));
+		Card *card = createCard(currentCardName);
+		if (card)
+			cardList.emplace_back(card);
 		deckSize++;
 	}
 
@@ -237,6 +239,7 @@ Card* Deck::createCard(string name) {
 	}
 	//Card * newCard = new Card("Test");
 	//return newCard;
+	return nullptr;
 }
 
 // Shuffles the deck using the fisher Yates shuffle
@@ -302,6 +305,8 @@ bool AbstractDeck::add(Card* card) {
 bool AbstractDeck::isEmpty() {
 	return cardList.empty();
 }
+
+void AbstractDeck::addMinion(Card *card) {}
 
 // shows the list on stdout
 void AbstractDeck::show() {
@@ -383,6 +388,7 @@ void Slot::performMinionLeave(Minion *minion, Player *p1, Player *p2) {
 void Slot::addMinion(Card *minion) {
     cardList.emplace_back(minion);
 }
+
 
 //****************GRAVEYARD FUNCTIONS*************************
 

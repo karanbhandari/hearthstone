@@ -27,6 +27,7 @@ protected:
 	virtual void addToBoard(Card *ritualSlot, Card *MinionCardForEnch, Slot *slot);
 	virtual void popTopEnchantment();
    	//virtual void reInitializeDefence(int initialisationVali) = 0;
+	virtual int power();
 	virtual void updateCharge(int val);
 };
 

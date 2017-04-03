@@ -48,7 +48,6 @@ public:
  // Not being used anymore @Karan
  // void add(Card *card, int i); // TODO: @Karan Might not be needed
 	void changeValOfCards(int attack, int defence);
-	Minion* getIth(int i);
 };
 
 class Hand: public AbstractDeck {

@@ -19,7 +19,7 @@ class Ritual: public Card {
     void performAbility(Minion *minion);
     void updateCharge(int val) override;
     void performTriggeredAbility(std::string what, int minionNum, Minion *minion, Player *p1, Player *p2);
-    int power();
+    int power() override;
 };
 
 #endif

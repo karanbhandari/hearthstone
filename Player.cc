@@ -3,6 +3,7 @@
 #include <iostream>
 #include <memory>
 
+#include "Deck.h"
 #include "Board.h"
 #include "Card.h"
 #include "Minion.h"
@@ -99,14 +100,14 @@ void Player::discard(int i) {
 
 // Attack the opponent player using the ith card
 void Player::attack(int i, Player *opponent){
-	slot->getIth(i)->attackOther(opponent);
+	dynamic_cast<Minion *>(slot->getIth(i))->attackOther(opponent);
 }
 
 
 // Attack the opposing minion
 void Player::attack(int i, Player *opponent, int j) {
-	Minion *minion1 = slot->getIth(i);
-	Minion *minion2 = opponent->slot->getIth(j);
+	Minion *minion1 = dynamic_cast<Minion*>(slot->getIth(i));
+	Minion *minion2 = dynamic_cast<Minion*>(opponent->slot->getIth(j));
 	minion1->attackOther(minion2);
 	minion2->attackOther(minion1);
 	if (minion2->isDead()) {
@@ -168,7 +169,8 @@ void Player::use(int i, Player *activePlayer, Player *opponent) {
 
 // uses the activitaed ability on player p's 
 void Player::use(int i, Player *p, int j, Player *activePlayer, Player *opponent) {
-	slot->getIth(i)->performActivatedAbility(j, p->slot->getIth(j), activePlayer, opponent);
+	dynamic_cast<Minion*>(slot->getIth(i))->performActivatedAbility(j, 
+		dynamic_cast<Minion*>(p->slot->getIth(j)), activePlayer, opponent);
 }
 
 // returns the name of the Player

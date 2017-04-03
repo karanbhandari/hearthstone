@@ -19,6 +19,8 @@ string Card::getName() {
 	return name;
 }
 
+int Card::power() {}
+
 void Card::addToBoard(Card *ritualSlot, Card *minion, Slot *slot) {}
 
 void Card::attack(Card *minion){}
@@ -27,5 +29,5 @@ void Card::popTopEnchantment() {};
 //void Card::reInitializeDefence(int val) {};  
 void Card::performActivatedAbility(int minionNum, Minion *minion, Player *p1, Player *p2) {}
 void Card::performTriggeredAbility(std::string what, int minionNum, Minion *minion, Player *p1, Player *p2) {}
-void updateCharge(int val) {};
+void Card::updateCharge(int val) {};
 Card::~Card() {}
