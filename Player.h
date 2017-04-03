@@ -50,6 +50,7 @@ public:
  	void raiseTheDead();
  	void updateRitual(int charge);
  	int powerOfRitual();
+ 	void removeRitual();
 };
 
 

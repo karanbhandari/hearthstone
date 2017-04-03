@@ -242,3 +242,8 @@ void Player::updateRitual(int charge) {
 int Player::powerOfRitual() {
   return ritual->power();
 }
+
+void Player::removeRitual() {
+  delete ritual;
+  ritual = nullptr;
+}
