@@ -57,7 +57,12 @@ void Minion::performAbility(){
 
 void Minion::performActivatedAbility(int minionNum, Minion *minion, Player *p1, Player *p2) {
   if (enchantments.empty()) {
-        dynamic_cast<ActivatedAbility*>(activatedAbility)->performAbility(" ", minionNum, minion, p1, p2);
+        if(p1->getMagic() >= activatedAbility->getActCost()) {
+          dynamic_cast<ActivatedAbility*>(activatedAbility)->performAbility(" ", minionNum, minion, p1, p2);
+          p1->changeMagic(activatedAbility->getActCost() * -1)
+        } else {
+          cout << "You don't have enough magic to use this ability" << endl;
+        }
   } else {
     Enchantment *top = dynamic_cast<Enchantment*>(enchantments.back());
     top->performActivatedAbility(minionNum, minion, p1, p2);
