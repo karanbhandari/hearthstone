@@ -109,7 +109,7 @@ void TriggeredAbility::minionLeave(Minion *thisMinion, Minion *opponentMinion, P
 
 
 ActivatedAbility::ActivatedAbility(const string& nameOfAbility, int cost) 
-	: Ability{nameOfAbility}, actCost{cost} {
+	: Ability{nameOfAbility}, actCost{cost}, defaultActCost{cost} {
 
 }
 
