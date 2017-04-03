@@ -149,7 +149,7 @@ Card* Deck::createCard(string name) {
 	else if (name == "Giant Strength") {
 		const string enchantName = "Giant Strength";
 		const string abilityName = "Enchanted minion gains +2/+2";
-		Ability * actAb = new ActivatedAbility(abilityName);
+		Ability * actAb = new ActivatedAbility(abilityName, 0);
 		Ability * trigAb = nullptr;
 		// const string function = "+";
 		// int changeAtk = 2;
@@ -160,7 +160,7 @@ Card* Deck::createCard(string name) {
 	} else if (name == "Enrage") {
 		const string enchantName = "Enrage";
 		const string abilityName = "Enchanted minion gains +2/+2";
-		Ability * actAb = new ActivatedAbility(abilityName);
+		Ability * actAb = new ActivatedAbility(abilityName, 0);
 		Ability * trigAb = nullptr;
 		// const string function = "*";
 		// int changeAtk = 2;
@@ -182,7 +182,7 @@ Card* Deck::createCard(string name) {
 	} else if (name == "Magic Fatigue") {
 		const string enchantName = "Magic Fatigue";
 		const string abilityName = "Enchanted minion’s activated ability costs 2 more";
-		Ability * actAb = new ActivatedAbility(abilityName);
+		Ability * actAb = new ActivatedAbility(abilityName, 0);
 		Ability * trigAb = nullptr;
 		// const string function = "";
 		// int changeAtk = 0;
