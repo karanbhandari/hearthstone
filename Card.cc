@@ -8,7 +8,7 @@ using namespace std;
 //Card::Card() {};
 
 // Creates a new card specific to the name of the card given
-Card::Card(string name) : name{name} {
+Card::Card(string name, int cost) : name{name}, cardCost{cost} {
 }
 
 void Card::changeAttack(int attack) {}
@@ -33,3 +33,7 @@ void Card::performActivatedAbility(int minionNum, Minion *minion, Player *p1, Pl
 void Card::performTriggeredAbility(std::string what, int minionNum, Minion *minion, Player *p1, Player *p2) {}
 void Card::updateCharge(int val) {};
 Card::~Card() {}
+
+int Card::getCardCost() {
+	return cardCost;
+}

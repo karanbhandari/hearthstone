@@ -8,8 +8,9 @@
 
 using namespace std;
 
-Minion::Minion(const string &name,int attack, int defence, int action, Ability *actAbl, Ability *trgAbl): Card{name},
-  attack{attack}, defence{defence}, action{action}, activatedAbility{actAbl}, triggeredAbility{trgAbl} {
+Minion::Minion(const string &name,int attack, int defence, int cost, Ability *actAbl, Ability *trgAbl): Card{name, cost},
+  attack{attack}, defence{defence}, activatedAbility{actAbl}, triggeredAbility{trgAbl} {
+    action = 1;
 }
 
 Minion::~Minion() {

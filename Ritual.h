@@ -10,7 +10,6 @@
 
 class Ritual: public Card {
 	int charge;
-	int cost;
 	int activationCost;
     Ability *triggeredAbility;
   public:

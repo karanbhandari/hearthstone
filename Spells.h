@@ -16,7 +16,6 @@ class Slot;
 class Ability;
 
 class Spell: public Card {
-	int cost;
 	Ability *spellAbility; // link to an ability to activate
 	//Player *spellPlayer; // What is this for ??? @Karan
 

@@ -13,9 +13,10 @@ class Minion;
 class Card {
 protected:
 	std::string name;
+	int cardCost;
   public:
 	  //Card();
-	Card(std::string name);
+	Card(std::string name, int cost);
 	virtual ~Card() = 0;
 	virtual void attack(Card *minion);
 	virtual void attack(Player *player);
@@ -30,6 +31,7 @@ protected:
 	virtual int power();
 	virtual void updateCharge(int val);
 	virtual void setActionTo1();
+	int getCardCost();
 };
 
 

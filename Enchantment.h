@@ -9,6 +9,7 @@
 #include "Ability.h"
 
 class Enchantment: public Card {
+<<<<<<< HEAD
 	int cost;
 	// int changeAttack;
 	// int changeDefence;
