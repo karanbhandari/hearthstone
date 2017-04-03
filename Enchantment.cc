@@ -7,12 +7,12 @@
 using namespace std;
 
 Enchantment::Enchantment(const string name, int cost, /*int changeAttack, int changeDefence,*/  Ability *activatedAbility, Ability *triggeredAbility):
-		Card{name}, cost(cost),/* changeAttack(changeAttack), changeDefence(changeDefence), function{function},*/activatedAbility{activatedAbility}, triggeredAbility{triggeredAbility} {
+		Card{name, cost}, cost(cost),/* changeAttack(changeAttack), changeDefence(changeDefence), function{function},*/activatedAbility{activatedAbility}, triggeredAbility{triggeredAbility} {
 }
 
 Enchantment::~Enchantment() {
 	delete triggeredAbility;
-	delete activatedAbility
+	delete activatedAbility;
 }
 
 void Enchantment::setAbility(Minion *minion){
