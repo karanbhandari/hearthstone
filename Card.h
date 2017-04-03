@@ -16,7 +16,7 @@ protected:
 	int cardCost;
   public:
 	  //Card();
-	Card(std::string name);
+	Card(std::string name, int cost);
 	virtual ~Card() = 0;
 	virtual void attack(Card *minion);
 	virtual void attack(Player *player);

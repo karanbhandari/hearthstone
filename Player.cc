@@ -128,7 +128,6 @@ void Player::attack(int i, Player *opponent, int j) {
 // add the ith card on the hand on the slots
 void Player::play(int i, Player *activePlayer, Player *opponent) {
 	Card *card1 = hand->getIth(i);
-	Card *card1 = hand->getIth(i);
 	if(getMagic() - card1->getCardCost() < 0) {
 		cout << "Player " << name << " doesn't have enough magic to play " << card1->getName() << endl;
 		return;
