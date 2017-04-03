@@ -154,6 +154,7 @@ void Player::play(int i, Player *activePlayer, Player *opponent) {
 		auto card = dynamic_cast<Spell*>(card1);
 		hand->remove(i);
 		card->performActivatedAbility(-1, nullptr, activePlayer, opponent);
+		delete card;
 		changeMagic(card1->getCardCost() * -1);
 	} else if (dynamic_cast<Ritual*>(card1)) {
 		if(dbg) cout << "Enter Ritual cast" << endl;
@@ -185,6 +186,7 @@ void Player::play(int i, Player *p, int j, Player *activePlayer, Player *opponen
 		auto card = dynamic_cast<Spell*>(card1);
 		hand->remove(i);
 		card->performActivatedAbility(j, dynamic_cast<Minion*>(hand->getIth(j)), activePlayer, opponent);
+		delete card;
 		changeMagic(card1->getCardCost() * -1);
 	} else if (dynamic_cast<Ritual*>(card1)) {
 		cout << "This is a wrong use of Ritual, it should be played on a Minion" << endl;
