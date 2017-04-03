@@ -24,9 +24,12 @@ void Ritual::updateCharge(int val) {
 }
 
 void Ritual::performTriggeredAbility(std::string what, int minionNum, Minion *minion, Player *p1, Player *p2) {
-	//triggeredAbility->performTriggeredAbility(what, int minionNum, nullptr, minion, p1, p2);
-	cout << "ritual " << what << " Ability Plays";
-	charge -= activationCost; 
+	if(charge - activationCost < 0) 
+		return;
+	triggeredAbility->performTAbility(what, minionNum, nullptr, minion, p1, p2);
+	cout << "ritual " << what << " Ability Plays"<< endl;
+	if(what == "minionEnter")
+		charge -= activationCost; 
 }
 
 int Ritual::power() {

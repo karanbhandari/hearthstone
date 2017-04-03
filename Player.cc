@@ -151,11 +151,15 @@ void Player::play(int i, Player *activePlayer, Player *opponent) {
 		card->performActivatedAbility(-1, nullptr, activePlayer, opponent);
 		changeMagic(card1->getCardCost() * -1);
 	} else if (dynamic_cast<Ritual*>(card1)) {
+		if(dbg) cout << "Enter Ritual cast" << endl;
 		if (ritual) {
 			delete ritual;
 		}
 		auto card = dynamic_cast<Ritual*>(card1);
-		Ritual *ritual = card;
+		ritual = card;
+		if(dbg) {
+			if(ritual) cout << "teri maa kee" << endl;
+		}
 		hand->remove(i);
 		changeMagic(card1->getCardCost() * -1);
 	} else if (dynamic_cast<Enchantment*>(card1)) {
@@ -219,7 +223,8 @@ void Player::updateSlot(int attack, int defence) {
 // Not needed anymore @Karan
 void Player::addCard(string place, Card *card) {
 	if (place == "Slot") {
-		slot->add(card); // TODO : add fucntion should check for maxSize
+		if(!slot->add(card))
+			delete card;
 	}
 }
 
@@ -267,11 +272,10 @@ void Player::raiseTheDead() {
     cout << "cannot use this card since there is no Minion in Grave" << endl;
   } else { //TODO: add check for null from graveyard
     Card *temp = graveyard->getTopCard();
-    graveyard->popTop();
-    auto card = dynamic_cast<Minion*>(temp);
-    card->reInitializeDefence(1);
-    hand->addMinion(card);
-  }
+    if(slot->add(temp)) {
+    	dynamic_cast<Minion*>(temp)->reInitializeDefence(1);
+    } 
+ }
 }
 
 void Player::updateRitual(int charge) {
@@ -305,7 +309,10 @@ Graveyard *Player::getGraveyard() {
 }
 
 Ritual* Player::getRitual() {
-	return dynamic_cast<Ritual*>(ritual);
+	if(ritual)
+		return dynamic_cast<Ritual*>(ritual);
+	if(dbg) cout << ritual << " Ritual address" << endl;
+	return nullptr;
 }
 
 void Player::moveToGraveyard() {

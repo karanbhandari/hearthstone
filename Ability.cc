@@ -80,7 +80,7 @@ void TriggeredAbility::endOfTurn(Minion *thisMinion, Minion *opponentMinion, Pla
 }
 
 void TriggeredAbility::minionEnter(Minion *thisMinion, Minion *opponentMinion, Player *actPlayer, Player *inactPlayer) {
-  if(dbg) cout << "the name of the ability " << thisMinion->getName() << " has is " << name << endl;
+  //if(dbg) cout << "the name of the ability " << thisMinion->getName() << " has is " << name << endl;
   if (name == "Whenever an opponents minion enters play, deal 1 damage to it."){
 		// reduce opponent'minion's defence by one on enter. (this is fire elemental)
 		if(dbg) cout << "reached at minion Enter for file Elementer and opponent minion name is: " << opponentMinion->getName() << endl;

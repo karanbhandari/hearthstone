@@ -6,6 +6,8 @@
 #include "Print.h"
 using namespace std;
 
+#define dbg true
+
 void pushMinion(vector<card_template_t> * list, Minion* minion) {
 	if (minion == nullptr) {
 		list->push_back(CARD_TEMPLATE_BORDER);
@@ -23,7 +25,7 @@ void pushMinion(vector<card_template_t> * list, Minion* minion) {
 		// gotta edit cost of ability.
 				display_minion_activated_ability(minion->getName(),
 						minion->getCost(), minion->getAttack(),
-						minion->getDefence(), 1,
+						minion->getDefence(), minion->getActAbilityCost(),
 						minion->getAbility()->getName()));
 	}
 }
@@ -74,9 +76,11 @@ void printBoard(Player *p1, Player* p2) {
 
 	// Player One Back Row -----------------------------------------------------------------------------------------------
 	// Player One Ritual Card
-	if (p1Ritual != nullptr)
+	
+	if (p1Ritual != nullptr) {
+		if(dbg) cout << p1Ritual->getName() << " TEst" << endl;
 		pushRitual(P1ListPointer, p1Ritual);
-	else
+	} else
 		pushEmptyCard(P1ListPointer);
 	// Empty Space
 	playerOneBackLine.push_back(CARD_TEMPLATE_EMPTY);

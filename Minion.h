@@ -48,6 +48,7 @@ public:
 	int getDefence();
 	int getAction();
 	Ability* getAbility();
+	int getActAbilityCost();
 	bool hasAbility();
 	bool hasTriggeredAbility();
 };

@@ -59,6 +59,7 @@ void Minion::performAbility(){
 void Minion::performActivatedAbility(int minionNum, Minion *minion, Player *p1, Player *p2) {
   if (enchantments.empty()) {
         ActivatedAbility *ab = dynamic_cast<ActivatedAbility*>(activatedAbility);
+	if(dbg) cout << "Performing Activated Ability with act Cost " << ab->getActCost() << " and player Magic " << p1->getMagic() << endl;
 	if(p1->getMagic() >= ab->getActCost()) {
           ab->performAbility(" ", minionNum, minion, p1, p2);
           p1->changeMagic(ab->getActCost() * -1);
@@ -136,4 +137,10 @@ Ability* Minion::getAbility() {
 		return triggeredAbility;
 	}
 	return activatedAbility;
+}
+
+int Minion::getActAbilityCost() {
+	if(activatedAbility)
+		return dynamic_cast<ActivatedAbility*>(activatedAbility)->getActCost();
+	return -1;
 }

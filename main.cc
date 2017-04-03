@@ -19,7 +19,8 @@ void mainLoop(istream *in, bool testing, Board* board, Player *activePlayer) {
 		inactivePlayer = board->p1;
 	}
 	while (true) {
-		getline(*in, s);
+		if(!getline(*in, s))
+			break;
 		istringstream iss{s};
 		iss >> s;
 		if (s == "end") { // end players turn
@@ -82,11 +83,11 @@ void mainLoop(istream *in, bool testing, Board* board, Player *activePlayer) {
 			iss >> i;
 			if (iss >> j) {
 				iss >> k;
-				cout << "use " << i << "th minion on player " << j << "s " << j << endl;
+				cout << "use " << i << "th minion on player " << j << "s " << k << endl;
 				if(j == 1) {
-					activePlayer->use(i, board->p1, j, activePlayer, inactivePlayer);
+					activePlayer->use(i, board->p1, k, activePlayer, inactivePlayer);
 				} else {
-					activePlayer->use(i, board->p2, j, activePlayer, inactivePlayer);
+					activePlayer->use(i, board->p2, k, activePlayer, inactivePlayer);
 				}
 			} else {
 				cout << "use " << i << "the minion" << endl;
