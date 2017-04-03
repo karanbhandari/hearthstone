@@ -374,6 +374,7 @@ void Slot::performStartTrigger(Player *p1, Player *p2) {
 }
 
 void Slot::performEndTrigger(Player *p1, Player *p2) {
+	if(DBG) cout << "Enter Inside Slot for performEndTrigger" << endl;
 	for(auto &b : cardList){
 		b->performTriggeredAbility("endTurn", -1, nullptr, p1, p2);
 	}
