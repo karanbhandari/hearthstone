@@ -130,6 +130,7 @@ void Player::play(int i, Player *activePlayer, Player *opponent) {
 	Card *card1 = hand->getIth(i);
 	if(getMagic() - card1->getCardCost() < 0) {
 		cout << "Player " << name << " doesn't have enough magic to play " << card1->getName() << endl;
+		cout << "Player only has " << getMagic() << endl;
 		return;
 	}if (dynamic_cast<Minion*>(card1)) {
 		auto card = dynamic_cast<Minion*>(card1);
@@ -138,13 +139,13 @@ void Player::play(int i, Player *activePlayer, Player *opponent) {
 			slot->show();
 			performMinionEnter(card, activePlayer, opponent);	
 			hand->remove(i);
-			changeMagic(card1->getCardCost());
+			changeMagic(card1->getCardCost() * -1);
 		}	
 	} else if (dynamic_cast<Spell*>(card1)) {
 		auto card = dynamic_cast<Spell*>(card1);
 		hand->remove(i);
 		card->performActivatedAbility(-1, nullptr, activePlayer, opponent);
-		changeMagic(card1->getCardCost());
+		changeMagic(card1->getCardCost() * -1);
 	} else if (dynamic_cast<Ritual*>(card1)) {
 		if (ritual) {
 			delete ritual;
@@ -152,7 +153,7 @@ void Player::play(int i, Player *activePlayer, Player *opponent) {
 		auto card = dynamic_cast<Ritual*>(card1);
 		Ritual *ritual = card;
 		hand->remove(i);
-		changeMagic(card1->getCardCost());
+		changeMagic(card1->getCardCost() * -1);
 	} else if (dynamic_cast<Enchantment*>(card1)) {
 		cout << "This is a wrong use of Enchantment, it should be played on a Minion" << endl;
 	}
@@ -171,14 +172,14 @@ void Player::play(int i, Player *p, int j, Player *activePlayer, Player *opponen
 		auto card = dynamic_cast<Spell*>(card1);
 		hand->remove(i);
 		card->performActivatedAbility(j, dynamic_cast<Minion*>(hand->getIth(j)), activePlayer, opponent);
-		changeMagic(card1->getCardCost());
+		changeMagic(card1->getCardCost() * -1);
 	} else if (dynamic_cast<Ritual*>(card1)) {
 		cout << "This is a wrong use of Ritual, it should be played on a Minion" << endl;
 	} else if (dynamic_cast<Enchantment*>(card1)) {
 		auto card = dynamic_cast<Enchantment*>(card1);
 		hand->remove(i);
 		dynamic_cast<Minion*>(slot->getIth(j))->updateActivatedAbility(card);
-		changeMagic(card1->getCardCost());
+		changeMagic(card1->getCardCost() * -1);
 	} 
 }
 
