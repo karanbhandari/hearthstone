@@ -36,6 +36,7 @@ class TriggeredAbility: public Ability {
 };
 
 class ActivatedAbility: public Ability {
+    int defaultActCost;
     int actCost;
   // name is inherited from the parent class
   public:   
