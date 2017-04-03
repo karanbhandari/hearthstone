@@ -61,6 +61,7 @@ public:
 	Graveyard();
 	~Graveyard();
 	void popTop();
+	Card* showTopCard();
 };
 
 #endif

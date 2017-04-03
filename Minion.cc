@@ -113,3 +113,28 @@ void Minion::reInitializeDefence(int initialisationVal) {
 void Minion::setActionTo1() {
   action = 1;
 }
+
+bool Minion::hasAbility() {
+	return !(triggeredAbility == nullptr && activatedAbility == nullptr);
+}
+bool Minion::hasTriggeredAbility(){
+	return !(triggeredAbility == nullptr);
+}
+int Minion::getAttack() {
+	return attack;
+}
+int Minion::getCost(){
+	return getCardCost();
+}
+int Minion::getDefence() {
+	return defence;
+}
+int Minion::getAction() {
+	return action;
+}
+Ability* Minion::getAbility() {
+	if (activatedAbility == nullptr) {
+		return triggeredAbility;
+	}
+	return activatedAbility;
+}

@@ -14,6 +14,9 @@ Ability::Ability(const string name) {
 // void Ability::performAbility() {
 // 	cout << "Ability Activated! \n";
 // }
+string Ability::getName(){
+	return name;
+}
 
 Ability::~Ability() {}
 

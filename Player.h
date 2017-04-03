@@ -53,6 +53,11 @@ public:
  	void updateRitual(int charge);
  	int powerOfRitual();
  	void removeRitual();
+ 	Hand* getHand();
+ 		Slot * getSlot();
+ 		Deck * getDeck();
+ 		Graveyard *getGraveyard();
+ 		Card * getRitual();
 };
 
 

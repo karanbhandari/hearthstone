@@ -430,4 +430,8 @@ Graveyard::~Graveyard() {
 void Graveyard::popTop() {
 	cardList.pop_back();
 }
+Card* Graveyard::showTopCard(){
+	return cardList[cardList.size()-1];
+}
+
 

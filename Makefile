@@ -1,7 +1,7 @@
 CXX = g++-5
 CXXFLAGS = -std=c++14 -Wall -MMD
 EXEC = a5
-OBJECTS = main.o Board.o Player.o Deck.o Card.o Spells.o Minion.o Ritual.o Enchantment.o Ability.o
+OBJECTS = main.o Board.o Player.o Deck.o Card.o Spells.o Minion.o Ritual.o Enchantment.o Ability.o ascii_graphics.o Print.o
 DEPENDS = ${OBJECTS:.o=.d}
 
 ${EXEC}: ${OBJECTS}

@@ -32,3 +32,17 @@ void Ritual::performTriggeredAbility(std::string what, int minionNum, Minion *mi
 int Ritual::power() {
 	return charge;
 }
+
+int Ritual::getCharge(){
+	return charge;
+}
+int Ritual::getCost(){
+	return getCardCost();
+}
+int Ritual::getActivateCost(){
+	return activationCost;
+}
+
+Ability * Ritual::getAbility(){
+	return triggeredAbility;
+}

@@ -285,3 +285,19 @@ void Player::removeRitual() {
   delete ritual;
   ritual = nullptr;
 }
+Hand* Player::getHand() {
+	return hand;
+}
+Slot * Player::getSlot() {
+	return slot;
+}
+Deck * Player::getDeck() {
+	return deck;
+}
+Graveyard *Player::getGraveyard() {
+	return graveyard;
+}
+Card * Player::getRitual() {
+	return ritual;
+}
+

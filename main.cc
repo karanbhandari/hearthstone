@@ -5,6 +5,7 @@
 
 #define dbg true
 #include "Board.h"
+#include "Print.h"
 
 using namespace std;
 
@@ -100,6 +101,7 @@ void mainLoop(istream *in, bool testing, Board* board, Player *activePlayer) {
 			activePlayer->showHand();
 		} else if (s == "board") { //display the board
 			//cout << "wrong command" << endl;
+			printBoard(activePlayer, inactivePlayer);
 			activePlayer->showDeck();
 		} else {
 			cout << "INVALID COMMAND" << endl;

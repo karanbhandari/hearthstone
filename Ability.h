@@ -19,6 +19,7 @@ class Ability {
     virtual void performAbility(std::string what, int minionNum, Ritual *ritual, Player *actPlayer, Player *inactPlayer);
     virtual void performTAbility(std::string what, int minionNum, Minion *thisMinion, Minion *minion, Player *actPlayer, Player *inactPlayer);
     virtual ~Ability();
+    virtual std::string getName();
 };
 
 class TriggeredAbility: public Ability {
