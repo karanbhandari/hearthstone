@@ -144,3 +144,7 @@ int Minion::getActAbilityCost() {
 		return dynamic_cast<ActivatedAbility*>(activatedAbility)->getActCost();
 	return -1;
 }
+
+void Minion::setActAbilityCost(int setVal) {
+  activatedAbility->changeActCost(setVal);
+}

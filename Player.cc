@@ -230,7 +230,7 @@ void Player::addCard(string place, Card *card) {
 
 // removes a specific card form the slot
 void Player::removeCard(int minionNum) {
-  slot->remove(minionNum);
+  slot->deleteCard(minionNum);
 }
 
 //displays the Hand of the player

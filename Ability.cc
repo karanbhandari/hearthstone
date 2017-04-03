@@ -109,7 +109,7 @@ void TriggeredAbility::minionLeave(Minion *thisMinion, Minion *opponentMinion, P
 
 
 ActivatedAbility::ActivatedAbility(const string& nameOfAbility, int cost) 
-	: Ability{nameOfAbility}, actCost{cost}, defaultActCost{cost} {
+	: Ability{nameOfAbility}, actCost{cost} {
 
 }
 
@@ -157,8 +157,16 @@ void ActivatedAbility::performAbility(string what, int minionNum, Minion *minion
   	minion->changeDefence(2)
   } else if(name == "Enchanted minion gains *2/*2") {
   	// minion gains *2/*2
+  	int myAttack = minion->getAttack();
+  	int myDefence = minion->getDefence();
+  	myAttack = myAttack*2 - myAttack;
+  	myDefence = myDefence*2 - myDefence;
+  	minion->changeAttack(myAttack);
+  	minion->changeDefence(myDefence);
   } else if(name == "Enchanted minion’s activated ability costs 2 more") {
   	// activated ability would cost two more
+  	int currentActCost = minion->getActAbilityCost();
+  	minion->setActAbilityCost(2);
   }
 }
 
@@ -173,3 +181,6 @@ void ActivatedAbility::performAbility(string what, int minionNum, Ritual *ritual
   }
 }
 
+void ActivatedAbility::changeActCost(int val) {
+	actCost = val;
+}

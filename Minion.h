@@ -49,6 +49,7 @@ public:
 	int getAction();
 	Ability* getAbility();
 	int getActAbilityCost();
+    void setActAbilityCost(int setVal);
 	bool hasAbility();
 	bool hasTriggeredAbility();
 };
