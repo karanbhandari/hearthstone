@@ -218,8 +218,7 @@ Card* Deck::createCard(string name) {
 		return myRitual;
 	} else if (name == "Aura of Power") {
 		const string ritualName = "Aura of Power";
-		const string abilityName =
-				"Whenever a minion enters play under your control, it gains +1/+1";
+		const string abilityName = "Whenever a minion enters play under your control, it gains +1/+1";
 		Ability * trigAb = new Ability(abilityName);
 		int charge = 4;
 		int activateCost = 1;
@@ -228,7 +227,7 @@ Card* Deck::createCard(string name) {
 		return myRitual;
 	} else if (name == "Standstill") {
 		const string ritualName = "Standstill";
-		const string abilityName = " Whenever a minion enters play, destroy it";
+		const string abilityName = "Whenever a minion enters play, destroy it";
 		Ability * trigAb = new Ability(abilityName);
 		int charge = 4;
 		int activateCost = 2;
