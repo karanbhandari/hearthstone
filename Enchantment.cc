@@ -7,7 +7,7 @@
 using namespace std;
 
 Enchantment::Enchantment(const string name, int cost, int changeAttack, int changeDefence, const string function, Ability *ability):
-		Card{name}, cost(cost), changeAttack(changeAttack), changeDefence(changeDefence), function{function}, triggeredAbility{ability} {
+		Card{name, cost}, changeAttack(changeAttack), changeDefence(changeDefence), function{function}, triggeredAbility{ability} {
 }
 
 Enchantment::~Enchantment() {

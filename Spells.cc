@@ -15,7 +15,7 @@
 using namespace std;
 
 Spell::Spell(const string name, int cost, Ability *myAbility) :
-		Card{name}, cost(cost), spellAbility(myAbility) {
+		Card{name, cost}, spellAbility(myAbility) {
 }
 
 Spell::~Spell(){

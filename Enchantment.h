@@ -9,7 +9,6 @@
 #include "Ability.h"
 
 class Enchantment: public Card {
-	int cost;
 	int changeAttack;
 	int changeDefence;
     Ability *triggeredAbility;
