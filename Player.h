@@ -14,13 +14,14 @@ class Minion;
 class Player {
 	std::string name;
 	int magic;
-	int life;
+	//int life;
 	Hand *hand;
 	Slot *slot;
 	Deck *deck;
 	Graveyard *graveyard;
 	Card *ritual;
 public:
+	int life; // TODO: make private
 	Player(std::string myName, std::istream *in);
 	~Player();
 	int getMagic();

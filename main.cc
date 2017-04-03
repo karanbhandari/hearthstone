@@ -3,6 +3,7 @@
 #include <sstream>
 #include <fstream>
 
+#define dbg true
 #include "Board.h"
 
 using namespace std;
@@ -29,7 +30,7 @@ void mainLoop(istream *in, bool testing, Board* board, Player *activePlayer) {
 			} else {
 				activePlayer = board->p1;
 			}
-			//activePlayer->start();
+			activePlayer->performStartTrigger(activePlayer, inactivePlayer);
 		} else if (s == "quit") { // end the game with no winner
 			cout << "quit" << endl;
 			delete board;
@@ -103,7 +104,8 @@ void mainLoop(istream *in, bool testing, Board* board, Player *activePlayer) {
 		} else {
 			cout << "INVALID COMMAND" << endl;
 		}
-		if(!inactivePlayer->isAlive()) {
+		if(dbg) cout << inactivePlayer->getName() << "s life: " <<inactivePlayer->life <<endl;
+		if (!inactivePlayer->isAlive()) {
 			cout << inactivePlayer->getName() << " loses" <<endl;
 		}
 	}

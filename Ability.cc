@@ -4,6 +4,7 @@
 #include "Ability.h"
 #include "Player.h"
 
+#define dbg true
 
 using namespace std;
 
@@ -76,6 +77,7 @@ void TriggeredAbility::endOfTurn(Minion *thisMinion, Minion *opponentMinion, Pla
 void TriggeredAbility::minionEnter(Minion *thisMinion, Minion *opponentMinion, Player *actPlayer, Player *inactPlayer) {
 	if (name == "Whenever an opponent’s minion enters play, deal 1 damage to it."){
 		// reduce opponent'minion's defence by one on enter. (this is fire elemental)
+		if(dbg) cout << "reached at minion Enter for file Elementer and opponent minion name is: " << opponentMinion->getName() << endl;
 		opponentMinion->changeDefence(-1);
   } else if(name == "Whenever a minion enters play under your control, it gains +1/+1") {
     opponentMinion->changeDefence(1);

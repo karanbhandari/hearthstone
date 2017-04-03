@@ -257,6 +257,7 @@ AbstractDeck::AbstractDeck(int size, int maxSize) :
 
 AbstractDeck::~AbstractDeck() {
 	for (auto& x : cardList) {
+		if(DBG) cout << "Enter AbDeck Dtor for " << x->getName() << endl;
 		delete x;
 	}
 }
@@ -275,6 +276,7 @@ Card* AbstractDeck::getIth(int i) {
 
 // removes the ith card from the list
 void AbstractDeck::remove(int i) {
+	if(DBG) cout << "REMOVING " << endl;
 	cardList.erase(cardList.begin() + (i - 1));
 }
 
@@ -287,10 +289,12 @@ void AbstractDeck::deleteCard(int i) {
 
 // adds the card to the list
 bool AbstractDeck::add(Card* card) {
+	if(DBG) cout << "ENTER add for : ";
 	if (cardList.size() < maxSize) {
 		size++;
 		cout<<card->getName()<<endl;
 		cardList.emplace_back(card);
+		if(DBG) cout << "Emplace Back working " << endl;
 		return true;
 	}
 	return false;
@@ -359,6 +363,8 @@ void Slot::changeValOfCards(int attack, int defence){
 
 void Slot::performStartTrigger(Player *p1, Player *p2) {
 	for(auto &b : cardList){
+		if(DBG) cout << "Setting Action to 1 for :" << b->getName() << endl;
+		b->setActionTo1();
 		b->performTriggeredAbility("startTurn", -1, nullptr, p1, p2);
 	}
 }
@@ -369,9 +375,28 @@ void Slot::performEndTrigger(Player *p1, Player *p2) {
 	}
 }
 void Slot::performMinionEnter(Minion *minion, Player *p1, Player *p2) {
-	for(auto &b : cardList){
-		b->performTriggeredAbility("minionEnter", -1, minion, p1, p2);
+	if(DBG) cout << "Enter This fucking function " << cardList.size() << endl;
+	try {
+	for(int i = 0; i < cardList.size(); i++) {
+		if(DBG) cout << "Entered in minionEnter loop inside Slot";
+		cardList[i]->performTriggeredAbility("minionEnter", -1, minion, p1, p2);
 	}
+	} catch(const std::runtime_error& re)
+{
+    // speciffic handling for runtime_error
+    std::cout << "Runtime error: " << re.what() << std::endl;
+}
+catch(const std::exception& ex)
+{
+    // speciffic handling for all exceptions extending std::exception, except
+    // std::runtime_error which is handled explicitly
+    std::cout << "Error occurred: " << ex.what() << std::endl;
+}
+catch(...)
+{
+    // catch any other errors (that we have no information about)
+    std::cout << "Unknown failure occurred. Possible memory corruption" << std::endl;
+}
 }
 
 void Slot::performMinionLeave(Minion *minion, Player *p1, Player *p2) {

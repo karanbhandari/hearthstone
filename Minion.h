@@ -38,6 +38,7 @@ class Minion: public Card {
     void reInitializeDefence(int initialisationVal);
     void performActivatedAbility(int minionNum, Minion *minion, Player *p1, Player *p2) override;
     void performTriggeredAbility(std::string what, int minionNum, Minion *minion, Player *p1, Player *p2) override;
+    void setActionTo1() override;
 };
 
 #endif

@@ -15,7 +15,7 @@ protected:
 	std::string name;
   public:
 	  //Card();
-	  Card(std::string name);
+	Card(std::string name);
 	virtual ~Card() = 0;
 	virtual void attack(Card *minion);
 	virtual void attack(Player *player);
@@ -29,6 +29,7 @@ protected:
    	//virtual void reInitializeDefence(int initialisationVali) = 0;
 	virtual int power();
 	virtual void updateCharge(int val);
+	virtual void setActionTo1();
 };
 
 

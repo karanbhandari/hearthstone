@@ -41,9 +41,11 @@ void Minion::attackOther(Minion *minion){
 
 void Minion::attackOther(Player *player){
   // reduces the this->defence by the minion->attack, and minion->defence by this->attack
-  if(this->action){
+  if(this->action > 0){
     // reduce the player's life by one
     player->changeLife(-1);
+  } else {
+    cout << "You don't have enought action to attack" << endl;
   }
   this->action = 0;
 }
@@ -93,4 +95,8 @@ void Minion::popTopEnchantment() {
 
 void Minion::reInitializeDefence(int initialisationVal) {
   defence = initialisationVal;
+}
+
+void Minion::setActionTo1() {
+  action = 1;
 }

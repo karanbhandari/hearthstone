@@ -19,6 +19,8 @@ string Card::getName() {
 	return name;
 }
 
+void Card::setActionTo1() {}
+
 int Card::power() {}
 
 void Card::addToBoard(Card *ritualSlot, Card *minion, Slot *slot) {}

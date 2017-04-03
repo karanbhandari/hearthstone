@@ -11,11 +11,12 @@
 #include "Enchantment.h"
 #include "Ritual.h"
 
+#define dbg true
 using namespace std;
 
 // ctor for Player
 Player::Player(string myName, istream *in) : 
-		name{myName}, magic{3}, life{20} {
+		name{myName}, magic{3}, life{2} {
 	deck = new Deck(*in);
 	deck->shuffle();
 	hand = new Hand{deck};
@@ -74,12 +75,16 @@ void Player::performEndTrigger(Player *activePlayer, Player *opponent) {
 
 // Perform the minion enter trigger
 void Player::performMinionEnter(Minion *minion, Player *activePlayer, Player *opponent) {
+	if(dbg) cout << "Entered minion Enter Ability " << endl;
 	slot->performMinionEnter(minion, activePlayer, opponent);
+	if(dbg) cout << "Perform Enter works" << endl;
 	if (ritual)
 	ritual->performTriggeredAbility("minionEnter", -1, minion, activePlayer, opponent);
+	if(dbg) cout << "Reaches to opponent now" << endl;
 	opponent->slot->performMinionEnter(minion, activePlayer, opponent);
 	if (opponent->ritual)
 	opponent->ritual->performTriggeredAbility("minionEnter", -1, minion, activePlayer, opponent);
+	if(dbg) cout << "Abilities Worked for Minion Enter" << endl;
 }
 
 // Perform the minion enter trigger
@@ -125,9 +130,12 @@ void Player::play(int i, Player *activePlayer, Player *opponent) {
 	Card *card1 = hand->getIth(i);
 	if (dynamic_cast<Minion*>(card1)) {
 		auto card = dynamic_cast<Minion*>(card1);
+		if(dbg) cout << card->getName() << " str" <<  endl;
 		if(slot->add(card1)) {
+			slot->show();
 			performMinionEnter(card, activePlayer, opponent);	
 		}
+		hand->remove(i);
 	} else if (dynamic_cast<Spell*>(card1)) {
 		auto card = dynamic_cast<Spell*>(card1);
 		hand->remove(i);
