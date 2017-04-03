@@ -133,8 +133,9 @@ void Player::play(int i, Player *activePlayer, Player *opponent) {
 	if(getMagic() - card1->getCardCost() < 0) {
 		cout << "Player " << name << " doesn't have enough magic to play " << card1->getName() << endl;
 		cout << "Player only has " << getMagic() << endl;
+		cout << "You need " << card1->getCardCost() << endl;
 		return;
-	}if (dynamic_cast<Minion*>(card1)) {
+	} else if (dynamic_cast<Minion*>(card1)) {
 		auto card = dynamic_cast<Minion*>(card1);
 		if(dbg) cout << card->getName() << " str" <<  endl;
 		if(slot->add(card1)) {
