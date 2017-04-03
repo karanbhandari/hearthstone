@@ -12,6 +12,7 @@ Ritual::Ritual(const string &name, int cost, int charge, int activationCost, Abi
 
 Ritual::~Ritual() {
 	delete triggeredAbility;
+	triggeredAbility = nullptr;
 }
 
 void Ritual::performAbility(Minion *minion){
