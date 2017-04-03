@@ -323,6 +323,13 @@ int AbstractDeck::numOfCards() {
 	return cardList.size();
 }
 
+int AbstractDeck::cardBelongsTo(Card *card) {
+	for(int i = 0; i < cardList.size(); i++) {
+		if (card == cardList[i]) return i;
+	}
+	return -1;
+}
+
 //****************HAND FUNCTIONS******************************
 
 // Hand ctor

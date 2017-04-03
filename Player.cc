@@ -117,13 +117,14 @@ void Player::attack(int i, Player *opponent, int j, Player *activePlayer) {
 	minion1->attackOther(minion2);
 	minion2->attackOther(minion1);
 	if (minion2->isDead()) {
-		opponent->slot->remove(i);
+		opponent->slot->remove(j);
 		opponent->graveyard->add(minion2);
 		performMinionLeave(minion2, activePlayer, opponent);
-	} else if (minion1->isDead()) {
+	} 
+	if (minion1->isDead()) {
 		slot->remove(i);
 		graveyard->add(minion1);
-		performMinionLeave(minion2, activePlayer, opponent);
+		performMinionLeave(minion1, activePlayer, opponent);
 	}
 }
 
@@ -305,5 +306,16 @@ Graveyard *Player::getGraveyard() {
 
 Ritual* Player::getRitual() {
 	return dynamic_cast<Ritual*>(ritual);
+}
+
+void Player::moveToGraveyard() {
+	for(int i = 0; i < slot->numOfCards(); i++) {
+		Minion * card = dynamic_cast<Minion*>(slot->getIth(i + 1));
+		if(card->isDead()) {
+			slot->remove(i+1);
+			graveyard->add(card);
+			i--;
+		}
+	}
 }
 

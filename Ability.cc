@@ -46,6 +46,7 @@ void TriggeredAbility::performAbility(string what, int minionNum, Ritual *ritual
 }
 
 void TriggeredAbility::performTAbility(string what, int minionNum, Minion *thisMinion, Minion *opponentMinion, Player *actPlayer, Player *inactPlayer) {
+  if(dbg) cout << "what is : " ;
   if(dbg) cout << what << endl;
   if (what == "minionLeave") {
     minionLeave(thisMinion, opponentMinion, actPlayer, inactPlayer);
@@ -79,11 +80,12 @@ void TriggeredAbility::endOfTurn(Minion *thisMinion, Minion *opponentMinion, Pla
 }
 
 void TriggeredAbility::minionEnter(Minion *thisMinion, Minion *opponentMinion, Player *actPlayer, Player *inactPlayer) {
-	if (name == "Whenever an opponent’s minion enters play, deal 1 damage to it."){
+  if(dbg) cout << "the name of the ability " << thisMinion->getName() << " has is " << name << endl;
+  if (name == "Whenever an opponents minion enters play, deal 1 damage to it."){
 		// reduce opponent'minion's defence by one on enter. (this is fire elemental)
 		if(dbg) cout << "reached at minion Enter for file Elementer and opponent minion name is: " << opponentMinion->getName() << endl;
-		if (thisMinion != opponentMinion)
-		opponentMinion->changeDefence(-1);
+		if (thisMinion != opponentMinion && actPlayer->getSlot()->cardBelongsTo(thisMinion) == -1)
+			opponentMinion->changeDefence(-1);
   } else if(name == "Whenever a minion enters play under your control, it gains +1/+1") {
     opponentMinion->changeDefence(1);
     opponentMinion->changeAttack(1); // it ays opponent but it actually is passed the actual minnion

@@ -26,6 +26,7 @@ public:
 	bool isEmpty();
 	void show();
 	int numOfCards();
+	int cardBelongsTo(Card *);
 };
 
 class Deck: public AbstractDeck {

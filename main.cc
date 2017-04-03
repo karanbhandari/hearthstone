@@ -107,6 +107,7 @@ void mainLoop(istream *in, bool testing, Board* board, Player *activePlayer) {
 			cout << "INVALID COMMAND" << endl;
 		}
 		if(dbg) cout << inactivePlayer->getName() << "s life: " <<inactivePlayer->life <<endl;
+		activePlayer->moveToGraveyard();
 		if (!inactivePlayer->isAlive()) {
 			cout << inactivePlayer->getName() << " loses" <<endl;
 			break;
