@@ -49,6 +49,7 @@ public:
  	void destroyTopEnchantment(int minionNum);
  	void raiseTheDead();
  	void updateRitual(int charge);
+ 	int powerOfRitual();
 };
 
 

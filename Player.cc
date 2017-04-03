@@ -238,3 +238,7 @@ void Player::raiseTheDead() {
 void Player::updateRitual(int charge) {
   ritual->updateCharge(charge);
 }
+
+int Player::powerOfRitual() {
+  return ritual->power();
+}
