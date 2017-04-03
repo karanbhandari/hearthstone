@@ -56,7 +56,7 @@ void Minion::performAbility(){
 
 void Minion::performActivatedAbility(int minionNum, Minion *minion, Player *p1, Player *p2) {
   if (enchantments.empty()) {
-        activatedAbility->performAbility(" ", minionNum, minion, p1, p2);
+        dynamic_cast<ActivatedAbility*>(activatedAbility)->performAbility(" ", minionNum, minion, p1, p2);
   } else {
     Enchantment *top = dynamic_cast<Enchantment*>(enchantments.back());
     top->performActivatedAbility(minionNum, minion, p1, p2);
@@ -66,7 +66,9 @@ void Minion::performActivatedAbility(int minionNum, Minion *minion, Player *p1, 
 
 void Minion::performTriggeredAbility(string what, int minionNum, Minion *minion, Player *p1, Player *p2) {
   //auto tAbility = dynamic_cast<TriggeredAbility*>(triggeredAbility);
-  triggeredAbility->performTAbility(what, minionNum, this, minion, p1, p2);
+  cout << "entered the minionNow";
+  if(triggeredAbility) 
+  dynamic_cast<TriggeredAbility*>(triggeredAbility)->performTAbility(what, minionNum, this, minion, p1, p2);
 }
 
 bool Minion::isDead() {

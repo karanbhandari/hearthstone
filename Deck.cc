@@ -46,37 +46,37 @@ Card* Deck::createCard(string name) {
 	if (name == "Banish") {
 		const string abilityName = "Destroy target minion or ritual";
 		const string spellName = "Banish";
-		Ability * banishAb = new Ability(abilityName); // TODO: @Karan Change Ability to activatedAbility
+		Ability * banishAb = new ActivatedAbility(abilityName); // TODO: @Karan Change Ability to activatedAbility
 		Spell * banish = new Spell(spellName, 2, banishAb);
 		return banish;
 	} else if (name == "Unsummon") {
 		const string abilityName = "Return target minion to its owners hand"; // TODO: @Karan Change ability to activated ability
 		const string spellName = "Unsummon";
-		Ability * unsummonAb = new Ability(abilityName);
+		Ability * unsummonAb = new ActivatedAbility(abilityName);
 		Spell * unsummon = new Spell(spellName, 1, unsummonAb);
 		return unsummon;
 	} else if (name == "Recharge") {
 		const string abilityName = "Your ritual gains 3 charges"; // TODO: @Karan Change ability to ActivatedAbility
 		const string spellName = "Recharge";
-		Ability * rechargeAb = new Ability(abilityName);
+		Ability * rechargeAb = new ActivatedAbility(abilityName);
 		Spell * recharge = new Spell(spellName, 1, rechargeAb);
 		return recharge;
 	} else if (name == "Disenchant") {
 		const string abilityName = "Destroy the top enchantment on target minion"; // TODO: @Karan Change ability to activatedAbility
 		const string spellName = "Disenchant";
-		Ability * disenchantAb = new Ability(abilityName);
+		Ability * disenchantAb = new ActivatedAbility(abilityName);
 		Spell * disenchant = new Spell(spellName, 1, disenchantAb);
 		return disenchant;
 	} else if (name == "Raise Dead") {
 		const string abilityName = "Resurrect the top minion in your graveyard and set its defence to 1"; // TODO: @Karan Change aility to activated abiility
 		const string spellName = "Raise Dead";
-		Ability * raiseDeadAb = new Ability(abilityName);
+		Ability * raiseDeadAb = new ActivatedAbility(abilityName);
 		Spell * raiseDead = new Spell(spellName, 1, raiseDeadAb);
 		return raiseDead;
 	} else if (name == "Blizzard") {
 		const string abilityName = "Deal 2 damage to all minions"; // TODO: @Karan change ability to activated ability
 		const string spellName = "Blizzard";
-		Ability * BlizzardAb = new Ability(abilityName);
+		Ability * BlizzardAb = new ActivatedAbility(abilityName);
 		Spell * Blizzard = new Spell(spellName, 3, BlizzardAb);
 		return Blizzard;
 	}
@@ -102,21 +102,21 @@ Card* Deck::createCard(string name) {
 		const string minionName = "Bone Golem";
 		const string abilityName = "Gain +1/+1 whenever a minion leaves play.";
 		Ability * actAb = nullptr;
-		Ability * trigAb = new Ability(abilityName); // TODO: @Karan change ability to triggered ability
+		Ability * trigAb = new TriggeredAbility(abilityName); // TODO: @Karan change ability to triggered ability
 		Minion * myMinion = new Minion(minionName, 1, 3, 2, actAb, trigAb);
 		return myMinion;
 	} else if (name == "Fire Elemental") {
 		const string minionName = "Fire Elemental";
 		const string abilityName = "Whenever an opponents minion enters play, deal 1 damage to it.";
 		Ability * actAb = nullptr;
-		Ability * trigAb = new Ability(abilityName); // TODO: @Karan change ability to triggered ability
+		Ability * trigAb = new TriggeredAbility(abilityName); // TODO: @Karan change ability to triggered ability
 		Minion * myMinion = new Minion(minionName, 2, 2, 2, actAb, trigAb);
 		return myMinion;
 	} else if (name == "Potion Seller") {
 		const string minionName = "Potion Seller";
 		const string abilityName = "At the end of your turn, all your minions gain +0/+1."; 		
 		Ability * actAb = nullptr;
-		Ability * trigAb = new Ability(abilityName); // TODO: @Karan change ability to triggered ability
+		Ability * trigAb = new TriggeredAbility(abilityName); // TODO: @Karan change ability to triggered ability
 		Minion * myMinion = new Minion(minionName, 1, 3, 2, actAb, trigAb);
 		return myMinion;
 
@@ -124,21 +124,21 @@ Card* Deck::createCard(string name) {
 	} else if (name == "Novice Pyromancer") {
 		const string minionName = "Novice Pyromancer";
 		const string abilityName = "Deal 1 damage to target minion";
-		Ability * actAb = new Ability(abilityName);
+		Ability * actAb = new ActivatedAbility(abilityName);
 		Ability * trigAb = nullptr;
 		Minion * myMinion = new Minion(minionName, 1, 3, 2, actAb, trigAb);
 		return myMinion;
 	} else if (name == "Apprentice Summoner") {
 		const string minionName = "Apprentice Summoner";
 		const string abilityName = "Summon a 1/1 air elemental";
-		Ability * actAb = new Ability(abilityName);
+		Ability * actAb = new ActivatedAbility(abilityName);
 		Ability * trigAb = nullptr;
 		Minion * myMinion = new Minion(minionName, 1, 1, 1, actAb, trigAb);
 		return myMinion;
 	} else if (name == "Master Summoner") {
 		const string minionName = "Master Summoner";
 		const string abilityName = "Summon up to three 1/1 air elementals";
-		Ability * actAb = new Ability(abilityName);
+		Ability * actAb = new ActivatedAbility(abilityName);
 		Ability * trigAb = nullptr;
 		Minion * myMinion = new Minion(minionName, 2, 3, 3, actAb, trigAb);
 		return myMinion;
@@ -205,7 +205,7 @@ Card* Deck::createCard(string name) {
 	else if (name == "Dark Ritual") {
 		const string ritualName = "Dark Ritual";
 		const string abilityName = "At the start of your turn, gain 1 magic";
-		Ability * trigAb = new Ability(abilityName);
+		Ability * trigAb = new TriggeredAbility(abilityName);
 		int charge = 5;
 		int activateCost = 1;
 		Ritual * myRitual = new Ritual(ritualName, 0, charge, activateCost,
@@ -214,7 +214,7 @@ Card* Deck::createCard(string name) {
 	} else if (name == "Aura of Power") {
 		const string ritualName = "Aura of Power";
 		const string abilityName = "Whenever a minion enters play under your control, it gains +1/+1";
-		Ability * trigAb = new Ability(abilityName);
+		Ability * trigAb = new TriggeredAbility(abilityName);
 		int charge = 4;
 		int activateCost = 1;
 		Ritual * myRitual = new Ritual(ritualName, 1, charge, activateCost,
@@ -223,7 +223,7 @@ Card* Deck::createCard(string name) {
 	} else if (name == "Standstill") {
 		const string ritualName = "Standstill";
 		const string abilityName = "Whenever a minion enters play, destroy it";
-		Ability * trigAb = new Ability(abilityName);
+		Ability * trigAb = new TriggeredAbility(abilityName);
 		int charge = 4;
 		int activateCost = 2;
 		Ritual * myRitual = new Ritual(ritualName, 3, charge, activateCost,
@@ -276,7 +276,7 @@ Card* AbstractDeck::getIth(int i) {
 
 // removes the ith card from the list
 void AbstractDeck::remove(int i) {
-	if(DBG) cout << "REMOVING " << endl;
+	if(DBG) cout << "REMOVING " << cardList[i-1]->getName() << endl;
 	cardList.erase(cardList.begin() + (i - 1));
 }
 
@@ -379,7 +379,7 @@ void Slot::performMinionEnter(Minion *minion, Player *p1, Player *p2) {
 	try {
 	for(int i = 0; i < cardList.size(); i++) {
 		if(DBG) cout << "Entered in minionEnter loop inside Slot";
-		cardList[i]->performTriggeredAbility("minionEnter", -1, minion, p1, p2);
+		dynamic_cast<Minion*>(cardList[i])->performTriggeredAbility("minionEnter", -1, minion, p1, p2);
 	}
 	} catch(const std::runtime_error& re)
 {

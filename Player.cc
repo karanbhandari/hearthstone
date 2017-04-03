@@ -63,7 +63,7 @@ void Player::performStartTrigger(Player *activePlayer, Player *opponent) {
 	draw();
 	slot->performStartTrigger(activePlayer, opponent);
 	if (ritual)
-	ritual->performTriggeredAbility("startOfTurn", -1, nullptr, activePlayer, opponent);
+		ritual->performTriggeredAbility("startOfTurn", -1, nullptr, activePlayer, opponent);
 }
 
 // Performs the end of turn Triggers
@@ -78,23 +78,23 @@ void Player::performMinionEnter(Minion *minion, Player *activePlayer, Player *op
 	if(dbg) cout << "Entered minion Enter Ability " << endl;
 	slot->performMinionEnter(minion, activePlayer, opponent);
 	if(dbg) cout << "Perform Enter works" << endl;
-	if (ritual)
-	ritual->performTriggeredAbility("minionEnter", -1, minion, activePlayer, opponent);
+	//if (ritual)
+	//ritual->performTriggeredAbility("minionEnter", -1, minion, activePlayer, opponent);
 	if(dbg) cout << "Reaches to opponent now" << endl;
 	opponent->slot->performMinionEnter(minion, activePlayer, opponent);
-	if (opponent->ritual)
-	opponent->ritual->performTriggeredAbility("minionEnter", -1, minion, activePlayer, opponent);
+//	if (opponent->ritual)
+	//opponent->ritual->performTriggeredAbility("minionEnter", -1, minion, activePlayer, opponent);
 	if(dbg) cout << "Abilities Worked for Minion Enter" << endl;
 }
 
 // Perform the minion enter trigger
 void Player::performMinionLeave(Minion *minion, Player *activePlayer, Player *opponent) {
-	slot->performMinionLeave(minion, activePlayer, opponent);
-	if (ritual)
-	ritual->performTriggeredAbility("minionLeave" , -1, minion, activePlayer, opponent);
-	opponent->slot->performMinionLeave(minion, activePlayer, opponent);
-	if (opponent->ritual)
-	opponent->ritual->performTriggeredAbility("minionLeave", -1, minion, activePlayer, opponent);
+//	slot->performMinionLeave(minion, activePlayer, opponent);
+//	if (ritual)
+	//ritual->performTriggeredAbility("minionLeave" , -1, minion, activePlayer, opponent);
+	//opponent->slot->performMinionLeave(minion, activePlayer, opponent);
+//	if (opponent->ritual)
+	//opponent->ritual->performTriggeredAbility("minionLeave", -1, minion, activePlayer, opponent);
 }
 
 
