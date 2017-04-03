@@ -107,7 +107,6 @@ void mainLoop(istream *in, bool testing, Board* board, Player *activePlayer) {
 		if(dbg) cout << inactivePlayer->getName() << "s life: " <<inactivePlayer->life <<endl;
 		if (!inactivePlayer->isAlive()) {
 			cout << inactivePlayer->getName() << " loses" <<endl;
-			delete board;
 			break;
 		}
 	}
