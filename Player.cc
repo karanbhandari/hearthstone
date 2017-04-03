@@ -28,10 +28,15 @@ Player::Player(string myName, istream *in) :
 // dtor for players
 Player::~Player() {
 	delete deck;
+	deck = nullptr;
 	delete hand;
+	hand = nullptr;
 	delete slot;
+	hand = nullptr;
 	delete graveyard;
+	graveyard = nullptr;
 	delete ritual;
+	ritual = nullptr;
 }
 
 // returns the magic available to the player

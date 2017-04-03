@@ -15,5 +15,7 @@ Board::Board(Player *p1, Player *p2) : p1{p1}, p2{p2} {
 //BOARD Dtor
 Board::~Board() {
 	delete p1;
+	p1 = nullptr;
 	delete p2;
+	p2 = nullptr;
 }

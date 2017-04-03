@@ -17,7 +17,11 @@ Minion::Minion(const string &name,int attack, int defence, int cost, Ability *ac
 
 Minion::~Minion() {
   delete activatedAbility;
+  activatedAbility = nullptr;
   delete triggeredAbility;
+  triggeredAbility = nullptr;
+  for(auto &c : enchantments) 
+    delete c;
   // ?? Do we also need to delete the vector??
 }
 

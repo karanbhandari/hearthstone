@@ -12,7 +12,9 @@ Enchantment::Enchantment(const string name, int cost, /*int changeAttack, int ch
 
 Enchantment::~Enchantment() {
 	delete triggeredAbility;
+	triggeredAbility = nullptr;
 	delete activatedAbility;
+	activatedAbility = nullptr;
 }
 
 void Enchantment::setAbility(Minion *minion){
