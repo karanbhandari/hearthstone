@@ -1,28 +1,131 @@
+#include <iostream>
 #include <string>
 #include <sstream>
 #include "Minion.h"
 #include "Player.h"
 #include "Ability.h"
+#include "Enchantment.h"
 
 using namespace std;
 
-Minions::Minions (int attack, int defence, int action, Ability *actAbl, Ability *trgAbl, Ability *newstActAbl):
-  attack{attack}, defence{defence}, action{action}, activatedAbility{actAbl}, triggeredAbility{trgAbl},
-  newestActivatedAbility{newstActAbl} {
+Minion::Minion(const string &name,int attack, int defence, int cost, Ability *actAbl, Ability *trgAbl): Card{name, cost},
+  attack{attack}, defence{defence}, activatedAbility{actAbl}, triggeredAbility{trgAbl} {
+    action = 1;
 }
 
-void updateActivatedAbility (){
-  // updates the activated ability
+Minion::~Minion() {
+  delete activatedAbility;
+  delete triggeredAbility;
+  // ?? Do we also need to delete the vector??
 }
 
-void resetDefault(){
-  // Not sure what is being defaulted here.. probably removing the spell or sth @Karan
+void Minion::updateActivatedAbility(Card *Ench){
+  // updates the activated ability by adding Enchantment to the vector of enchantments
+  enchantments.push_back(Ench);
 }
 
-void attackMinion(Minions *minion){
-  // Not sure if this is informing other minion about hte attack or reduces current minions defence @Karan
+void Minion::resetDefault(){
+  // Removes the enchantments if any on the Minion
+	while(!enchantments.empty()){
+    enchantments.pop_back();
+  }
 }
 
-void performAbility(){
+void Minion::attackOther(Minion *minion){
+	// reduces the this->defence by the minion->attack, and minion->defence by this->attack
+	if(this->action){
+    minion->defence -= this->attack;
+    this->defence -= minion->attack;
+  }
+  this->action = 0;
+}
+
+void Minion::attackOther(Player *player){
+  // reduces the this->defence by the minion->attack, and minion->defence by this->attack
+  if(this->action > 0){
+    // reduce the player's life by one
+    player->changeLife(-1);
+  } else {
+    cout << "You don't have enought action to attack" << endl;
+  }
+  this->action = 0;
+}
+
+void Minion::performAbility(){
   // performs ability
+}
+
+void Minion::performActivatedAbility(int minionNum, Minion *minion, Player *p1, Player *p2) {
+  if (enchantments.empty()) {
+        dynamic_cast<ActivatedAbility*>(activatedAbility)->performAbility(" ", minionNum, minion, p1, p2);
+  } else {
+    Enchantment *top = dynamic_cast<Enchantment*>(enchantments.back());
+    top->performActivatedAbility(minionNum, minion, p1, p2);
+  }
+}
+
+
+void Minion::performTriggeredAbility(string what, int minionNum, Minion *minion, Player *p1, Player *p2) {
+  //auto tAbility = dynamic_cast<TriggeredAbility*>(triggeredAbility);
+  cout << "entered the minionNow";
+  if(triggeredAbility) 
+  dynamic_cast<TriggeredAbility*>(triggeredAbility)->performTAbility(what, minionNum, this, minion, p1, p2);
+}
+
+bool Minion::isDead() {
+	// returns true if the minion is dead
+	return (this->defence <= 0);
+}
+
+void Minion::addToBoard(Card *ritualSlot, Card *MinionCardForEnch, Slot *slot){
+  // calls absractDeck's add card functionality
+  //slot->add(this);
+}
+
+void Minion::changeAttack(int val) {
+  this->attack += val;
+};
+
+void Minion::changeDefence(int val) {
+  this->defence += val;
+};
+
+void Minion::popTopEnchantment() {
+  if(enchantments.size() > 0) {
+    enchantments.pop_back();
+  }
+}
+
+void Minion::reInitializeDefence(int initialisationVal) {
+  defence = initialisationVal;
+}
+
+void Minion::setActionTo1() {
+  action = 1;
+}
+
+bool Minion::hasAbility() {
+	return !(triggeredAbility == nullptr && activatedAbility == nullptr);
+}
+bool Minion::hasTriggeredAbility(){
+	return !(triggeredAbility == nullptr);
+}
+int Minion::getAttack() {
+	return attack;
+}
+
+int Minion::getCost(){
+	return cost;
+}
+int Minion::getDefence() {
+	return defence;
+}
+int Minion::getAction() {
+	return action;
+}
+Ability* Minion::getAbility() {
+	if (activatedAbility == nullptr) {
+		return triggeredAbility;
+	}
+	return activatedAbility;
 }

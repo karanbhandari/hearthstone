@@ -1,36 +1,39 @@
 /*
- * Spells.cc
+ * Spell.cc
  *
  *  Created on: Mar 23, 2017
  *      Author: Acer User
  */
-
+#include <iostream>
 #include <string>
 #include <sstream>
 #include "Spells.h"
 #include "Player.h"
 #include "Ability.h"
+#include "Minion.h"
 
 using namespace std;
 
-Spells::Spells(const string& name, int cost, Ability *myAbility,
-		Player *myPlayer) :
-		name(name), cost(cost), spellAbility(myAbility), spellPlayer(myPlayer) {
+Spell::Spell(const string name, int cost, Ability *myAbility) :
+		Card{name, cost}, spellAbility(myAbility) {
 }
 
-bool Spells::canActivate() {
-	return spellPlayer->getMagic() >= cost;
+Spell::~Spell(){
+	delete spellAbility;
+	spellAbility = nullptr;
 }
 
-void Spells::activate() {
-	if (canActivate()) {
-		spellPlayer->changeMana(-(cost));
-		spellAbility->performAbility();
-		moveToGrave();
-	} else
-		throw "not enough mana";
-}
+//bool Spell::canActivate() {
+	//return spellPlayer->getMagic() >= cost;
+//}
 
-void Spells::moveToGrave() {
+
+void Spell::moveToGrave() {
 	// move to graveyard
 }
+
+
+void Spell::performActivatedAbility(int minionNum, Minion *minion, Player *p1, Player *p2) {
+	spellAbility->performAbility("", minionNum, minion, p1, p2);
+}
+

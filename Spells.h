@@ -10,22 +10,20 @@
 #include <string>
 #include <sstream>
 #include <iostream>
-#include "Player.h"
-#include "Ability.h"
 #include "Card.h"
 
-class Spells: public Cards {
-	int cost;
-	std::string name;
-	std::string description; // I need to implement something to add in description
+class Slot;
+class Ability;
+
+class Spell: public Card {
 	Ability *spellAbility; // link to an ability to activate
-	Player *spellPlayer; // What is this for ??? @Karan
+	//Player *spellPlayer; // What is this for ??? @Karan
 
 public:
-	Spells (const std::string& name, int cost, Ability * myAbility, Player * myPlayer);
-	//~Spell();
-	bool canActivate ();
-	void activate ();
+	Spell (const std::string name, int cost, Ability * myAbility);
+	~Spell();
+	//bool canActivate ();
+	void performActivatedAbility(int minionNum, Minion *minion, Player *p1, Player *p2) override;
 	void moveToGrave ();
 };
 
