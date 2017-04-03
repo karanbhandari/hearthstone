@@ -126,7 +126,7 @@ Card* Deck::createCard(string name) {
 		const string abilityName = "Deal 1 damage to target minion";
 		Ability * actAb = new ActivatedAbility(abilityName);
 		Ability * trigAb = nullptr;
-		Minion * myMinion = new Minion(minionName, 1, 3, 2, actAb, trigAb);
+		Minion * myMinion = new Minion(minionName, 0, 1, 1, actAb, trigAb);
 		return myMinion;
 	} else if (name == "Apprentice Summoner") {
 		const string minionName = "Apprentice Summoner";
