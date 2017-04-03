@@ -46,37 +46,37 @@ Card* Deck::createCard(string name) {
 	if (name == "Banish") {
 		const string abilityName = "Destroy target minion or ritual";
 		const string spellName = "Banish";
-		Ability * banishAb = new ActivatedAbility(abilityName, 0); // TODO: @Karan Change Ability to activatedAbility
+		Ability * banishAb = new ActivatedAbility(abilityName); // TODO: @Karan Change Ability to activatedAbility
 		Spell * banish = new Spell(spellName, 2, banishAb);
 		return banish;
 	} else if (name == "Unsummon") {
 		const string abilityName = "Return target minion to its owners hand"; // TODO: @Karan Change ability to activated ability
 		const string spellName = "Unsummon";
-		Ability * unsummonAb = new ActivatedAbility(abilityName, 0);
+		Ability * unsummonAb = new ActivatedAbility(abilityName);
 		Spell * unsummon = new Spell(spellName, 1, unsummonAb);
 		return unsummon;
 	} else if (name == "Recharge") {
 		const string abilityName = "Your ritual gains 3 charges"; // TODO: @Karan Change ability to ActivatedAbility
 		const string spellName = "Recharge";
-		Ability * rechargeAb = new ActivatedAbility(abilityName, 0);
+		Ability * rechargeAb = new ActivatedAbility(abilityName);
 		Spell * recharge = new Spell(spellName, 1, rechargeAb);
 		return recharge;
 	} else if (name == "Disenchant") {
 		const string abilityName = "Destroy the top enchantment on target minion"; // TODO: @Karan Change ability to activatedAbility
 		const string spellName = "Disenchant";
-		Ability * disenchantAb = new ActivatedAbility(abilityName, 0);
+		Ability * disenchantAb = new ActivatedAbility(abilityName);
 		Spell * disenchant = new Spell(spellName, 1, disenchantAb);
 		return disenchant;
 	} else if (name == "Raise Dead") {
 		const string abilityName = "Resurrect the top minion in your graveyard and set its defence to 1"; // TODO: @Karan Change aility to activated abiility
 		const string spellName = "Raise Dead";
-		Ability * raiseDeadAb = new ActivatedAbility(abilityName, 0);
+		Ability * raiseDeadAb = new ActivatedAbility(abilityName);
 		Spell * raiseDead = new Spell(spellName, 1, raiseDeadAb);
 		return raiseDead;
 	} else if (name == "Blizzard") {
 		const string abilityName = "Deal 2 damage to all minions"; // TODO: @Karan change ability to activated ability
 		const string spellName = "Blizzard";
-		Ability * BlizzardAb = new ActivatedAbility(abilityName, 0);
+		Ability * BlizzardAb = new ActivatedAbility(abilityName);
 		Spell * Blizzard = new Spell(spellName, 3, BlizzardAb);
 		return Blizzard;
 	}
@@ -124,21 +124,21 @@ Card* Deck::createCard(string name) {
 	} else if (name == "Novice Pyromancer") {
 		const string minionName = "Novice Pyromancer";
 		const string abilityName = "Deal 1 damage to target minion";
-		Ability * actAb = new ActivatedAbility(abilityName, 1);
+		Ability * actAb = new ActivatedAbility(abilityName);
 		Ability * trigAb = nullptr;
-		Minion * myMinion = new Minion(minionName, 0, 1, 1, actAb, trigAb);
+		Minion * myMinion = new Minion(minionName, 1, 3, 2, actAb, trigAb);
 		return myMinion;
 	} else if (name == "Apprentice Summoner") {
 		const string minionName = "Apprentice Summoner";
 		const string abilityName = "Summon a 1/1 air elemental";
-		Ability * actAb = new ActivatedAbility(abilityName, 1);
+		Ability * actAb = new ActivatedAbility(abilityName);
 		Ability * trigAb = nullptr;
 		Minion * myMinion = new Minion(minionName, 1, 1, 1, actAb, trigAb);
 		return myMinion;
 	} else if (name == "Master Summoner") {
 		const string minionName = "Master Summoner";
 		const string abilityName = "Summon up to three 1/1 air elementals";
-		Ability * actAb = new ActivatedAbility(abilityName, 2);
+		Ability * actAb = new ActivatedAbility(abilityName);
 		Ability * trigAb = nullptr;
 		Minion * myMinion = new Minion(minionName, 2, 3, 3, actAb, trigAb);
 		return myMinion;
@@ -149,7 +149,7 @@ Card* Deck::createCard(string name) {
 	else if (name == "Giant Strength") {
 		const string enchantName = "Giant Strength";
 		const string abilityName = "Enchanted minion gains +2/+2";
-		Ability * actAb = new ActivatedAbility(abilityName, 0);
+		Ability * actAb = new ActivatedAbility(abilityName);
 		Ability * trigAb = nullptr;
 		// const string function = "+";
 		// int changeAtk = 2;
@@ -160,7 +160,7 @@ Card* Deck::createCard(string name) {
 	} else if (name == "Enrage") {
 		const string enchantName = "Enrage";
 		const string abilityName = "Enchanted minion gains +2/+2";
-		Ability * actAb = new ActivatedAbility(abilityName, 0);
+		Ability * actAb = new ActivatedAbility(abilityName);
 		Ability * trigAb = nullptr;
 		// const string function = "*";
 		// int changeAtk = 2;
@@ -182,7 +182,7 @@ Card* Deck::createCard(string name) {
 	} else if (name == "Magic Fatigue") {
 		const string enchantName = "Magic Fatigue";
 		const string abilityName = "Enchanted minion’s activated ability costs 2 more";
-		Ability * actAb = new ActivatedAbility(abilityName, 0);
+		Ability * actAb = new ActivatedAbility(abilityName);
 		Ability * trigAb = nullptr;
 		// const string function = "";
 		// int changeAtk = 0;
@@ -374,7 +374,6 @@ void Slot::performStartTrigger(Player *p1, Player *p2) {
 }
 
 void Slot::performEndTrigger(Player *p1, Player *p2) {
-	if(DBG) cout << "Enter Inside Slot for performEndTrigger" << endl;
 	for(auto &b : cardList){
 		b->performTriggeredAbility("endTurn", -1, nullptr, p1, p2);
 	}
@@ -428,5 +427,10 @@ Graveyard::~Graveyard() {
 
 void Graveyard::popTop() {
 	cardList.pop_back();
+}
+
+
+Card* Graveyard::showTopCard(){
+	return cardList[cardList.size()-1];
 }
 

@@ -6,8 +6,6 @@
 #include "Ability.h"
 #include "Enchantment.h"
 
-#define dbg true
-
 using namespace std;
 
 Minion::Minion(const string &name,int attack, int defence, int cost, Ability *actAbl, Ability *trgAbl): Card{name, cost},
@@ -59,13 +57,7 @@ void Minion::performAbility(){
 
 void Minion::performActivatedAbility(int minionNum, Minion *minion, Player *p1, Player *p2) {
   if (enchantments.empty()) {
-        ActivatedAbility *ab = dynamic_cast<ActivatedAbility*>(activatedAbility);
-	if(p1->getMagic() >= ab->getActCost()) {
-          ab->performAbility(" ", minionNum, minion, p1, p2);
-          p1->changeMagic(ab->getActCost() * -1);
-        } else {
-          cout << "You don't have enough magic to use this ability" << endl;
-        }
+        dynamic_cast<ActivatedAbility*>(activatedAbility)->performAbility(" ", minionNum, minion, p1, p2);
   } else {
     Enchantment *top = dynamic_cast<Enchantment*>(enchantments.back());
     top->performActivatedAbility(minionNum, minion, p1, p2);
@@ -75,11 +67,9 @@ void Minion::performActivatedAbility(int minionNum, Minion *minion, Player *p1, 
 
 void Minion::performTriggeredAbility(string what, int minionNum, Minion *minion, Player *p1, Player *p2) {
   //auto tAbility = dynamic_cast<TriggeredAbility*>(triggeredAbility);
-  if(dbg) cout << "Enter Minion For perfromTriggeredAbility" << endl;
-  if(triggeredAbility) {
-    if (dbg) cout << "triggeredAbility is not nullptr" << endl; 
-    dynamic_cast<TriggeredAbility*>(triggeredAbility)->performTAbility(what, minionNum, this, minion, p1, p2);
-  }
+  cout << "entered the minionNow";
+  if(triggeredAbility) 
+  dynamic_cast<TriggeredAbility*>(triggeredAbility)->performTAbility(what, minionNum, this, minion, p1, p2);
 }
 
 bool Minion::isDead() {
@@ -112,4 +102,30 @@ void Minion::reInitializeDefence(int initialisationVal) {
 
 void Minion::setActionTo1() {
   action = 1;
+}
+
+bool Minion::hasAbility() {
+	return !(triggeredAbility == nullptr && activatedAbility == nullptr);
+}
+bool Minion::hasTriggeredAbility(){
+	return !(triggeredAbility == nullptr);
+}
+int Minion::getAttack() {
+	return attack;
+}
+
+int Minion::getCost(){
+	return cost;
+}
+int Minion::getDefence() {
+	return defence;
+}
+int Minion::getAction() {
+	return action;
+}
+Ability* Minion::getAbility() {
+	if (activatedAbility == nullptr) {
+		return triggeredAbility;
+	}
+	return activatedAbility;
 }

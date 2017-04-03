@@ -19,6 +19,7 @@ class Ability {
     virtual void performAbility(std::string what, int minionNum, Ritual *ritual, Player *actPlayer, Player *inactPlayer);
     virtual void performTAbility(std::string what, int minionNum, Minion *thisMinion, Minion *minion, Player *actPlayer, Player *inactPlayer);
     virtual ~Ability();
+    virtual std::string getName();
 };
 
 class TriggeredAbility: public Ability {
@@ -35,11 +36,9 @@ class TriggeredAbility: public Ability {
 };
 
 class ActivatedAbility: public Ability {
-    int actCost;
   // name is inherited from the parent class
   public:   
-    int getActCost();
-    ActivatedAbility(const std::string& nameOfAbility, int actCost);
+    ActivatedAbility(const std::string& nameOfAbility);
     void performAbility(std::string what, int minionNum, Minion *minion, Player *actPlayer, Player *inactPlayer) override;
     void performAbility(std::string what, int minionNum, Ritual *ritual, Player *actPlayer, Player *inactPlayer) override;
 };

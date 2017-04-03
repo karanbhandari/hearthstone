@@ -8,6 +8,7 @@ using namespace std;
 
 Ritual::Ritual(const string &name, int cost, int charge, int activationCost, Ability *ability):
 		Card{name, cost}, charge(charge), activationCost(activationCost), triggeredAbility{ability} {
+			this->cost = cost;
 }
 
 Ritual::~Ritual() {
@@ -31,4 +32,18 @@ void Ritual::performTriggeredAbility(std::string what, int minionNum, Minion *mi
 
 int Ritual::power() {
 	return charge;
+}
+
+int Ritual::getCharge(){
+	return charge;
+}
+int Ritual::getCost(){
+	return cost;
+}
+int Ritual::getActivateCost(){
+	return activationCost;
+}
+
+Ability * Ritual::getAbility(){
+	return triggeredAbility;
 }

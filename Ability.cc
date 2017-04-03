@@ -11,6 +11,9 @@ using namespace std;
 Ability::Ability(const string name) {
 	this->name = name;
 }
+string Ability::getName(){
+	return name;
+}
 // void Ability::performAbility() {
 // 	cout << "Ability Activated! \n";
 // }
@@ -102,13 +105,8 @@ void TriggeredAbility::minionLeave(Minion *thisMinion, Minion *opponentMinion, P
 ///////////////////////////////////////*****Activated ability*****///////////////////////////////////////
 
 
-ActivatedAbility::ActivatedAbility(const string& nameOfAbility, int cost) 
-	: Ability{nameOfAbility}, actCost{cost} {
+ActivatedAbility::ActivatedAbility(const string& nameOfAbility) : Ability{nameOfAbility}{
 
-}
-
-int ActivatedAbility::getActCost() {
-	return actCost;
 }
 
 void ActivatedAbility::performAbility(string what, int minionNum, Minion *minion, Player *actPlayer, Player *inactPlayer) {

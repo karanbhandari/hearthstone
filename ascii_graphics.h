@@ -2,7 +2,7 @@
 #include <string>
 
 //If SIMPLE_GRAPHICS = 1, use | and - instead of unicode and simplify graphics
-//#define SIMPLE_GRAPHICS 1
+#define SIMPLE_GRAPHICS 1
 
 typedef std::vector<std::string> card_template_t;
 

@@ -133,9 +133,8 @@ void Player::play(int i, Player *activePlayer, Player *opponent) {
 	if(getMagic() - card1->getCardCost() < 0) {
 		cout << "Player " << name << " doesn't have enough magic to play " << card1->getName() << endl;
 		cout << "Player only has " << getMagic() << endl;
-		cout << "You need " << card1->getCardCost() << endl;
 		return;
-	} else if (dynamic_cast<Minion*>(card1)) {
+	}if (dynamic_cast<Minion*>(card1)) {
 		auto card = dynamic_cast<Minion*>(card1);
 		if(dbg) cout << card->getName() << " str" <<  endl;
 		if(slot->add(card1)) {
@@ -284,4 +283,21 @@ int Player::powerOfRitual() {
 void Player::removeRitual() {
   delete ritual;
   ritual = nullptr;
+}
+
+
+Hand* Player::getHand() {
+	return hand;
+}
+Slot * Player::getSlot() {
+	return slot;
+}
+Deck * Player::getDeck() {
+	return deck;
+}
+Graveyard *Player::getGraveyard() {
+	return graveyard;
+}
+Card * Player::getRitual() {
+	return ritual;
 }
