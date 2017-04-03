@@ -286,7 +286,7 @@ void AbstractDeck::remove(int i) {
 
 //deletes the card from the list
 void AbstractDeck::deleteCard(int i) {
-	Card *temp = cardList[i];
+	Card *temp = cardList[i-1];
 	remove(i);
 	delete temp;
 }

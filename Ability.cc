@@ -149,6 +149,10 @@ void ActivatedAbility::performAbility(string what, int minionNum, Minion *minion
   } else if (name ==  "Deal 2 damage to all minions") {
     // damage all the minions on slot with 2 atttack
     inactPlayer->updateSlot(0,-2);
+  } else if(name == "Enchanted minion gains +2/+2") {
+  	// minion gains +2/+2
+  } else if(name == "Enchanted minion gains *2/*2") {
+  	// minion gains *2/*2
   }
 }
 
