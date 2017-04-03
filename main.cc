@@ -100,9 +100,9 @@ void mainLoop(istream *in, bool testing, Board* board, Player *activePlayer) {
 			cout << "hand of active" << endl;
 			activePlayer->showHand();
 		} else if (s == "board") { //display the board
-			//cout << "wrong command" << endl;
+			cout << "wrong command" << endl;
 			printBoard(activePlayer, inactivePlayer);
-			activePlayer->showDeck();
+			//activePlayer->showDeck();
 		} else {
 			cout << "INVALID COMMAND" << endl;
 		}

@@ -36,9 +36,8 @@ void Minion::resetDefault(){
 void Minion::attackOther(Minion *minion){
 	// reduces the this->defence by the minion->attack, and minion->defence by this->attack
 	if(this->action){
-    minion->defence -= this->attack;
-    this->defence -= minion->attack;
-  }
+    		minion->defence -= this->attack;
+ 	 }
   this->action = 0;
 }
 

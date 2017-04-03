@@ -59,10 +59,14 @@ void printBoard(Player *p1, Player* p2) {
 	int dummyLine = 0;
 	int p1SlotSize = p1->getSlot()->numOfCards();
 	int p2SlotSize = p2->getSlot()->numOfCards();
-	Minion * p1GraveMinion = static_cast<Minion*> (p1->getGraveyard()->showTopCard());
-	Minion * p2GraveMinion = static_cast<Minion*> (p2->getGraveyard()->showTopCard());
-	Ritual * p1Ritual = (Ritual *)p1->getRitual();
-	Ritual * p2Ritual = (Ritual *)p2->getRitual();
+	Minion *p1GraveMinion = nullptr;
+	Minion *p2GraveMinion = nullptr;
+	if (p1->getGraveyard()->numOfCards() > 0)
+		p1GraveMinion = dynamic_cast<Minion*> (p1->getGraveyard()->showTopCard());
+	if(p2->getGraveyard()->numOfCards() > 0)
+		p2GraveMinion = dynamic_cast<Minion*> (p2->getGraveyard()->showTopCard());
+	Ritual * p1Ritual = p1->getRitual();
+	Ritual * p2Ritual = p2->getRitual();
 	Slot * p1Slot = p1->getSlot();
 	Slot * p2Slot = p2->getSlot();
 
@@ -88,7 +92,7 @@ void printBoard(Player *p1, Player* p2) {
 
 	// Player Two Back Row ------------------------------------------------------------------------------------------------
 	// Player Two Ritual Card
-	if (p1Ritual != nullptr)
+	if (p2Ritual != nullptr)
 		pushRitual(P2ListPointer, p2Ritual);
 	else
 		pushEmptyCard(P2ListPointer);
@@ -106,22 +110,30 @@ void printBoard(Player *p1, Player* p2) {
 
 	Minion * dummyMinion;
 	// Player One Minion Row
-	for (int i = 0; i < 5; i++) {
-		if (i >= p1SlotSize)
+	for (int i = 1; i <= 5; i++) {
+		cout << "in " << p1SlotSize << endl;
+		if (i > p1SlotSize)
 			pushEmptyCard(P1MinionPointer);
 		else{
-			dummyMinion = static_cast<Minion*> (p1Slot->getIth(i));
+			dummyMinion = nullptr;
+			cout << "Number of minions on Slots : " << p1Slot->numOfCards() << endl;
+			if(p1Slot->numOfCards() > 0 && p1Slot->getIth(i))
+				dummyMinion = dynamic_cast<Minion*> (p1Slot->getIth(i));
+			cout << "gets here" << endl;
 			pushMinion(P1MinionPointer, dummyMinion);
 		}
 	}
 	cout << "Checkpoint 3" << endl;
 
 	// Player Two Minion Row
-	for (int i = 0; i < 5; i++) {
-		if (i >= p2SlotSize)
+	for (int i = 1; i <= 5; i++) {
+		if (i > p2SlotSize)
 			pushEmptyCard(P2MinionPointer);
 		else{
-			dummyMinion = static_cast<Minion*> (p2Slot->getIth(i));
+			dummyMinion = nullptr;
+			cout << "Number of minions on Slots : " << p2Slot->numOfCards() << endl;
+			if (p2Slot->numOfCards() > 0 && p2Slot->getIth(i))
+				dummyMinion = dynamic_cast<Minion*> (p2Slot->getIth(i));
 			pushMinion(P2MinionPointer, dummyMinion);
 		}
 

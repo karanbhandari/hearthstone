@@ -54,10 +54,10 @@ public:
  	int powerOfRitual();
  	void removeRitual();
  	Hand* getHand();
- 		Slot * getSlot();
- 		Deck * getDeck();
- 		Graveyard *getGraveyard();
- 		Card * getRitual();
+ 	Slot * getSlot();
+ 	Deck * getDeck();
+ 	Graveyard *getGraveyard();
+ 	Ritual* getRitual();
 };
 
 
