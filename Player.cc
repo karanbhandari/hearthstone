@@ -186,7 +186,11 @@ void Player::play(int i, Player *p, int j, Player *activePlayer, Player *opponen
 	} else if (dynamic_cast<Spell*>(card1)) {
 		auto card = dynamic_cast<Spell*>(card1);
 		hand->remove(i);
-		card->performActivatedAbility(j, dynamic_cast<Minion*>(p->hand->getIth(j)), activePlayer, opponent);
+		if(dbg) cout << "shit" << endl;
+		if (j != 114)
+			card->performActivatedAbility(j, dynamic_cast<Minion*>(p->hand->getIth(j)), activePlayer, opponent);
+		else
+			card->performActivatedAbility2(-1, dynamic_cast<Ritual*>(p->ritual), activePlayer, opponent);
 		delete card;
 		changeMagic(card1->getCardCost() * -1);
 	} else if (dynamic_cast<Ritual*>(card1)) {
@@ -337,3 +341,7 @@ void Player::moveToGraveyard() {
 	}
 }
 
+void Player::deleteRitual() {
+	delete dynamic_cast<Ritual*>(ritual);
+	ritual = nullptr;
+}

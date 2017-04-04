@@ -174,8 +174,8 @@ void ActivatedAbility::performAbility(string what, int minionNum, Minion *minion
 void ActivatedAbility::performAbility(string what, int minionNum, Ritual *ritual, Player *actPlayer, Player *inactPlayer) {
   if(name == "Destroy target minion or ritual"){
     // Destroys the ritual since Banish has been called
-    inactPlayer->removeRitual(); // THIS should remain while in merge conflict
-  } else if (name ==  "Your ritual gains 3 charges") {
+	inactPlayer->deleteRitual(); 
+ } else if (name ==  "Your ritual gains 3 charges") {
     // ritual gains three charges since recharge is calleed
     actPlayer->updateRitual(3);
   }

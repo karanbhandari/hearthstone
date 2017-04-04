@@ -66,8 +66,11 @@ void mainLoop(istream *in, bool testing, Board* board, Player *activePlayer) {
 			iss >> i;
 			int l;
 			if (iss >> j) {
-				iss >> l;
-				cout << "play " << i << "th card on player " << j << "s " << j << endl;
+				if(! (iss >> l)) {
+					iss.clear();
+					l = 114;
+				}
+				cout << "play " << i << "th card on player " << j << "s " << l << endl;
 				if(j == 1) {
 					activePlayer->play(i, board->p1, l, activePlayer, inactivePlayer);
 				} else {
