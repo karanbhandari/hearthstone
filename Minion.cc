@@ -6,7 +6,7 @@
 #include "Ability.h"
 #include "Enchantment.h"
 
-#define dbg true
+#define dbg false
 
 using namespace std;
 
