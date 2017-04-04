@@ -32,6 +32,9 @@ void Spell::moveToGrave() {
 	// move to graveyard
 }
 
+Ability* Spell::getAbility() {
+	return spellAbility;
+}
 
 void Spell::performActivatedAbility(int minionNum, Minion *minion, Player *p1, Player *p2) {
 	spellAbility->performAbility("", minionNum, minion, p1, p2);

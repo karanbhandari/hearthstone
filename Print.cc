@@ -41,7 +41,7 @@ void pushSpell(vector<card_template_t> * list, Spell* spell) {
 					spell->getAbility()->getName()));
 }
 
-/*void pushEnchantment(vector<card_template_t> * list, Enchantment* enchant) {
+void pushEnchantment(vector<card_template_t> * list, Enchantment* enchant) {
 	string name = enchant->getName();
 	if (name == "Giant Strength") {
 		list->push_back(
@@ -55,7 +55,7 @@ void pushSpell(vector<card_template_t> * list, Spell* spell) {
 		list->push_back(
 				display_enchantment(name, enchant->getCardCost(),
 						enchant->getAbility()->getName()));
-}*/
+}
 
 void pushEmptyCard(vector<card_template_t> * list) {
 	list->push_back(CARD_TEMPLATE_BORDER);
@@ -76,17 +76,17 @@ void printHand(Player *player) {
 		cout << "in " << handSize << endl;
 		if (i > handSize)
 			pushEmptyCard(handListPointer);
-		else if (hand->getIth(i)->getType() == "Spell") {
+		else if (dynamic_cast<Spell*>(hand->getIth(i))) {
 			dummySpell = nullptr;
 			if (hand->numOfCards() > 0 && hand->getIth(i))
 				dummySpell = dynamic_cast<Spell*>(hand->getIth(i));
 			pushSpell(handListPointer, dummySpell);
-		} /*else if (hand->getIth(i)->getType() == "Enchantment") {
+		} else if (dynamic_cast<Enchantment*>(hand->getIth(i))) {
 			dummyEnchantment = nullptr;
 			if (hand->numOfCards() > 0 && hand->getIth(i))
 				dummyEnchantment = dynamic_cast<Enchantment*>(hand->getIth(i));
 			pushEnchantment(handListPointer, dummyEnchantment);
-		} */else if (hand->getIth(i)->getType() == "Ritual") {
+		} else if (dynamic_cast<Ritual*>(hand->getIth(i))) {
 			dummyRitual = nullptr;
 			if (hand->numOfCards() > 0 && hand->getIth(i))
 				dummyRitual = dynamic_cast<Ritual*>(hand->getIth(i));
@@ -96,7 +96,7 @@ void printHand(Player *player) {
 			//cout << "Number of minions on Slots : " << p1Slot->numOfCards() << endl;
 			if (hand->numOfCards() > 0 && hand->getIth(i))
 				dummyMinion = dynamic_cast<Minion*>(hand->getIth(i));
-			cout << "gets here" << endl;
+			//cout << "gets here" << endl;
 			pushMinion(handListPointer, dummyMinion);
 		}
 	}

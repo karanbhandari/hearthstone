@@ -25,6 +25,7 @@ public:
 	//bool canActivate ();
 	void performActivatedAbility(int minionNum, Minion *minion, Player *p1, Player *p2) override;
 	void moveToGrave ();
+	Ability* getAbility();
 };
 
 #endif

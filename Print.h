@@ -19,6 +19,7 @@
 #include "Minion.h"
 #include "Board.h"
 #include "Ability.h"
+#include "Enchantment.h"
 #include "Spells.h"
 
 void pushMinion(std::vector<card_template_t> * list, Minion* minion);
