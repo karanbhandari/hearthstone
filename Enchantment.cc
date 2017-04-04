@@ -29,5 +29,5 @@ Ability* Enchantment::getAbility() {
 
 
 void Enchantment::performActivatedAbility(int minionNum, Minion *minion, Player *p1, Player *p2) {
-	cout << "Enchantment ability being performed here" << endl;
+	//cout << "Enchantment ability being performed here" << endl;
 }

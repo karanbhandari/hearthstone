@@ -28,7 +28,7 @@ void Ritual::performTriggeredAbility(std::string what, int minionNum, Minion *mi
 	if(charge - activationCost < 0) 
 		return;
 	triggeredAbility->performTAbility(what, minionNum, nullptr, minion, p1, p2);
-	cout << "ritual " << what << " Ability Plays"<< endl;
+	// cout << "ritual " << what << " Ability Plays"<< endl;
 	if(what == "minionEnter")
 		charge -= activationCost; 
 }
