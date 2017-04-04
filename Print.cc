@@ -183,16 +183,12 @@ void printBoard(Player *p1, Player* p2) {
 	Minion * dummyMinion;
 // Player One Minion Row
 	for (int i = 1; i <= 5; i++) {
-		cout << "in " << p1SlotSize << endl;
 		if (i > p1SlotSize)
 			pushEmptyCard(P1MinionPointer);
 		else {
 			dummyMinion = nullptr;
-			cout << "Number of minions on Slots : " << p1Slot->numOfCards()
-					<< endl;
 			if (p1Slot->numOfCards() > 0 && p1Slot->getIth(i))
 				dummyMinion = dynamic_cast<Minion*>(p1Slot->getIth(i));
-			cout << "gets here" << endl;
 			pushMinion(P1MinionPointer, dummyMinion);
 		}
 	}
@@ -202,8 +198,6 @@ void printBoard(Player *p1, Player* p2) {
 			pushEmptyCard(P2MinionPointer);
 		else {
 			dummyMinion = nullptr;
-			cout << "Number of minions on Slots : " << p2Slot->numOfCards()
-					<< endl;
 			if (p2Slot->numOfCards() > 0 && p2Slot->getIth(i))
 				dummyMinion = dynamic_cast<Minion*>(p2Slot->getIth(i));
 			pushMinion(P2MinionPointer, dummyMinion);
