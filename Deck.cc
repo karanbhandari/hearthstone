@@ -310,7 +310,6 @@ bool AbstractDeck::add(Card* card) {
 	if(DBG) cout << "ENTER add for : ";
 	if (cardList.size() < maxSize) {
 		size++;
-		cout<<card->getName()<<endl;
 		cardList.emplace_back(card);
 		if(DBG) cout << "Emplace Back working " << endl;
 		return true;

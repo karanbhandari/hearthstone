@@ -11,7 +11,7 @@
 #include "Enchantment.h"
 #include "Ritual.h"
 
-#define dbg true
+#define dbg false
 using namespace std;
 
 // ctor for Player
@@ -164,9 +164,6 @@ void Player::play(int i, Player *activePlayer, Player *opponent) {
 		}
 		auto card = dynamic_cast<Ritual*>(card1);
 		ritual = card;
-		if(dbg) {
-			if(ritual) cout << "teri maa kee" << endl;
-		}
 		hand->remove(i);
 		changeMagic(card1->getCardCost() * -1);
 	} else if (dynamic_cast<Enchantment*>(card1)) {
