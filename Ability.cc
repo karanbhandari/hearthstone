@@ -4,7 +4,7 @@
 #include "Ability.h"
 #include "Player.h"
 
-#define dbg true
+#define dbg false
 
 using namespace std;
 
