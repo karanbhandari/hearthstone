@@ -9,6 +9,14 @@ using namespace std;
 
 // Creates a new card specific to the name of the card given
 Card::Card(string name, int cost) : name{name}, cardCost{cost} {
+	Minion * minion = dynamic_cast<Minion*>(*this);
+	Enchantment *enchantment = dynamic_cast<Enchantment*>(*this);
+	Ritual *ritual = dynamic_cast<Ritual*>(*this);
+	Spell *spell = dynamic_cast<Spell*>(*this);
+	delete minion;
+	delete enchantment;
+	delete ritual;
+	delete spell;
 }
 
 void Card::changeAttack(int attack) {}
