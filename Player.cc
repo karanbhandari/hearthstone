@@ -16,7 +16,7 @@ using namespace std;
 
 // ctor for Player
 Player::Player(string myName, istream *in) : 
-		name{myName}, magic{3}, life{2} {
+		name{myName}, magic{3}, life{20} {
 	deck = new Deck(*in);
 	deck->shuffle();
 	hand = new Hand{deck};
