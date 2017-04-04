@@ -12,6 +12,7 @@
 #include <iostream>
 #include "Card.h"
 
+class Ritual;
 class Slot;
 class Ability;
 

@@ -11,6 +11,7 @@
 #include "Player.h"
 #include "Ability.h"
 #include "Minion.h"
+#include "Ritual.h"
 
 using namespace std;
 
@@ -40,7 +41,7 @@ void Spell::performActivatedAbility(int minionNum, Minion *minion, Player *p1, P
 	spellAbility->performAbility("", minionNum, minion, p1, p2);
 }
 
-void performActivatedAbility2(int minionNum, Ritual *ritual, Player *p1, Player *p2) {
+void Spell::performActivatedAbility2(int minionNum, Ritual *ritual, Player *p1, Player *p2) {
 	spellAbility->performAbility("", minionNum, ritual, p1, p2);
 }
 

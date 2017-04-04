@@ -154,7 +154,7 @@ void Player::play(int i, Player *activePlayer, Player *opponent) {
 		auto card = dynamic_cast<Spell*>(card1);
 		hand->remove(i);
 		card->performActivatedAbility(-1, nullptr, activePlayer, opponent);
-		card->performActivatedAbility2(-1, ritual, activePlayer, opponent);
+		card->performActivatedAbility2(-1, dynamic_cast<Ritual*>(ritual), activePlayer, opponent);
 		delete card;
 		changeMagic(card1->getCardCost() * -1);
 	} else if (dynamic_cast<Ritual*>(card1)) {
