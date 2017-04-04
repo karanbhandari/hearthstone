@@ -12,7 +12,7 @@
 #include "Ability.h"
 #include "Ritual.h"
 
-#define DBG true
+#define DBG false
 using namespace std;
 
 // Creates a new deck object and fills it with cards from the .deck file as specified
@@ -42,7 +42,7 @@ Card* Deck::createCard(string name) {
 
 	// For All Spell Cards
 	// All Spell Cards are initiated in the format: new Spell (string name, int magicCost, Ability ability)
-	cout<<"name of Card being added: "<<name<<endl;
+	if(DBG) cout<<"name of Card being added: "<<name<<endl;
 	if (name == "Banish") {
 		const string abilityName = "Destroy target minion or ritual";
 		const string spellName = "Banish";
@@ -327,7 +327,7 @@ void AbstractDeck::addMinion(Card *card) {}
 
 // shows the list on stdout
 void AbstractDeck::show() {
-	cout<<"Enter show function"<<endl;
+	if(DBG)cout<<"Enter show function"<<endl;
 	for(auto &x: cardList) {
 		cout<<x->getName()<<endl;
 	}
@@ -350,9 +350,9 @@ int AbstractDeck::cardBelongsTo(Card *card) {
 Hand::Hand(Deck *deck) :
 		AbstractDeck { 0, 5 } {
 	size = 0;
-	cout<<"constructing Hand"<<endl;
+	if(DBG) cout<<"constructing Hand"<<endl;
 	for(int i = 0; i < 5; i++) {
-		cout<<"adding card "<<endl;
+		if(DBG) cout<<"adding card "<<endl;
 		add(deck->getTopCard());	
 	}
 }
