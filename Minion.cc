@@ -16,9 +16,9 @@ Minion::Minion(const string &name,int attack, int defence, int cost, Ability *ac
 }
 
 Minion::~Minion() {
-  delete activatedAbility;
+  delete dynamic_cast<ActivatedAbility*>(activatedAbility);
   activatedAbility = nullptr;
-  delete triggeredAbility;
+  delete dynamic_cast<TriggeredAbility*>(triggeredAbility);
   triggeredAbility = nullptr;
   for(auto &c : enchantments) 
     delete c;
