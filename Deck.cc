@@ -295,7 +295,14 @@ void AbstractDeck::remove(int i) {
 void AbstractDeck::deleteCard(int i) {
 	Card *temp = cardList[i-1];
 	remove(i);
-	delete temp;
+	Minion * minion = dynamic_cast<Minion*>(temp);
+	Enchantment *enchantment = dynamic_cast<Enchantment*>(temp);
+	Ritual *ritual = dynamic_cast<Ritual*>(temp);
+	Spell *spell = dynamic_cast<Spell*>(temp);
+	delete minion;
+	delete enchantment;
+	delete ritual;
+	delete spell;
 }
 
 // adds the card to the list
