@@ -24,6 +24,7 @@ public:
 	~Spell();
 	//bool canActivate ();
 	void performActivatedAbility(int minionNum, Minion *minion, Player *p1, Player *p2) override;
+	void performActivatedAbility2(int minionNum, Ritual *ritual, Player *p1, Player *p2);
 	void moveToGrave ();
 	Ability* getAbility();
 };
