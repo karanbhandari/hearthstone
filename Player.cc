@@ -11,7 +11,7 @@
 #include "Enchantment.h"
 #include "Ritual.h"
 
-#define dbg true
+#define dbg false
 using namespace std;
 
 // ctor for Player

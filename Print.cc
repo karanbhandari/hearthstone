@@ -73,7 +73,6 @@ void printHand(Player *player) {
 
 	// Adds all the cards in a hand to a list
 	for (int i = 1; i <= 5; i++) {
-		cout << "in " << handSize << endl;
 		if (i > handSize)
 			pushEmptyCard(handListPointer);
 		else if (dynamic_cast<Spell*>(hand->getIth(i))) {
@@ -115,7 +114,6 @@ void printHand(Player *player) {
 }
 
 void printBoard(Player *p1, Player* p2) {
-	cout << " I started running";
 // Creating variables needed for function
 	vector<vector<card_template_t>> myBoard;
 	vector<card_template_t> POneMinionList;
@@ -147,7 +145,6 @@ void printBoard(Player *p1, Player* p2) {
 	Slot * p1Slot = p1->getSlot();
 	Slot * p2Slot = p2->getSlot();
 
-	cout << "all variables initiated" << endl;
 
 // Player One Back Row -----------------------------------------------------------------------------------------------
 // Player One Ritual Card
@@ -165,7 +162,6 @@ void printBoard(Player *p1, Player* p2) {
 // Player One Graveyard
 	pushMinion(P1ListPointer, p1GraveMinion);
 
-	cout << "Checkpoint 1" << endl;
 
 // Player Two Back Row ------------------------------------------------------------------------------------------------
 // Player Two Ritual Card
@@ -183,7 +179,6 @@ void printBoard(Player *p1, Player* p2) {
 // Player Two Graveyard
 	pushMinion(P2ListPointer, p2GraveMinion);
 
-	cout << "Checkpoint 2" << endl;
 
 	Minion * dummyMinion;
 // Player One Minion Row
@@ -201,8 +196,6 @@ void printBoard(Player *p1, Player* p2) {
 			pushMinion(P1MinionPointer, dummyMinion);
 		}
 	}
-	cout << "Checkpoint 3" << endl;
-
 // Player Two Minion Row
 	for (int i = 1; i <= 5; i++) {
 		if (i > p2SlotSize)
@@ -217,7 +210,6 @@ void printBoard(Player *p1, Player* p2) {
 		}
 
 	}
-	cout << "Checkpoint 4" << endl;
 
 // General Board pushing
 	myBoard.push_back(playerOneBackLine);
@@ -225,7 +217,6 @@ void printBoard(Player *p1, Player* p2) {
 	myBoard.push_back(PTwoMinionList);
 	myBoard.push_back(playerTwoBackLine);
 
-	cout << "Checkpoint 5" << endl;
 
 // Prints the Board in command Line
 	cout << horiBoarder << endl;
@@ -255,6 +246,5 @@ void printBoard(Player *p1, Player* p2) {
 		}
 	}
 	cout << horiBoarder << endl;
-	cout << "Checkpoint 6" << endl;
 
 }
