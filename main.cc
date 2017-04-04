@@ -143,5 +143,7 @@ int main (int argc, char *argv[]) {
 		delete in;
 	} 
 	mainLoop(&cin, testing, b, activePlayer);	
+	delete deck1P;
+	delete deck2P;
 	return 0;
 }	

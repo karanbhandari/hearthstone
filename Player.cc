@@ -237,7 +237,10 @@ void Player::addCard(string place, Card *card) {
 
 // removes a specific card form the slot
 void Player::removeCard(int minionNum) {
-  slot->deleteCard(minionNum);
+ // slot->deleteCard(minionNum);
+  Card *temp = slot->getIth(minionNum);
+  slot->remove(minionNum);
+  bool boolVal = graveyard->add(temp);
 }
 
 //displays the Hand of the player
