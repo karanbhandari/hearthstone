@@ -260,9 +260,16 @@ AbstractDeck::AbstractDeck(int size, int maxSize) :
 }
 
 AbstractDeck::~AbstractDeck() {
-	for (auto& x : cardList) {
-		if(DBG) cout << "Enter AbDeck Dtor for " << x->getName() << endl;
-		delete x;
+	for (int i = 0; i < cardList.size(); i++) {
+		if(DBG) cout << "Enter AbDeck Dtor for " << cardList[i]->getName() << endl;
+		Minion * minion = dynamic_cast<Minion*>(cardList[i]);
+		Enchantment *enchantment = dynamic_cast<Enchantment*>(cardList[i]);
+		Ritual *ritual = dynamic_cast<Ritual*>(cardList[i]);
+		Spell *spell = dynamic_cast<Spell*>(cardList[i]);
+		delete minion;
+		delete enchantment;
+		delete ritual;
+		delete spell;
 	}
 }
 
